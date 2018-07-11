@@ -47,22 +47,8 @@ public class Main {
             return 0;
         }
 
-        if (testing) {
-            Gtk.init (ref args);
-            var testing = new App.Tests.Testing (args);
-            Idle.add (() => {
-                testing.run ();
-                Gtk.main_quit ();
-
-                return false;
-            });
-            
-            Gtk.main ();
-        }
-        else {
-            var app = new App.Application ();
-            app.run (args);
-        }
+        var app = new App.Application ();
+        app.run (args);
 
         return 0;
     }
