@@ -55,8 +55,8 @@
       <content_attribute id="money-gambling">none</content_attribute>
     </content_rating> 
     <url type="homepage">https://shubhamarora.in</url>
-    <url type="bugtracker">git@github.com:arshubham/gitignore.git/issues</url>
-    <url type="help">git@github.com:arshubham/gitignore.git/issues</url>
+    <url type="bugtracker">https://github.com/arshubham/gitignore/issues</url>
+    <url type="help">https://github.com/arshubham/gitignore/issues</url>
     <update_contact>shubhamarora@protonmail.com</update_contact>
     <custom>
         <value key="x-appcenter-color-primary">#FFFFFF</value>

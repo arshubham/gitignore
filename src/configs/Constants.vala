@@ -33,9 +33,9 @@ namespace App.Configs {
         public abstract const string ABOUT_COMMENTS = "Gitignore reference for various languages";
         public abstract const string TRANSLATOR_CREDITS = "Translators";
         public abstract const string MAIN_URL = "https://shubhamarora.in";
-        public abstract const string BUG_URL = "git@github.com:arshubham/gitignore.git/issues";
-        public abstract const string HELP_URL = "git@github.com:arshubham/gitignore.git/wiki";
-        public abstract const string TRANSLATE_URL = "git@github.com:arshubham/gitignore.git";
+        public abstract const string BUG_URL = "https://github.com/arshubham/gitignore/issues";
+        public abstract const string HELP_URL = "https://github.com/arshubham/gitignore/wiki";
+        public abstract const string TRANSLATE_URL = "https://github.com/arshubham/gitignore";
         public abstract const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = "Website";
         public abstract const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://shubhamarora.in";
         public abstract const string URL_CSS = "/com/github/arshubham/gitignore/css/style.css";

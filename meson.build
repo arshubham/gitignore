@@ -32,7 +32,6 @@ sources = files()
 subdir('data')
 subdir('po')
 subdir('src')
-subdir('tests')
 
 dependencies = [
 	dependency('gobject-2.0'),
@@ -48,7 +47,5 @@ e = executable('com.github.arshubham.gitignore',
     dependencies: dependencies,
     install : true
 )
-
-#test('tests', e, args : ['--run-tests'])
 
 meson.add_install_script('meson/post_install.py')
