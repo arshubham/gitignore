@@ -38,17 +38,26 @@ namespace App.Widgets {
          */
         public HeaderBar () {
             
+            var search_entry = new Gtk.SearchEntry ();
+            search_entry.placeholder_text = _("Languages, separated by commas");
+            search_entry.hexpand = true;
+            search_entry.valign = Gtk.Align.CENTER;
 
-            menu_button = new Gtk.MenuButton ();
-            menu_button.set_image (new Gtk.Image .from_icon_name ("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-            menu_button.tooltip_text = _("Settings");
-            menu_button.clicked.connect (() => {
-                menu_clicked ();
-            });
+            var dark_switch = new Gtk.Switch ();
+            dark_switch.valign = Gtk.Align.CENTER;
 
-            this.set_title ("Gitignore");
+            var light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            light_icon.tooltip_text = "Light background";
+
+            var dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            dark_icon.tooltip_text = "Dark background";
+
+            this.set_custom_title (search_entry);
+            this.pack_end (dark_icon);
+            this.pack_end (dark_switch);
+            this.pack_end (light_icon);
+
             this.show_close_button = true;
-            this.pack_end (menu_button);
         }
     }
 }
