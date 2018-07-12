@@ -19,27 +19,22 @@ using App.Configs;
 
 namespace App.Widgets {
 
-    public class Tag : Gtk.Grid {
+    public class Button : Gtk.Button {
 
-        public Tag (string language) {
+        public Button (string text, string icon_name) {
             Object (
 
             );
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            var label_btn = new Gtk.Label (language);
-            label_btn.margin_start = 15;
+            var label_btn = new Gtk.Label (text);
 
             var icon = new Gtk.Image ();
-            icon.gicon = new ThemedIcon ("window-close");
-            icon.pixel_size = 16;
-            icon.margin_end = 7;
-            icon.margin_top = 2;
+            icon.gicon = new ThemedIcon (icon_name);
+            icon.pixel_size = 16; 
 
-            box.add (label_btn);
             box.add (icon);
+            box.add (label_btn);
             add (box);
-            get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             margin_start = 8;
         }
     }

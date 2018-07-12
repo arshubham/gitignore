@@ -45,7 +45,7 @@ namespace App.Widgets {
 
             var dark_switch = new Gtk.Switch ();
             dark_switch.valign = Gtk.Align.CENTER;
-
+            dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
             var light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             light_icon.tooltip_text = "Light background";
 

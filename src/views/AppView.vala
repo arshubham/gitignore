@@ -37,22 +37,32 @@ namespace App.Views {
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             Gtk.Box content =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            Gtk.Button button1 = new Gtk.Button.with_label ("Click me (0)");
-            Gtk.Button button2 = new Gtk.Button.with_label ("Click me (0)");
-            Gtk.Button button3 = new Gtk.Button.with_label ("Click me (0)");
-            Gtk.Button button4 = new Gtk.Button.with_label ("Click me (0)");
-            Gtk.Button button5 = new Gtk.Button.with_label ("Copy to clipboard");
-            Gtk.Button button6 = new Gtk.Button.with_label ("Save as .gitignore");
-            content.pack_start (button1, false, false, 0);
-            content.pack_start (button2, false, false, 0);
-            content.pack_start (button3, false, false, 0);
-            content.pack_start (button4, false, false, 0);
-            content.pack_end (button5, false, false, 0);
-            content.pack_end (button6, false, false, 0);
-            button1.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            button2.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            button3.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            button4.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            content.margin = 10;
+            App.Widgets.Tag t1 = new App.Widgets.Tag ("Language 1");
+            App.Widgets.Tag t2 = new App.Widgets.Tag ("Language 2");
+            App.Widgets.Tag t3 = new App.Widgets.Tag ("Language 3");
+            App.Widgets.Tag t4 = new App.Widgets.Tag ("Language 4");
+            App.Widgets.Tag t5 = new App.Widgets.Tag ("Language 5");
+
+            App.Widgets.Button generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start"); 
+
+            var save = new Gtk.Image ();
+            save.gicon = new ThemedIcon ("document-save");
+            save.pixel_size = 24;
+
+            var copy = new Gtk.Image ();
+            copy.gicon = new ThemedIcon ("edit-copy");
+            copy.pixel_size = 24;
+
+            content.pack_start (t1, false, false, 0);
+            content.pack_start (t2, false, false, 0);
+            content.pack_start (t3, false, false, 0);
+            content.pack_start (t4, false, false, 0);
+            content.pack_start (t5, false, false, 0);
+            content.pack_end (copy, false, false, 0);
+            content.pack_end (save, false, false, 0);
+            content.pack_end (generate, false, false, 0);
+            
             
             var source_buffer = new Gtk.SourceBuffer (null);
             source_buffer.highlight_syntax = true;

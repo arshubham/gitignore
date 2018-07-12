@@ -7,6 +7,8 @@ sources += files(
     'views/AppView.vala',
 
     'widgets/HeaderBar.vala',
+    'widgets/Tag.vala',
+    'widgets/Button.vala',
 
     'Application.vala',
     'Main.vala',
