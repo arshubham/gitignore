@@ -13,6 +13,11 @@
             <summary>Most recent y position of Gitignore</summary>
             <description>Most recent y position of Gitignore</description>
         </key>
+        <key name="prefer-dark" type="b">
+            <default>false</default>
+            <summary>Prefer dark theme</summary>
+            <description>Prefer dark theme</description>
+        </key>
     </schema>
 
 </schemalist>

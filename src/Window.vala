@@ -51,6 +51,12 @@ namespace App {
             int x = settings.window_x;
             int y = settings.window_y;
 
+            if (settings.prefer_dark) {
+                Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+            } else {
+                Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = false;
+            }
+
             if (x != -1 && y != -1) {
                 move (x, y);
             }

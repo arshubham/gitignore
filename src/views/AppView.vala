@@ -32,6 +32,7 @@ namespace App.Views {
          */
             private Gtk.ScrolledWindow terminal_output;
             private Gtk.SourceView source_view;
+            public Gtk.SourceBuffer source_buffer;
             public string language;
         construct {
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -64,10 +65,17 @@ namespace App.Views {
             content.pack_end (generate, false, false, 0);
             
             
-            var source_buffer = new Gtk.SourceBuffer (null);
+            source_buffer = new Gtk.SourceBuffer (null);
             source_buffer.highlight_syntax = true;
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("vala");
-            source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
+            //TODO: Look into way of changing color with the switch
+            if (App.Configs.Settings.get_instance ().prefer_dark) {
+                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-dark");
+            } else {
+                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
+            }
+            
+            
 
             source_view = new Gtk.SourceView ();
 

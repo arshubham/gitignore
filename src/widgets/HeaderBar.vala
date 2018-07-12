@@ -51,6 +51,24 @@ namespace App.Widgets {
 
             var dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             dark_icon.tooltip_text = "Dark background";
+            if (App.Configs.Settings.get_instance ().prefer_dark) {
+                dark_switch.active = true;
+            } else {
+                dark_switch.active = false;
+            }
+            dark_switch.notify["active"].connect (() => {
+                var window_settings = Gtk.Settings.get_default ();
+                var settings = App.Configs.Settings.get_instance ();
+                if (dark_switch.active) {
+                    window_settings.gtk_application_prefer_dark_theme = true;
+                    print ("The switch is on!\n");
+                    settings.prefer_dark = true;
+                } else {
+                    window_settings.gtk_application_prefer_dark_theme = false;
+                    print ("The switch is off!\n");
+                    settings.prefer_dark = false;
+                }
+            });
 
             var completion = new Gtk.EntryCompletion ();
             search_entry.set_completion (completion);

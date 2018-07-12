@@ -42,7 +42,11 @@ namespace App.Configs {
          * Variable of type {@code int} as declared.
          */
         public int window_y { get; set; }
-       
+       /**
+         * This property will represent the default theme of the application (light = false).
+         * Variable of type {@code bool} as declared.
+         */
+        public bool prefer_dark { get; set; }
         /**
          * Constructs a new {@code Settings} object 
          * and sets the default exit folder.
