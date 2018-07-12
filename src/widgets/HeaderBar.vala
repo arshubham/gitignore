@@ -39,7 +39,7 @@ namespace App.Widgets {
         public HeaderBar () {
             
             var search_entry = new Gtk.SearchEntry ();
-            search_entry.placeholder_text = _("Languages, separated by commas");
+            search_entry.placeholder_text = _("Select a Language from the dropdown and press enter.");
             search_entry.hexpand = true;
             search_entry.valign = Gtk.Align.CENTER;
 
@@ -93,8 +93,9 @@ namespace App.Widgets {
             this.pack_end (dark_icon);
             this.pack_end (dark_switch);
             this.pack_end (light_icon);
-
             this.show_close_button = true;
+
+            
         }
     }
 }

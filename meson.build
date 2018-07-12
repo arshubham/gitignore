@@ -38,7 +38,8 @@ dependencies = [
     dependency('glib-2.0'),
     dependency('granite'),
     dependency('gtk+-3.0'),
-    dependency('gee-0.8')
+    dependency('gee-0.8'),
+    dependency('gtksourceview-3.0')
 ]
 
 e = executable('com.github.arshubham.gitignore',

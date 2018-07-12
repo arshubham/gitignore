@@ -25,37 +25,97 @@ namespace App.Views {
      *
      * @since 1.0.0
      */
-    public class AppView : Gtk.Box {
+    public class AppView : Gtk.Grid {
 
         /**
          * Constructs a new {@code AppView} object.
          */
-        public AppView () {
-            var welcome_view = new Granite.Widgets.Welcome (_("Welcome"), _("Open up your editor to get started!"));
-            welcome_view.append ("text-x-vala", _("Visit Valadoc"), _("The canonical source for Vala API references."));
-            welcome_view.append ("distributor-logo", _("Visit elementary.io"), _("Read up on developing for elementary"));
-            welcome_view.activated.connect ((index) => {
-                switch (index) {
-                    case 0:
-                        try {
-                            AppInfo.launch_default_for_uri ("https://valadoc.org/", null);
-                        } catch (Error e) {
-                            warning (e.message);
-                        }
-    
-                        break;
-                    case 1:
-                        try {
-                            AppInfo.launch_default_for_uri ("https://developer.elementary.io", null);
-                        } catch (Error e) {
-                            warning (e.message);
-                        }
-    
-                        break;
-                }
-            });
+            private Gtk.ScrolledWindow terminal_output;
+            private Gtk.SourceView source_view;
+            public string language;
+        construct {
+            Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-            this.add (welcome_view);
+            Gtk.Box content =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            Gtk.Button button1 = new Gtk.Button.with_label ("Click me (0)");
+            Gtk.Button button2 = new Gtk.Button.with_label ("Click me (0)");
+            Gtk.Button button3 = new Gtk.Button.with_label ("Click me (0)");
+            Gtk.Button button4 = new Gtk.Button.with_label ("Click me (0)");
+            Gtk.Button button5 = new Gtk.Button.with_label ("Copy to clipboard");
+            Gtk.Button button6 = new Gtk.Button.with_label ("Save as .gitignore");
+            content.pack_start (button1, false, false, 0);
+            content.pack_start (button2, false, false, 0);
+            content.pack_start (button3, false, false, 0);
+            content.pack_start (button4, false, false, 0);
+            content.pack_end (button5, false, false, 0);
+            content.pack_end (button6, false, false, 0);
+            button1.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            button2.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            button3.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            button4.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            
+            var source_buffer = new Gtk.SourceBuffer (null);
+            source_buffer.highlight_syntax = true;
+            source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("vala");
+            source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
+
+            source_view = new Gtk.SourceView ();
+
+
+            source_buffer.text = "var source_view = new Gtk.SourceView ();
+            source_view.buffer = source_buffer;
+            source_view.editable = false;
+            source_view.left_margin = source_view.right_margin = 6;
+            source_view.monospace = true;
+            source_view.pixels_above_lines = source_view.pixels_below_lines = 3;
+            source_view.show_line_numbers = true;
+    
+            var snippet = new Gtk.Grid ();
+            snippet.add (source_view);
+    
+            content_area.column_spacing = 12;
+            content_area.row_spacing = 12;
+            content_area.orientation = Gtk.Orientation.VERTICAL;
+            content_area.add (color_title);
+            content_area.add (color_row);
+            content_area.add (symbolic_title);
+            content_area.add (symbolic_row);
+            content_area.add (snippet_title);
+            content_area.add (snippet)
+            var source_view = new Gtk.SourceView ();
+            source_view.buffer = source_buffer;
+            source_view.editable = false;
+            source_view.left_margin = source_view.right_margin = 6;
+            source_view.monospace = true;
+            source_view.pixels_above_lines = source_view.pixels_below_lines = 3;
+            source_view.show_line_numbers = true;
+    
+            var snippet = new Gtk.Grid ();
+            snippet.add (source_view);
+    
+            content_area.column_spacing = 12;
+            content_area.row_spacing = 12;
+            content_area.orientation = Gtk.Orientation.VERTICAL;
+            content_area.add (color_title);
+            content_area.add (color_row);
+            content_area.add (symbolic_title);
+            content_area.add (symbolic_row);
+            content_area.add (snippet_title);
+            content_area.add (snippet)";
+
+
+            source_view.buffer = source_buffer;
+            source_view.editable = false;
+            source_view.monospace = true;
+            source_view.show_line_numbers = true;
+            //get_style_context ().add_class ("code");
+            terminal_output = new Gtk.ScrolledWindow (null, null);
+            terminal_output.hscrollbar_policy = Gtk.PolicyType.NEVER;
+            terminal_output.expand = true;
+            terminal_output.add (source_view); 
+            box.pack_start (content, false, true, 0);
+		    box.pack_start (terminal_output, false, true, 0);   
+            attach (box, 0, 0, 3, 1);
         }
     }
 }
