@@ -34,6 +34,9 @@ namespace App.Views {
             private Gtk.SourceView source_view;
             public Gtk.SourceBuffer source_buffer;
             public string language;
+            private Gtk.Button save;
+            private Gtk.Button copy;
+            private Granite.Widgets.Toast notification;
         construct {
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
@@ -47,13 +50,9 @@ namespace App.Views {
 
             App.Widgets.Button generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start"); 
 
-            var save = new Gtk.Image ();
-            save.gicon = new ThemedIcon ("document-save");
-            save.pixel_size = 24;
-
-            var copy = new Gtk.Image ();
-            copy.gicon = new ThemedIcon ("edit-copy");
-            copy.pixel_size = 24;
+            save = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.BUTTON);
+      
+            copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
 
             content.pack_start (t1, false, false, 0);
             content.pack_start (t2, false, false, 0);
@@ -121,19 +120,35 @@ namespace App.Views {
             content_area.add (snippet_title);
             content_area.add (snippet)";
 
+                    
+                
+
 
             source_view.buffer = source_buffer;
             source_view.editable = false;
             source_view.monospace = true;
             source_view.show_line_numbers = true;
-            //get_style_context ().add_class ("code");
             terminal_output = new Gtk.ScrolledWindow (null, null);
             terminal_output.hscrollbar_policy = Gtk.PolicyType.NEVER;
             terminal_output.expand = true;
             terminal_output.add (source_view); 
             box.pack_start (content, false, true, 0);
-		    box.pack_start (terminal_output, false, true, 0);   
-            attach (box, 0, 0, 3, 1);
+            box.pack_start (terminal_output, false, true, 0);
+            notification = new Granite.Widgets.Toast (_("Copied to clipboard"));
+            attach (notification, 0, 0, 1, 1);   
+            attach (box, 0, 0, 1, 1);
+            
+        }
+
+        public AppView (Gdk.Display display) {
+            Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
+            
+            copy.clicked.connect (() => {
+                clipboard.set_text (source_buffer.text, -1);
+                
+                notification.valign = Gtk.Align.END;
+                notification.send_notification ();
+            });
         }
     }
 }
