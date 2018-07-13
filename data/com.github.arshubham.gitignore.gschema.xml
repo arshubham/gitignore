@@ -18,6 +18,11 @@
             <summary>Prefer dark theme</summary>
             <description>Prefer dark theme</description>
         </key>
+        <key name="selected-langs" type="as">
+			<default>[]</default>
+			<summary>Selected Languages</summary>
+			<description>Selected Languages at a moment to be shown in Tags</description>
+</key>
     </schema>
 
 </schemalist>

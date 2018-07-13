@@ -47,6 +47,8 @@ namespace App.Configs {
          * Variable of type {@code bool} as declared.
          */
         public bool prefer_dark { get; set; }
+
+        public string[] selected_langs { get; set; }
         /**
          * Constructs a new {@code Settings} object 
          * and sets the default exit folder.
