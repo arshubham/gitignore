@@ -26,16 +26,14 @@ namespace App.Widgets {
      * @since 1.0.0
      */
     public class HeaderBar : Gtk.HeaderBar {
-
-        public signal void menu_clicked ();
-        public Gtk.MenuButton menu_button { get; private set; }
-
         /**
          * Constructs a new {@code HeaderBar} object.
          *
          * @see App.Configs.Properties
          * @see icon_settings
          */
+
+        private Gtk.Switch dark_switch;
         public HeaderBar () {
             
             var search_entry = new Gtk.SearchEntry ();
@@ -43,7 +41,7 @@ namespace App.Widgets {
             search_entry.hexpand = true;
             search_entry.valign = Gtk.Align.CENTER;
 
-            var dark_switch = new Gtk.Switch ();
+            this.dark_switch = new Gtk.Switch ();
             dark_switch.valign = Gtk.Align.CENTER;
             dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
             var light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
@@ -61,13 +59,10 @@ namespace App.Widgets {
                 var settings = App.Configs.Settings.get_instance ();
                 if (dark_switch.active) {
                     window_settings.gtk_application_prefer_dark_theme = true;
-                    print ("The switch is on!\n");
-                    settings.prefer_dark = true;
                 } else {
                     window_settings.gtk_application_prefer_dark_theme = false;
-                    print ("The switch is off!\n");
-                    settings.prefer_dark = false;
                 }
+                
             });
 
             var completion = new Gtk.EntryCompletion ();
@@ -112,8 +107,10 @@ namespace App.Widgets {
             this.pack_end (dark_switch);
             this.pack_end (light_icon);
             this.show_close_button = true;
-
-            
         }
+
+        public Gtk.Switch get_dark_switch () {
+            return this.dark_switch;
+    }
     }
 }

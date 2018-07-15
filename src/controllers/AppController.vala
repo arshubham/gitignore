@@ -29,7 +29,7 @@ namespace App.Controllers {
 
         private Gtk.Application            application;
         private AppView                    app_view;
-        private Gtk.HeaderBar              headerbar;
+        private Widgets.HeaderBar              headerbar;
         private Gtk.ApplicationWindow      window { get; private set; default = null; }
         private Gdk.Display                display;
         /**
@@ -48,8 +48,17 @@ namespace App.Controllers {
             this.window.set_size_request (1000, 740);
             this.window.set_titlebar (this.headerbar);
             this.application.add_window (window);
-            
-            
+
+            var ds = this.headerbar.get_dark_switch ();
+            ds.notify["active"].connect (() => {
+                var settings = App.Configs.Settings.get_instance ();
+                if (ds.active) {
+                    app_view.dark_theme ();
+                } else {
+                    app_view.light_theme ();
+                }
+                
+            });
         }
 
         public void activate () {

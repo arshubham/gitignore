@@ -67,12 +67,7 @@ namespace App.Views {
             source_buffer = new Gtk.SourceBuffer (null);
             source_buffer.highlight_syntax = true;
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("vala");
-            //TODO: Look into way of changing color with the switch
-            if (App.Configs.Settings.get_instance ().prefer_dark) {
-                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-dark");
-            } else {
-                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
-            }
+       
             
             
 
@@ -149,6 +144,17 @@ namespace App.Views {
                 notification.valign = Gtk.Align.END;
                 notification.send_notification ();
             });
+        }
+
+        public void dark_theme () {
+                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-dark");
+        
+        }
+
+        public void light_theme () {
+          
+                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
+    
         }
     }
 }
