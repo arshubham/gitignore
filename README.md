@@ -1,5 +1,5 @@
 <div align="center">
-  <span align="center"> <img width="80" height="70" class="center" src="git@github.com:arshubham/gitignore.git/blob/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
+  <span align="center"> <img width="128" height="128" class="center" src="https://github.com/arshubham/gitignore/blob/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
   <h1 align="center">Gitignore</h1>
   <h3 align="center">Gitignore reference for various languages</h3>
 </div>
