@@ -1,5 +1,5 @@
 <div align="center">
-  <span align="center"> <img width="80" height="70" class="center" src="git@github.com:arshubham/gitignore.git/blob/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
+  <span align="center"> <img width="128" height="128" class="center" src="https://github.com/arshubham/gitignore/blob/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
   <h1 align="center">Gitignore</h1>
   <h3 align="center">Gitignore reference for various languages</h3>
 </div>
@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="git@github.com:arshubham/gitignore.git/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-GPL-3.0-blue.svg">
+    <img src="https://img.shields.io/badge/License-GPL 3.0-blue.svg">
   </a>
   <a href="git@github.com:arshubham/gitignore.git/releases">
     <img src="https://img.shields.io/badge/Release-v%201.0.0-orange.svg">
@@ -35,6 +35,7 @@ These dependencies must be present before building:
  - `debhelper`
  - `libgranite-dev`
  - `libgtk-3-dev`
+ - `libgtksourceview-3.0-dev`
 
 
 Use the App script to simplify installation by running `./app install-deps`
