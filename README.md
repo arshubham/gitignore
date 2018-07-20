@@ -35,6 +35,7 @@ These dependencies must be present before building:
  - `debhelper`
  - `libgranite-dev`
  - `libgtk-3-dev`
+ - `libgtksourceview-3.0-dev`
 
 
 Use the App script to simplify installation by running `./app install-deps`
