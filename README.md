@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="git@github.com:arshubham/gitignore.git/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-GPL-3.0-blue.svg">
+    <img src="https://img.shields.io/badge/License-GPL 3.0-blue.svg">
   </a>
   <a href="git@github.com:arshubham/gitignore.git/releases">
     <img src="https://img.shields.io/badge/Release-v%201.0.0-orange.svg">
