@@ -1,5 +1,5 @@
 <div align="center">
-  <span align="center"> <img width="80" height="70" class="center" src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
+  <span align="center"> <img width="80" height="80" class="center" src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
   <h1 align="center">Gitignore</h1>
   <h3 align="center">Gitignore reference for various languages</h3>
 </div>
@@ -8,7 +8,6 @@
 
 <p align="center">
     <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore">
-        <img src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png">
     </a>
 </p>
 
