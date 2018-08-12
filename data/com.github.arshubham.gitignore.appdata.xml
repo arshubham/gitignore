@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2018 Shubham Arora <shubhamarora@protonmail.com> -->
 <component type="desktop-application">
-    <id>com.github.arshubham.gitignore.desktop</id>
+    <id>com.github.arshubham.gitignore</id>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0</project_license>
     <name>Gitignore</name>
@@ -16,7 +16,7 @@
         </screenshot>
     </screenshots>
     <description>
-        <p>A simple application for getting gitigore reference from https://gitignore.io</p>
+        <p>A simple application for getting gitigore reference from gitignore.io. You can download .gitignore for multiple languages at once.</p>
     </description>  
     <releases>
       <release version="1.0.0" date="2018-06-04">
