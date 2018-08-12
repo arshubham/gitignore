@@ -10,7 +10,6 @@ add_project_arguments([
 )
 
 gnome = import('gnome')
-i18n = import('i18n')
 
 gresource = gnome.compile_resources(
     'as-resources', 'data/com.github.arshubham.gitignore.gresource.xml',
@@ -30,7 +29,6 @@ c_args = [
 sources = files()
 
 subdir('data')
-subdir('po')
 subdir('src')
 
 dependencies = [

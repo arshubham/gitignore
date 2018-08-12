@@ -1,16 +1,16 @@
 /*
 * Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
-* 
+*
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
 * (at your option) any later version.
-* 
+*
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
-* 
+*
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -34,12 +34,16 @@ namespace App.Widgets {
          */
 
         private Gtk.Switch dark_switch;
+        private Gee.HashSet<string> selected_languages;
+        private Gtk.SearchEntry search_entry;
+        private string sl[5];
         public HeaderBar () {
-            
-            var search_entry = new Gtk.SearchEntry ();
+
+            search_entry = new Gtk.SearchEntry ();
             search_entry.placeholder_text = _("Select a Language from the dropdown and press enter.");
             search_entry.hexpand = true;
             search_entry.valign = Gtk.Align.CENTER;
+            search_entry.grab_focus_without_selecting ();
 
             this.dark_switch = new Gtk.Switch ();
             dark_switch.valign = Gtk.Align.CENTER;
@@ -59,10 +63,12 @@ namespace App.Widgets {
                 var settings = App.Configs.Settings.get_instance ();
                 if (dark_switch.active) {
                     window_settings.gtk_application_prefer_dark_theme = true;
+                    settings.prefer_dark = true;
                 } else {
                     window_settings.gtk_application_prefer_dark_theme = false;
+                    settings.prefer_dark = false;
                 }
-                
+
             });
 
             var completion = new Gtk.EntryCompletion ();
@@ -76,14 +82,14 @@ namespace App.Widgets {
             Gtk.ListStore list_store = new Gtk.ListStore (1, typeof (string));
 		    completion.set_model (list_store);
             completion.set_text_column (0);
-            
+
             Gtk.TreeIter iter;
             for (int i = 0; i < data.length ; i++) {
                 list_store.append (out iter);
                 list_store.set (iter, 0, data[i]);
             }
 
-            Gee.HashSet<string> selected_languages = new Gee.HashSet<string> ();
+            selected_languages = new Gee.HashSet<string> ();
 
             Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
             for (int i = 0; i < data.length; i++) {
@@ -94,12 +100,14 @@ namespace App.Widgets {
                 string entered_language = search_entry.text;
                 if (list.contains (entered_language) && !selected_languages.contains(entered_language) && entered_language.strip ().length != 0) {
                     selected_languages.add(entered_language);
-                    debug ("Selected Language: %s\n", entered_language);
+                    debug ("+++++Selected Language: %s\n", entered_language);
                 } else if (selected_languages.contains(entered_language)) {
-                    debug ("Selected Language: %s, already in the set\n", entered_language);
+                    debug ("-----Selected Language: %s, already in the set\n", entered_language);
                 } else {
-                    debug ("Unknown Language\n");
+                    debug ("-----Unknown Language\n");
                 }
+
+
             });
 
             this.set_custom_title (search_entry);
@@ -111,6 +119,28 @@ namespace App.Widgets {
 
         public Gtk.Switch get_dark_switch () {
             return this.dark_switch;
-    }
+        }
+
+        public Gtk.SearchEntry get_search_entry () {
+            return this.search_entry;
+        }
+
+        public Gee.HashSet<string> get_selected_languages (){
+            return this.selected_languages;
+        }
+
+        // public void get_selected_languages () {
+        //     var settings2 = App.Configs.Settings.get_instance ();
+        //     settings2.selected_langs = {};
+        //     int i = 0;
+        //     foreach (string s in selected_languages) {
+        //         if (i < 5) {
+        //             settings2.selected_langs[i] = s;
+        //             i++;
+        //         } else {
+        //             debug ("Cant Enter greater than five langs");
+        //         }
+        //     }
+        // }
     }
 }

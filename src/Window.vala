@@ -41,7 +41,7 @@ namespace App {
             Object (
                 application: app,
                 icon_name: Constants.APP_ICON,
-                resizable: false,
+
                 gravity: Gdk.Gravity.CENTER
             );
 
