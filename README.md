@@ -8,7 +8,7 @@
 
 <p align="center">
     <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore">
-        <img src="https://appcenter.elementary.io/badge.svg">
+        <img src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/icons/128/com.github.arshubham.gitignore.svg">
     </a>
 </p>
 
@@ -35,6 +35,7 @@ These dependencies must be present before building:
  - `debhelper`
  - `libgranite-dev`
  - `libgtk-3-dev`
+ - `libgranite-3.0-dev`
 
 
 Use the App script to simplify installation by running `./app install-deps`
@@ -70,19 +71,6 @@ Options:
   test-run          Builds application, runs testing and if successful application is started
   uninstall         Removes the application from the system (requires sudo)
 ```
-
-### Contributing
-
-To help, access the links below:
-
-- [Guide on Code Style](git@github.com:arshubham/gitignore.git/wiki/Guide-on-code-style)
-
-- [Proposing Design Changes](git@github.com:arshubham/gitignore.git/wiki/Proposing-Design-Changes)
-
-- [Reporting Bugs](git@github.com:arshubham/gitignore.git/wiki/Reporting-Bugs)
-
-- [Translate](git@github.com:arshubham/gitignore.git/wiki/Translate)
-
 
 ### License
 
