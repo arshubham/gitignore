@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+
+    <schema id="com.github.arshubham.gitignore" path="/com/github/arshubham/gitignore/">
+        <key name="window-x" type="i">
+            <default>-1</default>
+            <summary>Most recent x position of Gitignore</summary>
+            <description>Most recent x position of Gitignore</description>
+        </key>
+    
+        <key name="window-y" type="i">
+            <default>-1</default>
+            <summary>Most recent y position of Gitignore</summary>
+            <description>Most recent y position of Gitignore</description>
+        </key>
+        <key name="prefer-dark" type="b">
+            <default>false</default>
+            <summary>Prefer dark theme</summary>
+            <description>Prefer dark theme</description>
+        </key>
+        <key name="selected-langs" type="as">
+			<default>[]</default>
+			<summary>Selected Languages</summary>
+			<description>Selected Languages at a moment to be shown in Tags</description>
+</key>
+    </schema>
+
+</schemalist>
