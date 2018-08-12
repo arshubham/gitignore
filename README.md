@@ -1,5 +1,5 @@
 <div align="center">
-  <span align="center"> <img width="80" height="70" class="center" src="git@github.com:arshubham/gitignore.git/blob/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
+  <span align="center"> <img width="80" height="70" class="center" src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
   <h1 align="center">Gitignore</h1>
   <h3 align="center">Gitignore reference for various languages</h3>
 </div>
@@ -8,22 +8,19 @@
 
 <p align="center">
     <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore">
-        <img src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/icons/128/com.github.arshubham.gitignore.svg">
+        <img src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png">
     </a>
 </p>
 
 <p align="center">
-  <a href="git@github.com:arshubham/gitignore.git/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-GPL-3.0-blue.svg">
-  </a>
-  <a href="git@github.com:arshubham/gitignore.git/releases">
-    <img src="https://img.shields.io/badge/Release-v%201.0.0-orange.svg">
+  <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
+    <img src="https://img.shields.io/badge/license-GPLv3-brightgreen.svg">
   </a>
 </p>
 
 <p align="center">
-    <img  src="git@github.com:arshubham/gitignore.git/blob/master/data/images/screenshot.png" alt="Screenshot"> <br>
-  <a href="git@github.com:arshubham/gitignore.git/issues/new"> Report a problem! </a>
+    <img  src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/screenshot.png" alt="Screenshot"> <br>
+  <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
 </p>
 
 ## Installation
