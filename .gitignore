@@ -1,8 +1,0 @@
-build/*
-debian/build/*
-debian/com.github.arshubham.gitignore.debhelper.log
-debian/com.github.arshubham.gitignore.substvars
-debian/com.github.arshubham.gitignore/
-debian/debhelper-build-stamp
-debian/files
-*~
