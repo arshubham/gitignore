@@ -6,14 +6,9 @@
 
 <br/>
 
-<p align="center">
-
-
-
-</p>
 
 <p align="center">
-    [![Build Status](https://travis-ci.org/arshubham/gitignore.svg?branch=master)](https://travis-ci.org/arshubham/gitignore)
+    <img src="https://travis-ci.org/arshubham/gitignore.svg?branch=master">
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/license-GPLv3-brightgreen.svg">
   </a>
