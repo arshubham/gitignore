@@ -1,5 +1,5 @@
 <div align="center">
-  <span align="center"> <img width="80" height="80" class="center" src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png" alt="Icon"></span>
+  <span align="center">     <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore"><img width="80" height="80" class="center" src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png" alt="Icon">    </a></span>
   <h1 align="center">Gitignore</h1>
   <h3 align="center">Gitignore reference for various languages</h3>
 </div>
@@ -7,11 +7,13 @@
 <br/>
 
 <p align="center">
-    <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore">
-    </a>
+
+
+
 </p>
 
 <p align="center">
+    [![Build Status](https://travis-ci.org/arshubham/gitignore.svg?branch=master)](https://travis-ci.org/arshubham/gitignore)
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/license-GPLv3-brightgreen.svg">
   </a>
