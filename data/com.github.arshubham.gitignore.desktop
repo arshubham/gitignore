@@ -6,5 +6,5 @@ Exec=com.github.arshubham.gitignore
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;
+Categories=Development;
 Keywords=gitignore;
