@@ -20,22 +20,28 @@ using App.Configs;
 namespace App.Widgets {
 
     public class Button : Gtk.Button {
-
-        public Button (string text, string icon_name) {
+        private Gtk.Box box;
+        private Gtk.Label label;
+        private Gtk.Image image;
+        
+        public Button (string text, string icon) {
             Object (
-
+                margin_start: 8
             );
-            Gtk.Box box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            var label_btn = new Gtk.Label (text);
 
-            var icon = new Gtk.Image ();
-            icon.gicon = new ThemedIcon (icon_name);
-            icon.pixel_size = 16; 
+            label.set_text (text);
+            image.gicon = new ThemedIcon (icon);
+        }
 
-            box.add (icon);
-            box.add (label_btn);
+        construct {
+            box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            label = new Gtk.Label ("");
+            image = new Gtk.Image ();
+            
+            image.pixel_size = 16; 
+            box.add (image);
+            box.add (label);
             add (box);
-            margin_start = 8;
         }
     }
 }   

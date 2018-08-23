@@ -25,13 +25,6 @@ public class Main {
         { null }
     };
 
-    /**
-     * Main method. Responsible for starting the {@code Application} class.
-     *
-     * @see App.Application
-     * @return {@code int}
-     * @since 1.0.0
-     */
     public static int main (string [] args) {
         var options_context = new OptionContext (App.Configs.Constants.PROGRAME_NAME +" "+ _("Options"));
         options_context.set_help_enabled (true);

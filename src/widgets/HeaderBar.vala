@@ -19,19 +19,7 @@ using App.Configs;
 
 namespace App.Widgets {
 
-    /**
-     * The {@code HeaderBar} class is responsible for displaying top bar. Similar to a horizontal box.
-     *
-     * @see Gtk.HeaderBar
-     * @since 1.0.0
-     */
     public class HeaderBar : Gtk.HeaderBar {
-        /**
-         * Constructs a new {@code HeaderBar} object.
-         *
-         * @see App.Configs.Properties
-         * @see icon_settings
-         */
 
         private Gtk.Switch dark_switch;
         private Gee.HashSet<string> selected_languages;
@@ -128,19 +116,5 @@ namespace App.Widgets {
         public Gee.HashSet<string> get_selected_languages (){
             return this.selected_languages;
         }
-
-        // public void get_selected_languages () {
-        //     var settings2 = App.Configs.Settings.get_instance ();
-        //     settings2.selected_langs = {};
-        //     int i = 0;
-        //     foreach (string s in selected_languages) {
-        //         if (i < 5) {
-        //             settings2.selected_langs[i] = s;
-        //             i++;
-        //         } else {
-        //             debug ("Cant Enter greater than five langs");
-        //         }
-        //     }
-        // }
     }
 }

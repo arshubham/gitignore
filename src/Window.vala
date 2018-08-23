@@ -21,31 +21,14 @@ using App.Views;
 
 namespace App {
 
-    /**
-     * Class responsible for creating the u window and will contain contain other widgets. 
-     * allowing the user to manipulate the window (resize it, move it, close it, ...).
-     *
-     * @see Gtk.ApplicationWindow
-     * @since 1.0.0
-     */
     public class Window : Gtk.ApplicationWindow {
          
-        /**
-         * Constructs a new {@code Window} object.
-         *
-         * @see App.Configs.Constants
-         * @see style_provider
-         * @see build
-         */
         public Window (Gtk.Application app) {
             Object (
                 application: app,
                 icon_name: Constants.APP_ICON,
-
                 gravity: Gdk.Gravity.CENTER
             );
-
-            
 
             var settings = App.Configs.Settings.get_instance ();
             int x = settings.window_x;
@@ -70,7 +53,6 @@ namespace App {
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
 
-            // Save the window's position on close
             delete_event.connect (() => {
                 int root_x, root_y;
                 get_position (out root_x, out root_y);

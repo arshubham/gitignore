@@ -20,19 +20,10 @@ using App.Controllers;
 
 namespace App {
 
-    /**
-     * The {@code Application} class is a foundation for all GTK-based applications.
-     *
-     * @see Granite.Application
-     * @since 1.0.0
-     */
     public class Application : Gtk.Application {
 
         public AppController controller;
 
-        /**
-         * Constructs a new {@code Application} object.
-         */
         public Application () {
             Object (
                 application_id: Constants.ID,
@@ -48,10 +39,6 @@ namespace App {
             set_accels_for_action ("app.quit", {"<Control>q"});
         }
 
-        /**
-         * Handle attempts to start up the application
-         * @return {@code void}
-         */
         public override void activate () {
             if (controller == null) {
                 controller = new AppController (this);
