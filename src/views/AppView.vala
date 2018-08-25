@@ -40,19 +40,19 @@ namespace App.Views {
             private Granite.Widgets.Toast notification;
             Gee.HashSet<string> selected_langs;
             private App.Widgets.Button generate;
-
+            private Gee.ArrayList<App.Widgets.Tag>  tag_buttons;
             Gtk.Label t1;
             Gtk.Label t2;
             string slgs = "";
             Granite.Widgets.Toast select_lang_toast;
         construct {
-         select_lang_toast = new Granite.Widgets.Toast (_("Select at least one language to generate .gitignore!"));
+            select_lang_toast = new Granite.Widgets.Toast (_("Select at least one language to generate .gitignore!"));
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             Gtk.Box content =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             content.margin = 10;
             content.spacing = 5;
-
+            tag_buttons = new Gee.ArrayList<App.Widgets.Tag> ();
             add_tags ();
             t2 = new Gtk.Label ("");
 
@@ -68,9 +68,16 @@ namespace App.Views {
 
             reset = new Gtk.Button.from_icon_name ("process-stop", Gtk.IconSize.BUTTON);
             reset.set_tooltip_text ("Reset selected languages");
+            var tag = new App.Widgets.Tag ("Java");
+
+            var menu_grid = new Gtk.Grid ();
 
             content.pack_start (t1, false, false, 0);
-            content.pack_start (t2, false, false, 0);
+            //content.pack_start (t2, false, false, 0);
+             for (int i = 0; i < tag_buttons.size; i++) {
+                menu_grid.attach (tag_buttons[i], i, 1, 1, 1);
+            }
+            content.pack_start (menu_grid, false, false, 0);
             content.pack_end (generate, false, false, 0);
 
             content.pack_end (copy, false, false, 0);
@@ -123,7 +130,7 @@ namespace App.Views {
             reset.clicked.connect (() => {
                     slgs = "";
                     this.selected_langs.clear ();
-                     t2.set_text ("");
+                    t2.set_text ("");
             });
 
             generate.clicked.connect (() => {
@@ -166,7 +173,6 @@ namespace App.Views {
         public void update_langs (Gee.HashSet<string> sl2) {
             this.selected_langs = sl2;
             add_tags();
-
         }
 
         public void update_tags () {
@@ -174,14 +180,20 @@ namespace App.Views {
             foreach (string l in selected_langs) {
                 slgs = slgs+l+",";
             }
+            debug ("selected langs: " + slgs);
+
+            string[] lgs = slgs.slice (0, slgs.length-1).split (",");
+
+            foreach ( unowned string l in lgs) {
+                  var tag = new Tag (l);
+                  tag_buttons.add (tag);
+                  debug ("button set for"+ l);
+            }
 
         }
         public void add_tags () {
              t1 = new Gtk.Label ("Selected Languages:");
              update_tags ();
-             debug("slgs : == "+ slgs);
-
-             t2.set_text (" "+ slgs.slice (0, slgs.length-1));
         }
     }
 }
