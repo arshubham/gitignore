@@ -21,26 +21,34 @@ namespace App.Widgets {
 
     public class Tag : Gtk.Grid {
 
+        private Gtk.Box box;
+        private Gtk.Label label;
+        private Gtk.Image icon;
+
         public Tag (string language) {
             Object (
-
+                margin_start: 8
             );
-            Gtk.Box box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            var label_btn = new Gtk.Label (language);
-            label_btn.margin_start = 15;
-
-            var icon = new Gtk.Image ();
+            label.set_text (language);
             icon.gicon = new ThemedIcon ("window-close");
+
+            get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            add (box);
+        }
+
+        construct {
+            box =  new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            label = new Gtk.Label ("");
+            label.margin_start = 15;
+
+            icon = new Gtk.Image ();
             icon.pixel_size = 16;
             icon.margin_end = 7;
             icon.margin_top = 2;
 
-            box.add (label_btn);
+            box.add (label);
             box.add (icon);
-            add (box);
-            get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-            margin_start = 8;
         }
     }
 }   

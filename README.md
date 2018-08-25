@@ -5,9 +5,10 @@
 </div>
 
 <br/>
-
+<center>
 [![Build Status](https://travis-ci.org/arshubham/gitignore.svg?branch=master)](https://travis-ci.org/arshubham/gitignore)
-    
+<center>
+
 <p align="center">
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/license-GPLv3-brightgreen.svg">
