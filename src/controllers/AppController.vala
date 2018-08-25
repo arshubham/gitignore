@@ -33,18 +33,17 @@ namespace App.Controllers {
             this.window = new Window (this.application);
             this.headerbar = new HeaderBar ();
 
-            Gee.HashSet<string> sl = this.headerbar.get_selected_languages ();
+            var selected_languages = this.headerbar.get_selected_languages ();
 
-            var se = this.headerbar.get_search_entry ();
+            var search_entry = this.headerbar.get_search_entry ();
 
-            se.activate.connect (() => {
-            this.app_view.update_langs (sl);
-
+            search_entry.activate.connect (() => {
+                this.app_view.update_langs (selected_languages);
             });
 
             display = window.get_display ();
 
-            this.app_view = new AppView (display, sl);
+            this.app_view = new AppView (display, selected_languages);
 
             this.window.add (this.app_view);
             this.window.set_default_size (900, 540);
@@ -62,8 +61,6 @@ namespace App.Controllers {
                 }
 
             });
-
-
         }
 
         public void activate () {
