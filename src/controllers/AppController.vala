@@ -20,21 +20,14 @@ using App.Views;
 
 namespace App.Controllers {
 
-    /**
-     * The {@code AppController} class.
-     *
-     * @since 1.0.0
-     */
     public class AppController {
 
-        private Gtk.Application            application;
-        private AppView                    app_view;
-        private Widgets.HeaderBar              headerbar;
-        private Gtk.ApplicationWindow      window { get; private set; default = null; }
-        private Gdk.Display                display;
-        /**
-         * Constructs a new {@code AppController} object.
-         */
+        private Gtk.Application application;
+        private AppView app_view;
+        private Widgets.HeaderBar headerbar;
+        private Gtk.ApplicationWindow window { get; private set; default = null; }
+        private Gdk.Display display;
+
         public AppController (Gtk.Application application) {
             this.application = application;
             this.window = new Window (this.application);
@@ -54,8 +47,9 @@ namespace App.Controllers {
             this.app_view = new AppView (display, sl);
 
             this.window.add (this.app_view);
-            this.window.set_default_size (1000, 740);
-            this.window.set_size_request (1000, 740);
+            this.window.set_default_size (900, 540);
+            this.window.set_size_request (900, 540);
+            this.window.set_gravity (Gdk.Gravity.CENTER);
             this.window.set_titlebar (this.headerbar);
             this.application.add_window (window);
 

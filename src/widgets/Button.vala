@@ -20,9 +20,9 @@ using App.Configs;
 namespace App.Widgets {
 
     public class Button : Gtk.Button {
-        private Gtk.Box box;
-        private Gtk.Label label;
-        private Gtk.Image image;
+        Gtk.Box box;
+        private new Gtk.Label label;
+        private new Gtk.Image image;
         
         public Button (string text, string icon) {
             Object (

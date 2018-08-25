@@ -35,7 +35,6 @@ namespace App.Views {
             private Gtk.SourceView source_view;
             public Gtk.SourceBuffer source_buffer;
             public string language;
-            private Gtk.Button save;
             private Gtk.Button copy;
             private Gtk.Button reset;
             private Granite.Widgets.Toast notification;
