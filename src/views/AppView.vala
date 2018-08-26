@@ -34,6 +34,8 @@ namespace App.Views {
             Gtk.Label t2;
             string slgs = "";
             Granite.Widgets.Toast select_lang_toast;
+            private Gtk.Button reset;
+            private Gtk.Button copy;
         construct {
             select_lang_toast = new Granite.Widgets.Toast (_("Select at least one language to generate .gitignore!"));
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -50,11 +52,12 @@ namespace App.Views {
 
             //TODO: Save file.
 
-            var copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
+            copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
             copy.set_tooltip_text ("Copy generated gitignore");
 
-            var reset = new Gtk.Button.from_icon_name ("process-stop", Gtk.IconSize.BUTTON);
+            reset = new Gtk.Button.from_icon_name ("process-stop", Gtk.IconSize.BUTTON);
             reset.set_tooltip_text ("Reset selected languages");
+
 
             var menu_grid = new Gtk.Grid ();
 
@@ -96,18 +99,7 @@ namespace App.Views {
         public AppView (Gdk.Display display, Gee.HashSet<string> selected_langs) {
             Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
 
-            copy.clicked.connect (() => {
-                clipboard.set_text (source_buffer.text, -1);
 
-                notification.valign = Gtk.Align.END;
-                notification.send_notification ();
-            });
-
-            reset.clicked.connect (() => {
-                    slgs = "";
-                    this.selected_langs.clear ();
-                    t2.set_text ("");
-            });
 
             generate.clicked.connect (() => {
             if (slgs.length == 0) {
@@ -160,7 +152,7 @@ namespace App.Views {
             string[] lgs = slgs.slice (0, slgs.length-1).split (",");
 
             foreach ( unowned string l in lgs) {
-                  var tag = new Tag (l);
+                  var tag = new App.Widgets.Tag (l);
                   tag_buttons.add (tag);
                   debug ("button set for"+ l);
             }
