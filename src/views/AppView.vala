@@ -29,23 +29,28 @@ namespace App.Views {
             private Granite.Widgets.Toast notification;
             Gee.HashSet<string> selected_langs;
             private App.Widgets.Button generate;
-            private Gee.ArrayList<App.Widgets.Tag>  tag_buttons;
+            private Gee.ArrayList<Gtk.Button> tag_buttons;
             Gtk.Label t1;
-            Gtk.Label t2;
             string slgs = "";
             Granite.Widgets.Toast select_lang_toast;
             private Gtk.Button reset;
             private Gtk.Button copy;
+            static int y;
+            private Gtk.Box box2;
+            private Gtk.Grid menu_grid;
+
         construct {
             select_lang_toast = new Granite.Widgets.Toast (_("Select at least one language to generate .gitignore!"));
             Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-
+            box2 = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            menu_grid = new Gtk.Grid ();
+            menu_grid.orientation =  Gtk.Orientation.HORIZONTAL;
             Gtk.Box content =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             content.margin = 10;
             content.spacing = 5;
-            tag_buttons = new Gee.ArrayList<App.Widgets.Tag> ();
+            tag_buttons = new Gee.ArrayList<Gtk.Button> ();
+
             add_tags ();
-            t2 = new Gtk.Label ("");
 
             generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
             generate.set_tooltip_text ("Generate .gitignore from selected languages");
@@ -59,12 +64,10 @@ namespace App.Views {
             reset.set_tooltip_text ("Reset selected languages");
 
 
-            var menu_grid = new Gtk.Grid ();
+
 
             content.pack_start (t1, false, false, 0);
-             for (int i = 0; i < tag_buttons.size; i++) {
-                menu_grid.attach (tag_buttons[i], i, 1, 1, 1);
-            }
+
             content.pack_start (menu_grid, false, false, 0);
             content.pack_end (generate, false, false, 0);
 
@@ -139,28 +142,58 @@ namespace App.Views {
 
         public void update_langs (Gee.HashSet<string> sl2) {
             this.selected_langs = sl2;
-            add_tags();
+            add_tags ();
         }
 
         public void update_tags () {
-            slgs = "";
-            foreach (string l in selected_langs) {
-                slgs = slgs+l+",";
-            }
-            debug ("selected langs: " + slgs);
 
-            string[] lgs = slgs.slice (0, slgs.length-1).split (",");
 
-            foreach ( unowned string l in lgs) {
-                  var tag = new App.Widgets.Tag (l);
-                  tag_buttons.add (tag);
-                  debug ("button set for"+ l);
-            }
+          //  foreach (string l in lgs) {
+
+                 // debug ("button set for "+ l);
+          //  }
 
         }
         public void add_tags () {
+         slgs = "";
+            int i = 1;
+            int m = 0;
+            while (m < selected_langs.size ) {
+            if(selected_langs.size == 0){
+                break;
+            }
+                menu_grid. remove_column (m);
+                m++;
+            }
+            menu_grid. remove_column (0);
+            foreach (string l in selected_langs) {
+
+                slgs = slgs+l+",";
+                debug ("L= i"+ l +" "+ i.to_string());
+                var button = new App.Widgets.Tag (l);
+
+                menu_grid.attach (button,i, 1, 1, 1);
+
+                i++;
+                menu_grid.show_all();
+            }
+
+            for (int k = 0; k < 4 ; k++) {
+
+
+                }
+            debug ("selected langs: " + slgs);
+
+            string[] lgs = slgs.slice (0, slgs.length-1).split (",");
+            for (int j = 0; j < lgs.length ; j++) {
+                debug ("++++++" + lgs[j]);
+            }
+            // var button2 = new Gtk.Button.with_label ("Empty");
+            //     menu_grid.attach (button2, 1, 1, 1, 1);
              t1 = new Gtk.Label ("Selected Languages:");
-             update_tags ();
+
+
         }
+
     }
 }

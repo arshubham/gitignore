@@ -15,6 +15,11 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*
+ * FIXME: Tag Styling Issues
+ * TODO: Add click Event listener
+ */
+
 using App.Configs;
 
 namespace App.Widgets {
@@ -28,7 +33,7 @@ namespace App.Widgets {
         public Tag (string language) {
             Object (
                 margin_start: 8
-            );
+                );
             label.set_text (language);
             icon.gicon = new ThemedIcon ("window-close");
 
@@ -41,6 +46,7 @@ namespace App.Widgets {
             box =  new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             label = new Gtk.Label ("");
             label.margin_start = 15;
+
 
             icon = new Gtk.Image ();
             icon.pixel_size = 16;
