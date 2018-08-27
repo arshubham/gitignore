@@ -102,11 +102,32 @@ namespace App.Views {
         public AppView (Gdk.Display display, Gee.HashSet<string> selected_langs) {
             Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
 
+        copy.clicked.connect (() => {
+                clipboard.set_text (source_buffer.text, -1);
 
+                notification.valign = Gtk.Align.END;
+                notification.send_notification ();
+            });
+
+            reset.clicked.connect (() => {
+                    slgs = "";
+
+                    int m = 0;
+                    while (m < selected_langs.size ) {
+                        if(selected_langs.size == 0){
+                        break;
+                    }
+                    menu_grid. remove_column (m);
+                    m++;
+                }
+                            menu_grid. remove_column (0);
+                            this.selected_langs.clear ();
+            });
 
             generate.clicked.connect (() => {
             if (slgs.length == 0) {
                 select_lang_toast.send_notification ();
+
             }
             else {
                  try {
@@ -145,15 +166,6 @@ namespace App.Views {
             add_tags ();
         }
 
-        public void update_tags () {
-
-
-          //  foreach (string l in lgs) {
-
-                 // debug ("button set for "+ l);
-          //  }
-
-        }
         public void add_tags () {
          slgs = "";
             int i = 1;
@@ -178,21 +190,13 @@ namespace App.Views {
                 menu_grid.show_all();
             }
 
-            for (int k = 0; k < 4 ; k++) {
-
-
-                }
             debug ("selected langs: " + slgs);
 
             string[] lgs = slgs.slice (0, slgs.length-1).split (",");
             for (int j = 0; j < lgs.length ; j++) {
                 debug ("++++++" + lgs[j]);
             }
-            // var button2 = new Gtk.Button.with_label ("Empty");
-            //     menu_grid.attach (button2, 1, 1, 1, 1);
              t1 = new Gtk.Label ("Selected Languages:");
-
-
         }
 
     }
