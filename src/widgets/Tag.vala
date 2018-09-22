@@ -46,6 +46,7 @@ namespace App.Widgets {
             box =  new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             label = new Gtk.Label ("");
             label.margin_start = 15;
+            label.margin_end = 10;
 
 
             icon = new Gtk.Image ();
@@ -54,7 +55,7 @@ namespace App.Widgets {
             icon.margin_top = 2;
 
             box.add (label);
-            box.add (icon);
+            //box.add (icon);
         }
     }
 }   
