@@ -97,6 +97,11 @@ namespace App.Views {
             attach (notification, 0, 0, 1, 1);
             attach (box, 0, 0, 1, 1);
             attach (select_lang_toast, 0, 0, 1, 1);
+            if (App.Configs.Settings.get_instance ().prefer_dark) {
+                dark_theme ();
+            } else {
+                light_theme ();
+            }
         }
 
         public AppView (Gdk.Display display, Gee.HashSet<string> selected_langs) {
@@ -183,7 +188,6 @@ namespace App.Views {
                 slgs = slgs+l+",";
                 debug ("L= i"+ l +" "+ i.to_string());
                 var button = new App.Widgets.Tag (l);
-
                 menu_grid.attach (button,i, 1, 1, 1);
 
                 i++;
