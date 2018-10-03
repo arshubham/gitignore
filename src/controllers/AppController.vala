@@ -36,10 +36,12 @@ namespace App.Controllers {
             var selected_languages = this.headerbar.get_selected_languages ();
 
             var search_entry = this.headerbar.get_search_entry ();
-
+            search_entry.grab_focus_without_selecting ();
             search_entry.activate.connect (() => {
                 this.app_view.update_langs (selected_languages);
             });
+
+
 
             display = window.get_display ();
 

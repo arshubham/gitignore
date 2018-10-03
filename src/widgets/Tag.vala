@@ -37,8 +37,7 @@ namespace App.Widgets {
             label.set_text (language);
             icon.gicon = new ThemedIcon ("window-close");
 
-            get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+
             add (box);
         }
 
@@ -53,8 +52,10 @@ namespace App.Widgets {
             icon.pixel_size = 16;
             icon.margin_end = 7;
             icon.margin_top = 2;
-
+            box.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
+            box.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             box.add (label);
+
             //box.add (icon);
         }
     }

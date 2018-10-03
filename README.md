@@ -37,8 +37,9 @@ Use the App script to simplify installation by running `./app install-deps`
  ### Building
 
 ```
-git clone git@github.com:arshubham/gitignore.git.git com.github.arshubham.gitignore && cd com.github.arshubham.gitignore
-./app install-deps && ./app install
+sudo apt install elementary-sdk libgtksourceview-3.0-dev
+git clone https://github.com/arshubham/gitignore.git gitignore && cd gitignore
+./app install
 ```
 
 ### Deconstruct
@@ -57,12 +58,8 @@ Usage:
 
 Options:
   clean             Removes build directories (can require sudo)
-  generate-i18n     Generates .pot and .po files for i18n (multi-language support)
   install           Builds and installs application to the system (requires sudo)
-  install-deps      Installs missing build dependencies
   run               Builds and runs the application
-  test              Builds and runs testing for the application
-  test-run          Builds application, runs testing and if successful application is started
   uninstall         Removes the application from the system (requires sudo)
 ```
 

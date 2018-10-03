@@ -43,6 +43,7 @@ namespace App.Widgets {
             );
 
             search_entry = new Gtk.SearchEntry ();
+
             search_entry.placeholder_text = _("Select a Language from the dropdown and press enter.");
             search_entry.hexpand = true;
             search_entry.valign = Gtk.Align.CENTER;
@@ -117,6 +118,7 @@ namespace App.Widgets {
             pack_end (dark_switch);
             pack_end (light_icon);
             show_close_button = true;
+            search_entry.grab_focus_without_selecting ();
         }
 
         public Gtk.Switch get_dark_switch () {

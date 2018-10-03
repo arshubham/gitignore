@@ -35,7 +35,6 @@ namespace App.Views {
             Granite.Widgets.Toast select_lang_toast;
             private Gtk.Button reset;
             private Gtk.Button copy;
-            static int y;
             private Gtk.Box box2;
             private Gtk.Grid menu_grid;
 
