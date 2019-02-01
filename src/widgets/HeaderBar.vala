@@ -45,23 +45,21 @@ namespace App.Widgets {
                 show_close_button: true,
                 title: App.Configs.Constants.APP_NAME
             );
-            entry_completion = new App.Widgets.EntryCompletion ();
-            search_entry = new App.Widgets.SearchEntry (entry_completion);
-
-            selected_languages = new Gee.HashSet<string> ();
+            
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
             
             search_entry.activate.connect (() => {
                 string currently_selected_languages;
                 settings.get ("selected-langs", "s", out currently_selected_languages );
                 string entered_language = search_entry.text;
-                settings.set_string ("selected-langs", currently_selected_languages + entered_language + ",");
+                var output = App.Utils.StringUtils.remove_duplicate_languages (currently_selected_languages + entered_language + ",");
+                settings.set_string ("selected-langs", output);
+                
             });
 
             set_custom_title (search_entry);
-            var window_settings = Gtk.Settings.get_default ();
 
-            
+            var window_settings = Gtk.Settings.get_default ();
 
             bool prefer_dark;
             settings.get ("prefer-dark", "b", out prefer_dark );
@@ -85,10 +83,12 @@ namespace App.Widgets {
                     settings.set ("prefer-dark", "b", false );
                 }
             });
-            show_close_button = true;
         }
 
         construct {
+            entry_completion = new App.Widgets.EntryCompletion ();
+            search_entry = new App.Widgets.SearchEntry (entry_completion);
+            
             get_style_context ().add_class ("flat");
             dark_switch = new Gtk.Switch ();
             dark_switch.valign = Gtk.Align.CENTER;
