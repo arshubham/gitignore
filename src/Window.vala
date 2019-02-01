@@ -35,7 +35,7 @@ namespace App {
                 title: App.Configs.Constants.APP_NAME
             );
 
-            var settings = new GLib.Settings ("com.github.arshubham.cipher");
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
             int window_x, window_y;
             settings.get ("window-position", "(ii)", out window_x, out window_y);

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,6 +13,8 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
 /*
@@ -38,8 +40,9 @@ namespace App.Widgets {
 
         public HeaderBar () {
             Object (
-                title: _("GitIgnore"),
-                has_subtitle: false
+                has_subtitle: false,
+                show_close_button: true,
+                title: App.Configs.Constants.APP_NAME
             );
 
             search_entry = new Gtk.SearchEntry ();
@@ -47,33 +50,6 @@ namespace App.Widgets {
             search_entry.hexpand = true;
             search_entry.valign = Gtk.Align.CENTER;
             search_entry.grab_focus_without_selecting ();
-
-            dark_switch = new Gtk.Switch ();
-            dark_switch.valign = Gtk.Align.CENTER;
-            dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
-            light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-            light_icon.tooltip_text = _("Light background");
-            dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-            dark_icon.tooltip_text = _("Dark background");
-
-            if (App.Configs.Settings.get_instance ().prefer_dark) {
-                dark_switch.active = true;
-            } else {
-                dark_switch.active = false;
-            }
-
-            dark_switch.notify["active"].connect (() => {
-                var window_settings = Gtk.Settings.get_default ();
-                var settings = App.Configs.Settings.get_instance ();
-                if (dark_switch.active) {
-                    window_settings.gtk_application_prefer_dark_theme = true;
-                    settings.prefer_dark = true;
-                } else {
-                    window_settings.gtk_application_prefer_dark_theme = false;
-                    settings.prefer_dark = false;
-                }
-
-            });
 
             entry_completion = new Gtk.EntryCompletion ();
             search_entry.set_completion (entry_completion);
@@ -113,10 +89,48 @@ namespace App.Widgets {
             });
 
             set_custom_title (search_entry);
+            var window_settings = Gtk.Settings.get_default ();
+
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            bool prefer_dark;
+            settings.get ("prefer-dark", "b", out prefer_dark );
+
+            if (prefer_dark) {
+                dark_switch.active = true;
+                window_settings.gtk_application_prefer_dark_theme = true;
+            } else {
+                dark_switch.active = false;
+                window_settings.gtk_application_prefer_dark_theme = false;
+            }
+
+            dark_switch.notify["active"].connect (() => {
+                if (dark_switch.active) {
+                    window_settings.gtk_application_prefer_dark_theme = true;
+                    settings.set ("prefer-dark", "b", true );
+                } else {
+                    window_settings.gtk_application_prefer_dark_theme = false;
+                    settings.set ("prefer-dark", "b", false );
+                }
+            });
+            show_close_button = true;
+        }
+
+        construct {
+            get_style_context ().add_class ("flat");
+            dark_switch = new Gtk.Switch ();
+            dark_switch.valign = Gtk.Align.CENTER;
+            dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
+
+            light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            light_icon.tooltip_text = _("Light background");
+
+            dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            dark_icon.tooltip_text = _("Dark background");
+
             pack_end (dark_icon);
             pack_end (dark_switch);
             pack_end (light_icon);
-            show_close_button = true;
         }
 
         public Gtk.Switch get_dark_switch () {

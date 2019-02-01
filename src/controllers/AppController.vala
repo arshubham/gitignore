@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,25 +13,24 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
-
-using App.Widgets;
-using App.Views;
 
 namespace App.Controllers {
 
     public class AppController {
 
         private Gtk.Application application;
-        private AppView app_view;
-        private Widgets.HeaderBar headerbar;
+        private App.Views.AppView app_view;
+        private App.Widgets.HeaderBar headerbar;
         private Gtk.ApplicationWindow window { get; private set; default = null; }
         private Gdk.Display display;
 
         public AppController (Gtk.Application application) {
             this.application = application;
             this.window = new Window (this.application);
-            this.headerbar = new HeaderBar ();
+            this.headerbar = new App.Widgets.HeaderBar ();
 
             var selected_languages = this.headerbar.get_selected_languages ();
 
@@ -43,7 +42,7 @@ namespace App.Controllers {
 
             display = window.get_display ();
 
-            this.app_view = new AppView (display, selected_languages);
+            this.app_view = new App.Views.AppView (display, selected_languages);
 
             this.window.add (this.app_view);
             this.window.set_default_size (900, 540);
