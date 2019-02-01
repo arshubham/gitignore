@@ -31,21 +31,6 @@ namespace App.Configs {
          */
         private static Settings? instance;
 
-        /**
-         * This property will represent the location x of the screen.
-         * Variable of type {@code int} as declared.
-         */
-        public int window_x { get; set; }
-
-        /**
-         * This property will represent the location y of the screen.
-         * Variable of type {@code int} as declared.
-         */
-        public int window_y { get; set; }
-       /**
-         * This property will represent the default theme of the application (light = false).
-         * Variable of type {@code bool} as declared.
-         */
         public bool prefer_dark { get; set; }
 
         public string[] selected_langs { get; set; }

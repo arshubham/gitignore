@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019  Shubham Arora <shubhamarora@protonmail.com>
 * 
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,6 +13,8 @@
 * 
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
 namespace App.Configs {
@@ -27,8 +29,8 @@ namespace App.Configs {
     
         public abstract const string ID = "com.github.arshubham.gitignore";
         public abstract const string VERSION = "1.0.0";
-        public abstract const string PROGRAME_NAME = "Gitignore";
-        public abstract const string APP_YEARS = "2018";
+        public abstract const string APP_NAME = "Gitignore";
+        public abstract const string APP_YEARS = "2018-2019";
         public abstract const string APP_ICON = "com.github.arshubham.gitignore";
         public abstract const string ABOUT_COMMENTS = "Gitignore reference for various languages";
         public abstract const string TRANSLATOR_CREDITS = "Translators";
