@@ -24,13 +24,12 @@
 /*
 * FIXME: Fix Dark and Light Theme switch
 */
-using App.Configs;
 
 namespace App.Widgets {
 
     public class HeaderBar : Gtk.HeaderBar {
-        private Gtk.SearchEntry search_entry;
-        private Gtk.EntryCompletion entry_completion;
+        private App.Widgets.SearchEntry search_entry;
+        private App.Widgets.EntryCompletion entry_completion;
 
         private Gtk.Switch dark_switch;
         private Gtk.Image light_icon;
@@ -46,54 +45,23 @@ namespace App.Widgets {
                 show_close_button: true,
                 title: App.Configs.Constants.APP_NAME
             );
-
-            search_entry = new Gtk.SearchEntry ();
-            search_entry.placeholder_text = _("Select a Language from the dropdown and press enter.");
-            search_entry.hexpand = true;
-            search_entry.valign = Gtk.Align.CENTER;
-            search_entry.grab_focus_without_selecting ();
-
-            entry_completion = new Gtk.EntryCompletion ();
-            search_entry.set_completion (entry_completion);
-            entry_completion.inline_selection = true;
-            entry_completion.inline_completion = true;
-            entry_completion.popup_single_match = false;
-
-            string[] data = DataSet.DATA;
-
-            var list_store = new Gtk.ListStore (1, typeof (string));
-		    entry_completion.set_model (list_store);
-            entry_completion.set_text_column (0);
-
-            Gtk.TreeIter iter;
-            for (int i = 0; i < data.length ; i++) {
-                list_store.append (out iter);
-                list_store.set (iter, 0, data[i]);
-            }
+            entry_completion = new App.Widgets.EntryCompletion ();
+            search_entry = new App.Widgets.SearchEntry (entry_completion);
 
             selected_languages = new Gee.HashSet<string> ();
-
-            Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
-            for (int i = 0; i < data.length; i++) {
-                list.add (data[i]);
-            }
-
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            
             search_entry.activate.connect (() => {
+                string currently_selected_languages;
+                settings.get ("selected-langs", "s", out currently_selected_languages );
                 string entered_language = search_entry.text;
-                if (list.contains (entered_language) && !selected_languages.contains(entered_language) && entered_language.strip ().length != 0) {
-                    selected_languages.add(entered_language);
-                    debug ("Selected Language: %s\n", entered_language);
-                } else if (selected_languages.contains(entered_language)) {
-                    debug ("Selected Language: %s, already in the set\n", entered_language);
-                } else {
-                    debug ("Unknown Language\n");
-                }
+                settings.set_string ("selected-langs", currently_selected_languages + entered_language + ",");
             });
 
             set_custom_title (search_entry);
             var window_settings = Gtk.Settings.get_default ();
 
-            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            
 
             bool prefer_dark;
             settings.get ("prefer-dark", "b", out prefer_dark );
@@ -135,10 +103,6 @@ namespace App.Widgets {
             pack_end (dark_icon);
             pack_end (dark_switch);
             pack_end (light_icon);
-        }
-
-        public Gtk.Switch get_dark_switch () {
-            return this.dark_switch;
         }
 
         public Gtk.SearchEntry get_search_entry () {
