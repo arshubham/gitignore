@@ -45,21 +45,8 @@ namespace App.Controllers {
             this.app_view = new App.Views.AppView (display, selected_languages);
 
             this.window.add (this.app_view);
-            this.window.set_default_size (900, 540);
-            this.window.set_size_request (900, 540);
-            this.window.set_gravity (Gdk.Gravity.CENTER);
             this.window.set_titlebar (this.headerbar);
             this.application.add_window (window);
-
-            var ds = this.headerbar.get_dark_switch ();
-            ds.notify["active"].connect (() => {
-                if (ds.active) {
-                    app_view.dark_theme ();
-                } else {
-                    app_view.light_theme ();
-                }
-
-            });
         }
 
         public void activate () {

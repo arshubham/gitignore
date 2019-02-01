@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,6 +13,8 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
 using App.Configs;
@@ -20,16 +22,7 @@ using App.Widgets;
 
 namespace App.Views {
 
-    /**
-     * The {@code AppView} class.
-     *
-     * @since 1.0.0
-     */
     public class AppView : Gtk.Grid {
-
-        /**
-         * Constructs a new {@code AppView} object.
-         */
 
             private Gtk.ScrolledWindow terminal_output;
             private Gtk.SourceView source_view;
@@ -59,10 +52,6 @@ namespace App.Views {
             generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
             generate.set_tooltip_text ("Generate .gitignore from selected languages");
 
-            //TODO: V2
-           //save = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.BUTTON);
-            //save.set_tooltip_text ("Save generated .gitignore as file");
-
             copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
             copy.set_tooltip_text ("Copy generated gitignore");
 
@@ -74,7 +63,6 @@ namespace App.Views {
             content.pack_end (generate, false, false, 0);
 
             content.pack_end (copy, false, false, 0);
-            //content.pack_end (save, false, false, 0);
 
             content.pack_end (reset, false, false, 0);
 
@@ -82,22 +70,13 @@ namespace App.Views {
             source_buffer.highlight_syntax = true;
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("text");
 
-
-
-
             source_view = new Gtk.SourceView ();
 
-
             source_buffer.text = "\n\nSelect a Language from the dropdown and press enter.\nThe selected languages will appear in shown. Press Generate .gitignore to fetch .gitignore file.";
-
-
-
-
 
             source_view.buffer = source_buffer;
             source_view.editable = false;
             source_view.monospace = true;
-            source_view.show_line_numbers = true;
             terminal_output = new Gtk.ScrolledWindow (null, null);
             terminal_output.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             terminal_output.expand = true;
@@ -139,7 +118,6 @@ namespace App.Views {
                     Process.spawn_command_line_sync(cmd, out std_out, null, out exitCode);
                     stdout.printf (std_out);
 
-
                     source_buffer.text = std_out;
                     source_view.buffer = source_buffer;
                     }   catch (Error e) {
@@ -150,17 +128,6 @@ namespace App.Views {
 
 
                 this.selected_langs = selected_langs;
-        }
-
-        public void dark_theme () {
-                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-dark");
-
-        }
-
-        public void light_theme () {
-
-            source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
-
         }
 
         public void update_langs (Gee.HashSet<string> sl2) {
