@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.arshubham.gitignore package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.arshubham.gitignore\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-02 14:52+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/com.github.arshubham.gitignore.desktop.in:3
+#: data/com.github.arshubham.gitignore.appdata.xml.in:7
+msgid "Gitignore"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.desktop.in:4
+#: data/com.github.arshubham.gitignore.appdata.xml.in:8
+msgid "Gitignore reference for various languages"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.desktop.in:5
+msgid "com.github.arshubham.gitignore"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.desktop.in:11
+msgid "gitignore;"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:9
+msgid "Shubham Arora"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:19
+msgid ""
+"A simple application for getting gitigore reference from gitignore.io. You "
+"can download .gitignore for multiple languages at once."
+msgstr ""

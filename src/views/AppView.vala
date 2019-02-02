@@ -50,13 +50,13 @@ namespace App.Views {
             t2 = new Gtk.Label ("");
 
             generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
-            generate.set_tooltip_text ("Generate .gitignore from selected languages");
+            generate.set_tooltip_text (_("Generate .gitignore from selected languages"));
 
             copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
-            copy.set_tooltip_text ("Copy generated gitignore");
+            copy.set_tooltip_text (_("Copy generated gitignore"));
 
             reset = new Gtk.Button.from_icon_name ("process-stop", Gtk.IconSize.BUTTON);
-            reset.set_tooltip_text ("Reset selected languages");
+            reset.set_tooltip_text (_("Reset selected languages"));
 
             content.pack_start (t1, false, false, 0);
             content.pack_start (t2, false, false, 0);
@@ -144,7 +144,7 @@ namespace App.Views {
 
         }
         public void add_tags () {
-             t1 = new Gtk.Label ("Selected Languages:");
+             t1 = new Gtk.Label (_("Selected Languages:"));
              update_tags ();
              debug("slgs : == "+ slgs);
 

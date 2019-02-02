@@ -8,3 +8,4 @@ Type=Application
 StartupNotify=true
 Categories=Development;
 Keywords=gitignore;
+Name[en_US]=com.github.arshubham.gitignore.desktop.in

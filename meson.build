@@ -8,6 +8,8 @@ add_project_arguments([
     ],
     language: 'c',
 )
+i18n = import('i18n')
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
 
 gnome = import('gnome')
 
@@ -30,6 +32,7 @@ sources = files()
 
 subdir('data')
 subdir('src')
+subdir('po')
 
 dependencies = [
 	dependency('gobject-2.0'),
