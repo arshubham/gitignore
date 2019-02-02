@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.arshubham.gitignore\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 14:52+0530\n"
+"POT-Creation-Date: 2019-02-02 15:04+0530\n"
 "PO-Revision-Date: 2019-02-02 14:52+0530\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,6 +16,30 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/views/AppView.vala:42
+msgid "Select at least one language to generate .gitignore!"
+msgstr ""
+
+#: src/views/AppView.vala:53
+msgid "Generate .gitignore from selected languages"
+msgstr ""
+
+#: src/views/AppView.vala:56
+msgid "Copy generated gitignore"
+msgstr ""
+
+#: src/views/AppView.vala:59
+msgid "Reset selected languages"
+msgstr ""
+
+#: src/views/AppView.vala:86
+msgid "Copied to clipboard"
+msgstr ""
+
+#: src/views/AppView.vala:147
+msgid "Selected Languages:"
+msgstr ""
 
 #: data/com.github.arshubham.gitignore.desktop.in:3
 #: data/com.github.arshubham.gitignore.appdata.xml.in:7
