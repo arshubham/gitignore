@@ -13,6 +13,7 @@ sources += files(
     'widgets/DataSet.vala',
     'widgets/SearchEntry.vala',
     'widgets/EntryCompletion.vala',
+    'widgets/SourceView.vala',
 
     'utils/StringUtils.vala',
 

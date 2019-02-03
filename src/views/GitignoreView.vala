@@ -1,10 +1,28 @@
+/*
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
+*/
+
 namespace App.Views {
 
     public class GitignoreView : Gtk.Grid {
 
         private Gtk.SourceView source_view;
         private Gtk.SourceBuffer source_buffer;
-        private Gtk.ScrolledWindow scroll_window;
         private Soup.Session session;
 
         public GitignoreView () {
@@ -19,32 +37,19 @@ namespace App.Views {
 
         construct {
             source_buffer = new Gtk.SourceBuffer (null);
-            source_buffer.highlight_syntax = true;
-            source_view.expand = true;
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("text");
-            
-            source_buffer.text = "";
             source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
             
-            source_view = new Gtk.SourceView ();
-            source_view.buffer = source_buffer;
-            source_view.editable = false;
-            source_view.monospace = true;
-            source_view.expand = true;
-            source_view.show_line_numbers = false;
-            source_view.left_margin = source_view.right_margin = 6;
-            source_view.pixels_above_lines = source_view.pixels_below_lines = 3;
+            source_view = new App.Widgets.SourceView (source_buffer);
 
-            scroll_window = new Gtk.ScrolledWindow (null, null);
+            var scroll_window = new Gtk.ScrolledWindow (null, null);
             scroll_window.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             scroll_window.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             scroll_window.expand = true;
             scroll_window.add (source_view);
-
-
-            attach (scroll_window, 0, 0, 1, 1);
-
             scroll_window.get_style_context ().add_class ("code");
+
+            attach (scroll_window, 0, 0, 1, 1);          
         }
 
         public void load_data () {
