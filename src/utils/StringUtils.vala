@@ -21,19 +21,20 @@ namespace App.Utils {
 
     public class StringUtils {
         
-        public static string remove_duplicate_languages (string input) {
-            string[] array = (input.slice (0, input.length-1)).split (",");
-            string output = "";
+        public static string[] remove_duplicate_languages (string[] input) {
+            string[] output  = {};
 
             var set = new Gee.HashSet<string> ();
 
-            for (int i = 0 ; i < array.length; i++) {
-                set.add (array [i]);
+            for (int i = 0 ; i < input.length; i++) {
+                set.add (input [i]);
+            }
+            int i = 0;
+            foreach (string s in set) {
+                output[i] = s;
+                i++;
             }
 
-            foreach (string s in set) {
-                output = output + s + ",";
-            }
             return output;
         }
     }

@@ -38,6 +38,11 @@ namespace App.Widgets {
             );
             
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            string[] data_set = DataSet.DATA;
+            Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
+            for (int i = 0; i < data_set.length; i++) {
+                list.add (data_set[i]);
+            }
             
             // TODO: Add check that value should be in data set
             // TODO: Only pass unique values to gsettings.
@@ -46,10 +51,27 @@ namespace App.Widgets {
                 GenericArray<string> array = new GenericArray<string> ();
                 for (var i = 0; i < data.length; i++) {
                     array.add (data[i]);
-                }            
-                array.add (search_entry.text);
+                }
+
+                var entered_language = search_entry.text;
+
+                array.add (entered_language);
                 string[] output = array.data;
-                settings.set_strv ("selected-langs", output);
+
+                var selected_languages = new Gee.HashSet<string> ();
+
+                if (list.contains (entered_language) && !selected_languages.contains(entered_language) && search_entry.text.strip ().length != 0) {
+                    settings.set_strv ("selected-langs", output);
+                } else if (selected_languages.contains(search_entry.text)) {
+                    debug ("Selected Language: %s, already in tags", entered_language);
+                } else {
+                    debug ("Unknown Language");
+                }
+
+                for (int i = 0 ; i < output.length; i++) {
+                    selected_languages.add (output [i]);
+                }
+                
                 changed ();
                 
             });
