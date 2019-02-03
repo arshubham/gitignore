@@ -13,13 +13,15 @@ namespace App.Views {
         }
 
         construct {
+            var image = new Gtk.Image.from_resource ("/com/github/arshubham/gitignore/images/128-com.github.arshubham.gitignore.svg");
+
             var title = new Gtk.Label ("gitIgnore");
             title.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
             var subtitle = new Gtk.Label (_(".gitignore reference for various languages"));
 
             var usage_instructions = _("Select a Language from the dropdown and press enter."
-                       + "The selected languages will appear as tags. Press \"Generate .gitignore\""
+                       + "The selected languages will appear as tags. Press \"Generate .gitignore\" "
                        + "to fetch .gitignore file.");
 
             var copy = new Gtk.Label ("<b>%s</b>".printf (usage_instructions));
@@ -28,9 +30,10 @@ namespace App.Views {
             copy.use_markup = true;
             copy.wrap = true;
 
-            attach (title, 0, 0);
-            attach (subtitle, 0, 1);
-            attach (copy, 0, 2);
+            attach (image, 0, 0);
+            attach (title, 0, 1);
+            attach (subtitle, 0, 2);
+            attach (copy, 0, 3);
             get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
         }
     }
