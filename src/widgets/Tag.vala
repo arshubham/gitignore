@@ -24,17 +24,15 @@ namespace App.Widgets {
         private Gtk.Box box;
         private Gtk.Label label;
         private Gtk.Image icon;
-
+        
         public Tag (string language) {
             Object (
-                margin_start: 8
+                margin_start: 8,
+                valign: Gtk.Align.CENTER
             );
             label.set_text (language);
-            icon.gicon = new ThemedIcon ("window-close");
 
-            get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
-            get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-            add (box);
+            attach (box, 0, 0);
         }
 
         construct {
@@ -43,12 +41,15 @@ namespace App.Widgets {
             label.margin_start = 15;
 
             icon = new Gtk.Image ();
+            icon.gicon = new ThemedIcon ("window-close");
             icon.pixel_size = 16;
             icon.margin_end = 7;
             icon.margin_top = 2;
+            icon.margin_start = 10;
 
-            box.add (label);
-            box.add (icon);
+            box.pack_start (label);
+            box.pack_end (icon);
+            get_style_context ().add_class ("tag");
         }
     }
 }   

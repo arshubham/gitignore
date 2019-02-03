@@ -17,27 +17,18 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-/*
-* TODO: Extract Gtk.SearchEntry and Gtk.EntryCompletion to a seperate class
-*/
-
-/*
-* FIXME: Fix Dark and Light Theme switch
-*/
-
 namespace App.Widgets {
 
     public class HeaderBar : Gtk.HeaderBar {
-        private App.Widgets.SearchEntry search_entry;
+        public App.Widgets.SearchEntry search_entry;
         private App.Widgets.EntryCompletion entry_completion;
 
         private Gtk.Switch dark_switch;
         private Gtk.Image light_icon;
         private Gtk.Image dark_icon;
 
-        private Gee.HashSet<string> selected_languages;
-
         public signal void switch_theme (bool prefer_dark);
+        public signal void changed ();
 
         public HeaderBar () {
             Object (
@@ -50,7 +41,7 @@ namespace App.Widgets {
             
             // TODO: Add check that value should be in data set
             // TODO: Only pass unique values to gsettings.
-            search_entry.activate.connect (() => {
+            search_entry.activate.connect (() => {  
                 string[] data = settings.get_strv ("selected-langs");
                 GenericArray<string> array = new GenericArray<string> ();
                 for (var i = 0; i < data.length; i++) {
@@ -59,6 +50,7 @@ namespace App.Widgets {
                 array.add (search_entry.text);
                 string[] output = array.data;
                 settings.set_strv ("selected-langs", output);
+                changed ();
                 
             });
 

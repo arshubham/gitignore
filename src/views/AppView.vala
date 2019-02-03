@@ -21,48 +21,64 @@ namespace App.Views {
 
     public class AppView : Gtk.Grid {
 
+        private Gtk.Grid tag_grid;
+        private Gtk.Stack stack;
+        private App.Widgets.Button generate_gitignore_button;
+
+        public signal void tags_changed ();
+
+        public AppView () {
+            generate_gitignore_button.clicked.connect (() => {
+                stack.visible_child_name = "gitignore_view_stack";
+            });
+        }
+
         construct {
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             var content_box =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             content_box.margin = 10;
             content_box.spacing = 5;
+            content_box.valign = Gtk.Align.CENTER;
+
+            tag_grid = new Gtk.Grid ();
+
+            update_tags ();
 
             var generate_gitignore_button =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
             generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages");
+            generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
+            content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
 
-            var alignment_grid = new Gtk.Grid ();
-            alignment_grid.halign = Gtk.Align.CENTER;
-            alignment_grid.hexpand = true;
-            alignment_grid.margin_bottom = 200; // Roughly visually centered
-            alignment_grid.orientation = Gtk.Orientation.VERTICAL;
-            alignment_grid.valign = Gtk.Align.CENTER;
-            alignment_grid.vexpand = true;
-
-            var title = new Gtk.Label ("gitIgnore");
-            title.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
-
-            var subtitle = new Gtk.Label (_(".gitignore reference for various languages"));
-
-            var usage_instructions = _("Select a Language from the dropdown and press enter. The selected languages will appear as tags. Press \"Generate .gitignore\" to fetch .gitignore file.");
-
-            var copy = new Gtk.Label ("%s".printf (usage_instructions));
-            copy.margin = 24;
-            copy.max_width_chars = 70;
-            copy.use_markup = true;
-            copy.wrap = true;
+            var welcome_view = new WelcomeView ();
+            var welcome_view2 = new WelcomeView ();
+            stack = new Gtk.Stack ();
+            stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+            stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
+            stack.add_titled ( welcome_view2, "gitignore_view_stack", _("Gitignore View"));
+            stack.visible_child_name = "welcome_view_stack";
             
-            alignment_grid.add (title);
-            alignment_grid.add (subtitle);
-            alignment_grid.add (copy);
-            alignment_grid.get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
-
+            stack.show_all ();
             box.pack_start (content_box, false, true, 0);
-            box.pack_start (alignment_grid, false, true, 0);
+            box.pack_start (stack, false, true, 0);
             attach (box, 0, 0, 1, 1);
         }
 
+        public void update_tags () {
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            string[] data = settings.get_strv ("selected-langs");
+            //  for (int i = 0; i < data.length; i++) {
+            //      tag_grid.remove_column (i);
+            //  }
+            for (int i = 0; i < data.length; i++) {
+                var tag = new App.Widgets.Tag (data[i]);
+                tag_grid.attach (tag, i, 0);
+            }
+
+
+            tag_grid.show_all ();
+        }
     }
 }

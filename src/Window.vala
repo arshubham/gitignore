@@ -61,7 +61,6 @@ namespace App {
 
                     int width, height;
                     get_size (out width, out height);
-                    debug (width.to_string ());
                     settings.set ("window-size", "(ii)", width, height);
 
                     int root_x, root_y;

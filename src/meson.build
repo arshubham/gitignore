@@ -5,6 +5,7 @@ sources += files(
     'controllers/AppController.vala',
     
     'views/AppView.vala',
+    'views/WelcomeView.vala',
 
     'widgets/HeaderBar.vala',
     'widgets/Tag.vala',

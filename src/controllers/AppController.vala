@@ -25,13 +25,22 @@ namespace App.Controllers {
         private App.Views.AppView app_view;
         private App.Widgets.HeaderBar headerbar;
         private Gtk.ApplicationWindow window { get; private set; default = null; }
-        private Gdk.Display display;
 
         public AppController (Gtk.Application application) {
             this.application = application;
             this.window = new Window (this.application);
             this.headerbar = new App.Widgets.HeaderBar ();
             this.app_view = new App.Views.AppView ();
+
+            headerbar.changed.connect (() => {
+                app_view.update_tags ();
+                int window_width, window_height;
+                window.get_size (out window_width, out window_height);
+                window.resize (window_width+1, window_height);
+                headerbar.search_entry.grab_focus_without_selecting ();
+                window.get_size (out window_width, out window_height);
+                window.resize (window_width-1, window_height);
+            });
 
             this.window.add (this.app_view);
             this.window.set_titlebar (this.headerbar);
