@@ -36,7 +36,8 @@ namespace App {
             );
 
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
-
+            settings.set_strv ("selected-langs", null);
+            
             int window_x, window_y;
             settings.get ("window-position", "(ii)", out window_x, out window_y);
 
@@ -54,6 +55,8 @@ namespace App {
             }
 
             delete_event.connect (() => {
+                settings.set_strv ("selected-langs", null);
+
                 if (this.is_maximized) {
                     settings.set_boolean ("window-maximized", true);
                 } else {
