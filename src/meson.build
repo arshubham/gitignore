@@ -6,6 +6,7 @@ sources += files(
     
     'views/AppView.vala',
     'views/WelcomeView.vala',
+    'views/GitignoreView.vala',
 
     'widgets/HeaderBar.vala',
     'widgets/Tag.vala',

@@ -28,9 +28,14 @@ namespace App.Views {
         public signal void tags_changed ();
 
         public AppView () {
+            stack.show_all ();
+            stack.visible_child_name = "welcome_view_stack";
+
             generate_gitignore_button.clicked.connect (() => {
                 stack.visible_child_name = "gitignore_view_stack";
             });
+
+            
         }
 
         construct {
@@ -45,22 +50,22 @@ namespace App.Views {
 
             update_tags ();
 
-            var generate_gitignore_button =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
-            generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages");
+            generate_gitignore_button =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
+            generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages"); 
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
             content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
 
             var welcome_view = new WelcomeView ();
-            var welcome_view2 = new WelcomeView ();
+            var gitignore_view = new GitignoreView ();
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
-            stack.add_titled ( welcome_view2, "gitignore_view_stack", _("Gitignore View"));
-            stack.visible_child_name = "welcome_view_stack";
+            stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
             
-            stack.show_all ();
+            
+            
             box.pack_start (content_box, false, true, 0);
             box.pack_start (stack, false, true, 0);
             attach (box, 0, 0, 1, 1);
@@ -69,9 +74,9 @@ namespace App.Views {
         public void update_tags () {
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
             string[] data = settings.get_strv ("selected-langs");
-            //  for (int i = 0; i < data.length; i++) {
-            //      tag_grid.remove_column (i);
-            //  }
+            for (int i = 0; i < data.length; i++) {
+                tag_grid.remove_column (i);
+            }
             for (int i = 0; i < data.length; i++) {
                 var tag = new App.Widgets.Tag (data[i]);
                 tag_grid.attach (tag, i, 0);

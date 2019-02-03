@@ -1,7 +1,6 @@
 namespace App.Views {
 
     public class WelcomeView : Gtk.Grid {
-
         public WelcomeView () {
             Object (
                 halign: Gtk.Align.CENTER,
