@@ -44,8 +44,6 @@ namespace App.Widgets {
                 list.add (data_set[i]);
             }
             
-            // TODO: Add check that value should be in data set
-            // TODO: Only pass unique values to gsettings.
             search_entry.activate.connect (() => {  
                 string[] data = settings.get_strv ("selected-langs");
                 GenericArray<string> array = new GenericArray<string> ();
