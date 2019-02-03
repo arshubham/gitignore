@@ -48,16 +48,19 @@ namespace App.Widgets {
             
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
             
+            // TODO: Add check that value should be in data set
+            // TODO: Only pass unique values to gsettings.
             search_entry.activate.connect (() => {
-                string currently_selected_languages;
-                settings.get ("selected-langs", "s", out currently_selected_languages );
-                string entered_language = search_entry.text;
-                var output = App.Utils.StringUtils.remove_duplicate_languages (currently_selected_languages + entered_language + ",");
-                settings.set_string ("selected-langs", output);
+                string[] data = settings.get_strv ("selected-langs");
+                GenericArray<string> array = new GenericArray<string> ();
+                for (var i = 0; i < data.length; i++) {
+                    array.add (data[i]);
+                }            
+                array.add (search_entry.text);
+                string[] output = array.data;
+                settings.set_strv ("selected-langs", output);
                 
             });
-
-            set_custom_title (search_entry);
 
             var window_settings = Gtk.Settings.get_default ();
 
@@ -83,6 +86,8 @@ namespace App.Widgets {
                     settings.set ("prefer-dark", "b", false );
                 }
             });
+
+            set_custom_title (search_entry);
         }
 
         construct {
@@ -103,14 +108,6 @@ namespace App.Widgets {
             pack_end (dark_icon);
             pack_end (dark_switch);
             pack_end (light_icon);
-        }
-
-        public Gtk.SearchEntry get_search_entry () {
-            return this.search_entry;
-        }
-
-        public Gee.HashSet<string> get_selected_languages (){
-            return this.selected_languages;
         }
     }
 }

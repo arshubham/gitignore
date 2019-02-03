@@ -31,18 +31,7 @@ namespace App.Controllers {
             this.application = application;
             this.window = new Window (this.application);
             this.headerbar = new App.Widgets.HeaderBar ();
-
-            var selected_languages = this.headerbar.get_selected_languages ();
-
-            var search_entry = this.headerbar.get_search_entry ();
-
-            search_entry.activate.connect (() => {
-                this.app_view.update_langs (selected_languages);
-            });
-
-            display = window.get_display ();
-
-            this.app_view = new App.Views.AppView (display, selected_languages);
+            this.app_view = new App.Views.AppView ();
 
             this.window.add (this.app_view);
             this.window.set_titlebar (this.headerbar);
