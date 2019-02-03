@@ -25,13 +25,15 @@ namespace App.Controllers {
         private App.Views.AppView app_view;
         private App.Widgets.HeaderBar headerbar;
         private Gtk.ApplicationWindow window { get; private set; default = null; }
+        private Gdk.Display display;
 
         public AppController (Gtk.Application application) {
             this.application = application;
             this.window = new Window (this.application);
             this.headerbar = new App.Widgets.HeaderBar ();
-            this.app_view = new App.Views.AppView ();
+            this.display = window.get_display ();
 
+            this.app_view = new App.Views.AppView (display);
             headerbar.changed.connect (() => {
                 app_view.update_tags ();
                 int window_width, window_height;

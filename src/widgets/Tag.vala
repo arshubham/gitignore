@@ -27,8 +27,9 @@ namespace App.Widgets {
         
         public Tag (string language) {
             Object (
-                margin_start: 8,
-                valign: Gtk.Align.CENTER
+                valign: Gtk.Align.CENTER,
+                margin_start: 6,
+                margin_end: 6
             );
             label.set_text (language);
 
@@ -38,17 +39,15 @@ namespace App.Widgets {
         construct {
             box =  new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             label = new Gtk.Label ("");
-            label.margin_start = 15;
+            label.margin_end = 4;
 
             icon = new Gtk.Image ();
             icon.gicon = new ThemedIcon ("window-close");
-            icon.pixel_size = 16;
-            icon.margin_end = 7;
-            icon.margin_top = 2;
-            icon.margin_start = 10;
+            icon.margin_start = 4;
+            icon.margin_end = 2;
 
-            box.pack_start (label);
-            box.pack_end (icon);
+            box.pack_start (icon);
+            box.pack_end (label);
             get_style_context ().add_class ("tag");
         }
     }

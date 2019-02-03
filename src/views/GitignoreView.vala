@@ -22,7 +22,7 @@ namespace App.Views {
     public class GitignoreView : Gtk.Grid {
 
         private Gtk.SourceView source_view;
-        private Gtk.SourceBuffer source_buffer;
+        public Gtk.SourceBuffer source_buffer;
         private Soup.Session session;
 
         public GitignoreView () {

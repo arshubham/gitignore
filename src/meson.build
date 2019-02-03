@@ -15,8 +15,6 @@ sources += files(
     'widgets/EntryCompletion.vala',
     'widgets/SourceView.vala',
 
-    'utils/StringUtils.vala',
-
     'Application.vala',
     'Main.vala',
     'Window.vala'

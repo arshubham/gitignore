@@ -25,10 +25,11 @@ namespace App.Views {
         private Gtk.Stack stack;
         private App.Widgets.Button generate_gitignore_button;
         private GitignoreView gitignore_view;
+        private Gtk.Button copy_button;
 
         public signal void tags_changed ();
 
-        public AppView () {
+        public AppView (Gdk.Display display) {
             stack.show_all ();
             stack.visible_child_name = "welcome_view_stack";
 
@@ -37,7 +38,11 @@ namespace App.Views {
                 gitignore_view.load_data ();
             });
 
-            
+            copy_button.clicked.connect (() => {
+                Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
+                clipboard.set_text (gitignore_view.source_buffer.text, -1);
+            });
+
         }
 
         construct {
@@ -51,6 +56,9 @@ namespace App.Views {
             tag_grid = new Gtk.Grid ();
 
             update_tags ();
+            
+            copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
+            copy_button.set_tooltip_text ("Copy generated gitignore");
 
             generate_gitignore_button =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
             generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages"); 
@@ -58,15 +66,15 @@ namespace App.Views {
 
             content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
+            content_box.pack_end (copy_button, false, false, 0);
 
             var welcome_view = new WelcomeView ();
             gitignore_view = new GitignoreView ();
+
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
             stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
-            
-            
             
             box.pack_start (content_box, false, true, 0);
             box.pack_start (stack, false, true, 0);
