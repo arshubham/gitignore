@@ -24,6 +24,7 @@ namespace App.Views {
         private Gtk.Grid tag_grid;
         private Gtk.Stack stack;
         private App.Widgets.Button generate_gitignore_button;
+        private GitignoreView gitignore_view;
 
         public signal void tags_changed ();
 
@@ -33,6 +34,7 @@ namespace App.Views {
 
             generate_gitignore_button.clicked.connect (() => {
                 stack.visible_child_name = "gitignore_view_stack";
+                gitignore_view.load_data ();
             });
 
             
@@ -58,7 +60,7 @@ namespace App.Views {
             content_box.pack_end (generate_gitignore_button, false, false, 0);
 
             var welcome_view = new WelcomeView ();
-            var gitignore_view = new GitignoreView ();
+            gitignore_view = new GitignoreView ();
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
@@ -74,9 +76,15 @@ namespace App.Views {
         public void update_tags () {
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
             string[] data = settings.get_strv ("selected-langs");
-            for (int i = 0; i < data.length; i++) {
+            for (int i = 0; i < data.length + 1; i++) {
                 tag_grid.remove_column (i);
             }
+            var children = tag_grid.get_children ();
+            foreach (Gtk.Widget element in children) {
+                tag_grid.remove (element);
+            }
+            
+
             for (int i = 0; i < data.length; i++) {
                 var tag = new App.Widgets.Tag (data[i]);
                 tag_grid.attach (tag, i, 0);

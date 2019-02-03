@@ -5,6 +5,7 @@ namespace App.Views {
         private Gtk.SourceView source_view;
         private Gtk.SourceBuffer source_buffer;
         private Gtk.ScrolledWindow scroll_window;
+        private Soup.Session session;
 
         public GitignoreView () {
             Object (
@@ -13,6 +14,7 @@ namespace App.Views {
                 margin: 10,
                 vexpand: true
             );
+            session = new Soup.Session();            
         }
 
         construct {
@@ -43,6 +45,38 @@ namespace App.Views {
             attach (scroll_window, 0, 0, 1, 1);
 
             scroll_window.get_style_context ().add_class ("code");
+        }
+
+        public void load_data () {
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            string[] data = settings.get_strv ("selected-langs");
+            string uri = "https://www.gitignore.io/api/";
+            for (int i = 0; i < data.length; i++) {
+                uri = uri + data[i] + ",";
+            }
+            uri = uri.slice (0, uri.length-1);
+            debug (uri);
+            var message = new Soup.Message ("GET", uri);
+            session.queue_message (message, (sess, mess) => {
+                if (mess.status_code == 200) {
+                        source_buffer.text = (string) mess.response_body.flatten ().data;
+                        source_view.buffer = source_buffer;
+                } else {
+                    show_message("Request page fail", @"status code: $(mess.status_code)", "dialog-error");
+                }
+            });
+        }
+
+        private void show_message (string txt_primary, string txt_secondary, string icon) {
+            var message_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+                txt_primary,
+                txt_secondary,
+                icon,
+                Gtk.ButtonsType.CLOSE
+            );
+
+            message_dialog.run ();
+            message_dialog.destroy ();
         }
     }
 }
