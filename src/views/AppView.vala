@@ -49,7 +49,7 @@ namespace App.Views {
             add_tags ();
             t2 = new Gtk.Label ("");
 
-            generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
+            generate =  new App.Widgets.Button (_("Generate .gitignore"), "media-playback-start");
             generate.set_tooltip_text (_("Generate .gitignore from selected languages"));
 
             copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
