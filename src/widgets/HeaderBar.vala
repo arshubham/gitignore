@@ -27,6 +27,8 @@ namespace App.Widgets {
         private Gtk.Image light_icon;
         private Gtk.Image dark_icon;
 
+        private Gee.HashSet<string> selected_languages;
+
         public signal void switch_theme (bool prefer_dark);
         public signal void changed ();
 
@@ -38,6 +40,8 @@ namespace App.Widgets {
             );
 
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            selected_languages = new Gee.HashSet<string> ();
 
             string[] data_set = DataSet.DATA;
 
@@ -59,11 +63,9 @@ namespace App.Widgets {
 
                 string[] output = array.data;
 
-                var selected_languages = new Gee.HashSet<string> ();
-
                 if (list.contains (entered_language) && !selected_languages.contains (entered_language) && entered_language.strip ().length != 0) {
                     settings.set_strv ("selected-langs", output);
-                } else if (selected_languages.contains (search_entry.text)) {
+                } else if (selected_languages.contains (entered_language)) {
                     debug ("Selected Language already entered.");
                 } else {
                     debug ("Unknown Language.");
@@ -73,6 +75,7 @@ namespace App.Widgets {
                     selected_languages.add (output [i]);
                 }
 
+                
                 changed ();
             });
 

@@ -39,12 +39,14 @@ namespace App.Views {
             generate_gitignore_button.clicked.connect (() => {
                 stack.visible_child_name = "gitignore_view_stack";
                 gitignore_view.load_data ();
+                toggle_buttons();
             });
 
             copy_button.clicked.connect (() => {
                 Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
                 clipboard.set_text (gitignore_view.source_buffer.text, -1);
             });
+            
             save_button.clicked.connect (() => {
                 var filech = Utils.new_file_chooser_dialog ( _("Save File"), null);
                 filech.do_overwrite_confirmation = true;
@@ -71,6 +73,8 @@ namespace App.Views {
 
                 filech.destroy ();
             });
+
+            toggle_buttons();
         }
 
         construct {
@@ -137,6 +141,40 @@ namespace App.Views {
             }
 
             tag_grid.show_all ();
+            toggle_buttons();
+        }
+
+        public void toggle_buttons () {
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            string[] data = settings.get_strv ("selected-langs");
+
+            if (stack.visible_child_name == "welcome_view_stack") {
+                save_button.set_sensitive (false);
+                save_button.set_opacity (0);
+                copy_button.set_sensitive (false);
+                copy_button.set_opacity (0);
+
+                if (data.length > 0) {
+                    generate_gitignore_button.set_sensitive (true);
+                } else {
+                    generate_gitignore_button.set_sensitive (false);
+                }
+                
+                
+            } else if (stack.visible_child_name == "gitignore_view_stack") {
+                if (data.length > 0) {
+                    generate_gitignore_button.set_sensitive (true);
+                } else {
+                    generate_gitignore_button.set_sensitive (false);
+                }
+
+                copy_button.set_sensitive (true);
+                save_button.set_sensitive (true);
+                save_button.set_opacity (1);
+                copy_button.set_opacity (1);
+                generate_gitignore_button.set_opacity (1);
+            }
         }
     }
 }
