@@ -7,4 +7,4 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=Development;
-Keywords=gitignore;git;development;cvs;versioning
+Keywords=gitignore;git;development;cvs;versioning;
