@@ -17,10 +17,6 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-using App.Configs;
-using App.Controllers;
-using App.Views;
-
 namespace App {
 
     public class Window : Gtk.ApplicationWindow {

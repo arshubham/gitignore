@@ -23,8 +23,10 @@ namespace App.Views {
 
         private Gtk.Grid tag_grid;
         private Gtk.Stack stack;
+        
+        private App.Views.GitignoreView gitignore_view;
+
         private App.Widgets.Button generate_gitignore_button;
-        private GitignoreView gitignore_view;
         private Gtk.Button copy_button;
         private Gtk.Button save_button;
 
@@ -99,8 +101,8 @@ namespace App.Views {
             content_box.pack_end (copy_button, false, false, 0);
             content_box.pack_end (save_button, false, false, 0);
 
-            var welcome_view = new WelcomeView ();
-            gitignore_view = new GitignoreView ();
+            var welcome_view = new App.Views.WelcomeView ();
+            gitignore_view = new App.Views.GitignoreView ();
 
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
@@ -114,7 +116,7 @@ namespace App.Views {
 
         public void update_tags () {
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
-            
+
             string[] data = settings.get_strv ("selected-langs");
 
             for (int i = 0; i < data.length + 1; i++) {

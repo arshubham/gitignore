@@ -29,11 +29,11 @@ namespace App.Controllers {
 
         public AppController (Gtk.Application application) {
             this.application = application;
-            this.window = new Window (this.application);
-            this.headerbar = new App.Widgets.HeaderBar ();
-            this.display = window.get_display ();
+            window = new Window (this.application);
+            headerbar = new App.Widgets.HeaderBar ();
+            display = window.get_display ();
 
-            this.app_view = new App.Views.AppView (display);
+            app_view = new App.Views.AppView (display);
             headerbar.changed.connect (() => {
                 app_view.update_tags ();
                 int window_width, window_height;
@@ -44,9 +44,9 @@ namespace App.Controllers {
                 window.resize (window_width-1, window_height);
             });
 
-            this.window.add (this.app_view);
-            this.window.set_titlebar (this.headerbar);
-            this.application.add_window (window);
+            window.add (app_view);
+            window.set_titlebar (headerbar);
+            application.add_window (window);
         }
 
         public void activate () {
