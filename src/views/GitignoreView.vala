@@ -23,6 +23,8 @@ namespace App.Views {
 
         private Gtk.SourceView source_view;
         public Gtk.SourceBuffer source_buffer;
+        private Gtk.ScrolledWindow scroll_window;
+
         private Soup.Session session;
 
         public GitignoreView () {
@@ -34,22 +36,22 @@ namespace App.Views {
             );
 
             session = new Soup.Session ();
+
+            update_theme ();
         }
 
         construct {
             source_buffer = new Gtk.SourceBuffer (null);
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("text");
             source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
-
+            
             source_view = new App.Widgets.SourceView (source_buffer);
 
-            var scroll_window = new Gtk.ScrolledWindow (null, null);
+            scroll_window = new Gtk.ScrolledWindow (null, null);
             scroll_window.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             scroll_window.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             scroll_window.expand = true;
             scroll_window.add (source_view);
-            scroll_window.get_style_context ().add_class ("code");
-
             attach (scroll_window, 0, 0, 1, 1);
         }
 
@@ -85,6 +87,25 @@ namespace App.Views {
 
             message_dialog.run ();
             message_dialog.destroy ();
+        }
+
+        public void update_theme () {
+            
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            bool prefer_dark;
+            settings.get ("prefer-dark", "b", out prefer_dark );
+
+            if (prefer_dark) {
+                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-dark");
+                scroll_window.get_style_context ().remove_class ("code");
+                scroll_window.get_style_context ().add_class ("code_dark");
+            } else {
+                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
+                scroll_window.get_style_context ().remove_class ("code_dark");
+                scroll_window.get_style_context ().add_class ("code");
+            }
+            source_view.buffer = source_buffer;
         }
     }
 }

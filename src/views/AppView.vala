@@ -158,6 +158,7 @@ namespace App.Views {
 
             tag_grid.show_all ();
             toggle_buttons();
+            gitignore_view.update_theme ();
         }
 
         public void toggle_buttons () {
