@@ -20,7 +20,7 @@
 namespace App {
 
     public class Window : Gtk.ApplicationWindow {
-         
+
         public Window (Gtk.Application app) {
             Object (
                 application: app,
@@ -33,7 +33,7 @@ namespace App {
 
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
             settings.set_strv ("selected-langs", null);
-            
+
             int window_x, window_y;
             settings.get ("window-position", "(ii)", out window_x, out window_y);
 

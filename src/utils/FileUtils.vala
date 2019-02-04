@@ -17,8 +17,8 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Utils { 
-    
+namespace App.Utils {
+
     public string? last_path = null;
 
     public Gtk.FileChooserDialog new_file_chooser_dialog (string title, Gtk.Window? parent) {
@@ -36,9 +36,9 @@ namespace App.Utils {
         filech.add_filter (text_files_filter);
         filech.set_current_folder_uri (Utils.last_path ?? GLib.Environment.get_home_dir ());
         filech.set_default_response (Gtk.ResponseType.ACCEPT);
-  
+
         filech.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
-        
+
         filech.key_press_event.connect ((ev) => {
             if (ev.keyval == 65307) // Esc key
                 filech.destroy ();

@@ -33,7 +33,6 @@ namespace App.Widgets {
             );
 
             label.set_text (language);
-            
         }
 
         construct {

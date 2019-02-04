@@ -33,14 +33,14 @@ namespace App.Views {
                 vexpand: true
             );
 
-            session = new Soup.Session();            
+            session = new Soup.Session ();
         }
 
         construct {
             source_buffer = new Gtk.SourceBuffer (null);
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("text");
             source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
-            
+
             source_view = new App.Widgets.SourceView (source_buffer);
 
             var scroll_window = new Gtk.ScrolledWindow (null, null);
@@ -50,7 +50,7 @@ namespace App.Views {
             scroll_window.add (source_view);
             scroll_window.get_style_context ().add_class ("code");
 
-            attach (scroll_window, 0, 0, 1, 1);          
+            attach (scroll_window, 0, 0, 1, 1);
         }
 
         public void load_data () {
@@ -63,14 +63,14 @@ namespace App.Views {
             }
 
             uri = uri.slice (0, uri.length-1);
-            
+
             var message = new Soup.Message ("GET", uri);
             session.queue_message (message, (sess, mess) => {
                 if (mess.status_code == 200) {
                         source_buffer.text = (string) mess.response_body.flatten ().data;
                         source_view.buffer = source_buffer;
                 } else {
-                    show_message(_("Request failed. Please check your network connection."), @"status code: $(mess.status_code)", "dialog-error");
+                    show_message (_("Request failed. Please check your network connection."), @"status code: $(mess.status_code)", "dialog-error");
                 }
             });
         }

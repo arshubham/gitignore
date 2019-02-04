@@ -23,7 +23,7 @@ namespace App.Views {
 
         private Gtk.Grid tag_grid;
         private Gtk.Stack stack;
-        
+
         private App.Views.GitignoreView gitignore_view;
 
         private App.Widgets.Button generate_gitignore_button;
@@ -56,14 +56,14 @@ namespace App.Views {
 
                         {
                             var file_stream = data_file.create (FileCreateFlags.NONE);
-                
+
                             if (data_file.query_exists ()) {
                                 stdout.printf ("File successfully created.\n");
                             }
-                
+
                             var data_stream = new DataOutputStream (file_stream);
                             data_stream.put_string (gitignore_view.source_buffer.text);
-                        } 
+                        }
                     } catch (Error e) {
                         stderr.printf ("Error: %s\n", e.message);
                     }
@@ -83,7 +83,7 @@ namespace App.Views {
             content_box.valign = Gtk.Align.CENTER;
 
             tag_grid = new Gtk.Grid ();
-            
+
             update_tags ();
 
             save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.BUTTON);
@@ -92,8 +92,8 @@ namespace App.Views {
             copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
             copy_button.set_tooltip_text ("Copy generated gitignore");
 
-            generate_gitignore_button =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
-            generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages"); 
+            generate_gitignore_button = new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
+            generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages");
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
             content_box.pack_start (tag_grid, false, false, 0);
@@ -108,7 +108,7 @@ namespace App.Views {
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
             stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
-            
+
             box.pack_start (content_box, false, true, 0);
             box.pack_start (stack, false, true, 0);
             attach (box, 0, 0, 1, 1);
@@ -127,12 +127,12 @@ namespace App.Views {
             foreach (Gtk.Widget element in children) {
                 tag_grid.remove (element);
             }
-            
+
             for (int i = 0; i < data.length; i++) {
                 var tag = new App.Widgets.Tag (data[i]);
                 tag_grid.attach (tag, i, 0);
                 tag.tag_deleted.connect (() => {
-                    update_tags ();     
+                    update_tags ();
                 });
             }
 
