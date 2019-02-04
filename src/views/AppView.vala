@@ -96,7 +96,7 @@ namespace App.Views {
             for (int i = 0; i < data.length; i++) {
                 var tag = new App.Widgets.Tag (data[i]);
                 tag_grid.attach (tag, i, 0);
-                tag.update_tags.connect (() => {
+                tag.tag_deleted.connect (() => {
                     update_tags ();     
                 });
             }

@@ -25,7 +25,7 @@ namespace App.Widgets {
         private Gtk.Label label;
         private Gtk.Image icon;
         private Gtk.EventBox close_button;
-        public signal void update_tags ();
+        public signal void tag_deleted ();
         
         public Tag (string language) {
             Object (
@@ -69,10 +69,13 @@ namespace App.Widgets {
                     array.add (data[i]);
                 }
             }
-            
-            // FIXME: Crash
-            settings.set_strv ("selected-langs", array.data);
-            update_tags ();
+            for (int i = 0; i < array.length; i++) {
+                debug (i.to_string () + " => " + array.data [i]);
+            }
+            string[] output = array.data;
+            settings.set_strv ("selected-langs", output);
+            tag_deleted ();
+
             return true;
         }
     }
