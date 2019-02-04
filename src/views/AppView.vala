@@ -26,6 +26,7 @@ namespace App.Views {
         private App.Widgets.Button generate_gitignore_button;
         private GitignoreView gitignore_view;
         private Gtk.Button copy_button;
+        private Gtk.Button save_button;
 
         public signal void tags_changed ();
 
@@ -42,6 +43,34 @@ namespace App.Views {
                 Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
                 clipboard.set_text (gitignore_view.source_buffer.text, -1);
             });
+            save_button.clicked.connect (() => {
+                var filech = Utils.new_file_chooser_dialog ( _("Save File"), null);
+                filech.do_overwrite_confirmation = true;
+                filech.set_current_name (".gitignore");
+
+                if (filech.run () == Gtk.ResponseType.ACCEPT) {
+                    try {
+                        var data_file = File.new_for_uri (filech.get_current_folder_uri () +"/.gitignore");
+
+                    {
+                        var file_stream = data_file.create (FileCreateFlags.NONE);
+            
+                        if (data_file.query_exists ()) {
+                            stdout.printf ("File successfully created.\n");
+                        }
+            
+                        var data_stream = new DataOutputStream (file_stream);
+                        data_stream.put_string (gitignore_view.source_buffer.text);
+                    } 
+                } catch (Error e) {
+                    stderr.printf ("Error: %s\n", e.message);
+                }
+            
+
+                }
+
+                filech.destroy ();
+            });
 
         }
 
@@ -57,7 +86,10 @@ namespace App.Views {
             
 
             update_tags ();
-            
+
+            save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.BUTTON);
+            save_button.set_tooltip_text ("Save as file");
+
             copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
             copy_button.set_tooltip_text ("Copy generated gitignore");
 
@@ -68,6 +100,7 @@ namespace App.Views {
             content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
             content_box.pack_end (copy_button, false, false, 0);
+            content_box.pack_end (save_button, false, false, 0);
 
             var welcome_view = new WelcomeView ();
             gitignore_view = new GitignoreView ();
