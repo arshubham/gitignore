@@ -29,7 +29,7 @@ namespace App.Widgets {
 
         private Gee.HashSet<string> selected_languages;
 
-        public signal void switch_theme (bool prefer_dark);
+        public signal void switch_theme ();
         public signal void changed ();
 
         public HeaderBar () {
@@ -52,7 +52,7 @@ namespace App.Widgets {
 
             search_entry.activate.connect (() => {
                 string[] data = settings.get_strv ("selected-langs");
-                
+
                 if (data.length == 0) {
                     selected_languages.clear ();
                 }
@@ -90,11 +90,9 @@ namespace App.Widgets {
             if (prefer_dark) {
                 dark_switch.active = true;
                 window_settings.gtk_application_prefer_dark_theme = true;
-                switch_theme (true);
             } else {
                 dark_switch.active = false;
                 window_settings.gtk_application_prefer_dark_theme = false;
-                switch_theme (false);
             }
 
             dark_switch.notify["active"].connect (() => {
@@ -105,6 +103,7 @@ namespace App.Widgets {
                     window_settings.gtk_application_prefer_dark_theme = false;
                     settings.set ("prefer-dark", "b", false );
                 }
+                switch_theme ();
             });
 
             set_custom_title (search_entry);

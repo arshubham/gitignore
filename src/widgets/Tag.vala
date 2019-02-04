@@ -24,6 +24,7 @@ namespace App.Widgets {
         private Gtk.Label label;
         private Gtk.EventBox close_button;
         public signal void tag_deleted ();
+        private Gtk.Image icon;
 
         public Tag (string language) {
             Object (
@@ -40,11 +41,10 @@ namespace App.Widgets {
             label = new Gtk.Label ("");
             label.margin_end = 4;
 
-            var icon = new Gtk.Image ();
-            icon.gicon = new ThemedIcon ("window-close");
+            icon = new Gtk.Image.from_icon_name ("window-close-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon.margin_start = 4;
             icon.margin_end = 2;
-
+            
             close_button = new Gtk.EventBox ();
             close_button.add (icon);
             close_button.visible_window = false;
@@ -52,7 +52,7 @@ namespace App.Widgets {
 
             box.pack_start (close_button);
             box.pack_end (label);
-            get_style_context ().add_class ("tag");
+            switch_tag_theme ();
             attach (box, 0, 0);
         }
 
@@ -73,6 +73,19 @@ namespace App.Widgets {
             tag_deleted ();
 
             return true;
+        }
+
+        public void switch_tag_theme () {
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            bool prefer_dark;
+            settings.get ("prefer-dark", "b", out prefer_dark );
+
+            if (prefer_dark) {
+                get_style_context ().add_class ("tag_dark");
+            } else {
+                get_style_context ().add_class ("tag");
+            }
         }
     }
 }

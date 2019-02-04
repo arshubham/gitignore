@@ -44,6 +44,10 @@ namespace App.Controllers {
                 window.resize (window_width-1, window_height);
             });
 
+            headerbar.switch_theme.connect (() => {
+                app_view.update_tags ();
+            });
+
             window.add (app_view);
             window.set_titlebar (headerbar);
             application.add_window (window);

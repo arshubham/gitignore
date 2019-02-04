@@ -40,6 +40,7 @@ namespace App.Widgets {
 
             image = new Gtk.Image ();
             image.pixel_size = 16;
+            image.margin_end = 2;
 
             box.add (image);
             box.add (label);

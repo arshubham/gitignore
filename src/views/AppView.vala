@@ -21,7 +21,7 @@ namespace App.Views {
 
     public class AppView : Gtk.Grid {
 
-        private Gtk.Grid tag_grid;
+        public Gtk.Grid tag_grid;
         private Gtk.Stack stack;
 
         private App.Views.GitignoreView gitignore_view;
@@ -46,7 +46,7 @@ namespace App.Views {
                 Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
                 clipboard.set_text (gitignore_view.source_buffer.text, -1);
             });
-            
+
             save_button.clicked.connect (() => {
                 var filech = Utils.new_file_chooser_dialog ( _("Save File"), null);
                 filech.do_overwrite_confirmation = true;
