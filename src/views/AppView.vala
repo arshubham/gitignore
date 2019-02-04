@@ -30,6 +30,9 @@ namespace App.Views {
         private Gtk.Button copy_button;
         private Gtk.Button save_button;
 
+        private Granite.Widgets.Toast copy_toast;
+        private Granite.Widgets.Toast file_created_toast;
+
         public signal void tags_changed ();
 
         public AppView (Gdk.Display display) {
@@ -45,6 +48,8 @@ namespace App.Views {
             copy_button.clicked.connect (() => {
                 Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
                 clipboard.set_text (gitignore_view.source_buffer.text, -1);
+                copy_toast.valign = Gtk.Align.END;
+                copy_toast.send_notification ();
             });
 
             save_button.clicked.connect (() => {
@@ -60,12 +65,15 @@ namespace App.Views {
                             var file_stream = data_file.create (FileCreateFlags.NONE);
 
                             if (data_file.query_exists ()) {
-                                stdout.printf ("File successfully created.\n");
+                                debug ("File successfully created.");
                             }
 
                             var data_stream = new DataOutputStream (file_stream);
                             data_stream.put_string (gitignore_view.source_buffer.text);
                         }
+
+                        file_created_toast.valign = Gtk.Align.END;
+                        file_created_toast.send_notification ();
                     } catch (Error e) {
                         stderr.printf ("Error: %s\n", e.message);
                     }
@@ -89,17 +97,20 @@ namespace App.Views {
             tag_grid = new Gtk.Grid ();
 
             update_tags ();
-
-            save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.BUTTON);
+            
+            save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
             save_button.set_tooltip_text ("Save as file");
+            save_button.get_style_context ().add_class ("flat");
 
-            copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
+            copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.LARGE_TOOLBAR);
             copy_button.set_tooltip_text ("Copy generated gitignore");
+            copy_button.get_style_context ().add_class ("flat");
 
             generate_gitignore_button = new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
             generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages");
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-
+            generate_gitignore_button.get_style_context ().add_class ("flat");
+            
             content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
             content_box.pack_end (copy_button, false, false, 0);
@@ -113,9 +124,14 @@ namespace App.Views {
             stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
             stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
 
+            copy_toast = new Granite.Widgets.Toast (_("Copied content to clipboard"));
+            file_created_toast = new Granite.Widgets.Toast (_("File successfully created."));
+
             box.pack_start (content_box, false, true, 0);
             box.pack_start (stack, false, true, 0);
             attach (box, 0, 0, 1, 1);
+            attach (copy_toast, 0, 0, 1, 1);
+            attach (file_created_toast, 0, 0, 1, 1);
         }
 
         public void update_tags () {
