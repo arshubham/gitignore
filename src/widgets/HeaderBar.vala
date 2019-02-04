@@ -52,6 +52,10 @@ namespace App.Widgets {
 
             search_entry.activate.connect (() => {
                 string[] data = settings.get_strv ("selected-langs");
+                
+                if (data.length == 0) {
+                    selected_languages.clear ();
+                }
 
                 GenericArray<string> array = new GenericArray<string> ();
                 for (var i = 0; i < data.length; i++) {
@@ -74,7 +78,6 @@ namespace App.Widgets {
                 for (int i = 0 ; i < output.length; i++) {
                     selected_languages.add (output [i]);
                 }
-
                 
                 changed ();
             });
