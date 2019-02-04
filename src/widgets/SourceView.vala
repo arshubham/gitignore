@@ -17,20 +17,21 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Widgets { 
-    
+namespace App.Widgets {
+
     public class SourceView : Gtk.SourceView {
+
         public SourceView (Gtk.SourceBuffer source_buffer) {
             Object (
                 buffer: source_buffer,
                 editable: false,
-                monospace: true,
                 expand: true,
-                show_line_numbers: false,
                 left_margin: 6,
-                right_margin: 6,
+                monospace: true,
                 pixels_above_lines: 3,
-                pixels_below_lines: 3
+                pixels_below_lines: 3,
+                right_margin: 6,
+                show_line_numbers: false
             );
         }
     }

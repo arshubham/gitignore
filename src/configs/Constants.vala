@@ -19,14 +19,8 @@
 
 namespace App.Configs {
 
-    /**
-     * The {@code Constants} class is responsible for defining all 
-     * the constants used in the application.
-     *
-     * @since 1.0.0
-     */
     public class Constants {
-    
+
         public abstract const string ID = "com.github.arshubham.gitignore";
         public abstract const string VERSION = "1.0.0";
         public abstract const string APP_NAME = "Gitignore";

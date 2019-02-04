@@ -36,42 +36,44 @@ namespace App.Widgets {
                 show_close_button: true,
                 title: App.Configs.Constants.APP_NAME
             );
-            
+
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
             string[] data_set = DataSet.DATA;
+
             Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
             for (int i = 0; i < data_set.length; i++) {
                 list.add (data_set[i]);
             }
-            
-            search_entry.activate.connect (() => {  
+
+            search_entry.activate.connect (() => {
                 string[] data = settings.get_strv ("selected-langs");
+
                 GenericArray<string> array = new GenericArray<string> ();
                 for (var i = 0; i < data.length; i++) {
                     array.add (data[i]);
                 }
 
                 var entered_language = search_entry.text;
-
                 array.add (entered_language);
+
                 string[] output = array.data;
 
                 var selected_languages = new Gee.HashSet<string> ();
 
-                if (list.contains (entered_language) && !selected_languages.contains(entered_language) && search_entry.text.strip ().length != 0) {
+                if (list.contains (entered_language) && !selected_languages.contains (entered_language) && entered_language.strip ().length != 0) {
                     settings.set_strv ("selected-langs", output);
-                } else if (selected_languages.contains(search_entry.text)) {
-                    debug ("Selected Language: %s, already in tags", entered_language);
+                } else if (selected_languages.contains (search_entry.text)) {
+                    debug ("Selected Language already entered.");
                 } else {
-                    debug ("Unknown Language");
+                    debug ("Unknown Language.");
                 }
 
                 for (int i = 0 ; i < output.length; i++) {
                     selected_languages.add (output [i]);
                 }
-                
+
                 changed ();
-                
             });
 
             var window_settings = Gtk.Settings.get_default ();
@@ -105,7 +107,7 @@ namespace App.Widgets {
         construct {
             entry_completion = new App.Widgets.EntryCompletion ();
             search_entry = new App.Widgets.SearchEntry (entry_completion);
-            
+
             get_style_context ().add_class ("flat");
             dark_switch = new Gtk.Switch ();
             dark_switch.valign = Gtk.Align.CENTER;

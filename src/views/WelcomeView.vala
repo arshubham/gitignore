@@ -34,7 +34,7 @@ namespace App.Views {
         construct {
             var image = new Gtk.Image.from_resource ("/com/github/arshubham/gitignore/images/128-com.github.arshubham.gitignore.svg");
 
-            var title = new Gtk.Label ("gitIgnore");
+            var title = new Gtk.Label (_("gitIgnore"));
             title.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
             var subtitle = new Gtk.Label (_(".gitignore reference for various languages"));

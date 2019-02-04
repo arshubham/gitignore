@@ -24,9 +24,10 @@ namespace App.Widgets {
         public SearchEntry (App.Widgets.EntryCompletion entry_completion) {
             Object (
                 hexpand: true,
-                placeholder_text: "Select a Language from the dropdown and press enter.",
+                placeholder_text: _("Select a Language from the dropdown and press enter."),
                 valign: Gtk.Align.CENTER
             );
+
             set_completion (entry_completion);
             grab_focus_without_selecting ();
         }

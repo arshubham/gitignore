@@ -27,10 +27,10 @@ namespace App.Widgets {
                 popup_single_match: false
             );
 
-            string[] data = DataSet.DATA;
+            var data = DataSet.DATA;
 
             var list_store = new Gtk.ListStore (1, typeof (string));
-		    set_model (list_store);
+            set_model (list_store);
             set_text_column (0);
 
             Gtk.TreeIter iter;

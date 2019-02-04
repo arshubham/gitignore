@@ -52,29 +52,27 @@ namespace App.Views {
                     try {
                         var data_file = File.new_for_uri (filech.get_current_folder_uri () +"/.gitignore");
 
-                    {
-                        var file_stream = data_file.create (FileCreateFlags.NONE);
-            
-                        if (data_file.query_exists ()) {
-                            stdout.printf ("File successfully created.\n");
-                        }
-            
-                        var data_stream = new DataOutputStream (file_stream);
-                        data_stream.put_string (gitignore_view.source_buffer.text);
-                    } 
-                } catch (Error e) {
-                    stderr.printf ("Error: %s\n", e.message);
-                }
-            
-
+                        {
+                            var file_stream = data_file.create (FileCreateFlags.NONE);
+                
+                            if (data_file.query_exists ()) {
+                                stdout.printf ("File successfully created.\n");
+                            }
+                
+                            var data_stream = new DataOutputStream (file_stream);
+                            data_stream.put_string (gitignore_view.source_buffer.text);
+                        } 
+                    } catch (Error e) {
+                        stderr.printf ("Error: %s\n", e.message);
+                    }
                 }
 
                 filech.destroy ();
             });
-
         }
 
         construct {
+
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             var content_box =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -84,7 +82,6 @@ namespace App.Views {
 
             tag_grid = new Gtk.Grid ();
             
-
             update_tags ();
 
             save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.BUTTON);
@@ -117,10 +114,13 @@ namespace App.Views {
 
         public void update_tags () {
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            
             string[] data = settings.get_strv ("selected-langs");
+
             for (int i = 0; i < data.length + 1; i++) {
                 tag_grid.remove_column (i);
             }
+
             var children = tag_grid.get_children ();
             foreach (Gtk.Widget element in children) {
                 tag_grid.remove (element);
@@ -133,6 +133,7 @@ namespace App.Views {
                     update_tags ();     
                 });
             }
+
             tag_grid.show_all ();
         }
     }
