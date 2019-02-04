@@ -24,6 +24,8 @@ namespace App.Widgets {
         private Gtk.Box box;
         private Gtk.Label label;
         private Gtk.Image icon;
+        private Gtk.EventBox close_button;
+        public signal void update_tags ();
         
         public Tag (string language) {
             Object (
@@ -46,9 +48,32 @@ namespace App.Widgets {
             icon.margin_start = 4;
             icon.margin_end = 2;
 
-            box.pack_start (icon);
+            close_button = new Gtk.EventBox ();
+            close_button.add (icon);
+            close_button.visible_window = false;
+            close_button.button_release_event.connect (on_button_released);
+
+            box.pack_start (close_button);
             box.pack_end (label);
             get_style_context ().add_class ("tag");
+        }
+
+        private bool on_button_released (Gtk.Widget sender, Gdk.EventButton event) {
+            debug ("Remove " + label.label);
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            string[] data = settings.get_strv ("selected-langs");
+            GenericArray<string> array = new GenericArray<string> ();
+            for (var i = 0; i < data.length; i++) {
+                if (data[i] != label.label) {
+                    array.add (data[i]);
+                }
+            }
+            
+            // FIXME: Crash
+            settings.set_strv ("selected-langs", array.data);
+            update_tags ();
+            return true;
         }
     }
 }   

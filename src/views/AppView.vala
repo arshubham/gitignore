@@ -54,6 +54,7 @@ namespace App.Views {
             content_box.valign = Gtk.Align.CENTER;
 
             tag_grid = new Gtk.Grid ();
+            
 
             update_tags ();
             
@@ -92,13 +93,13 @@ namespace App.Views {
                 tag_grid.remove (element);
             }
             
-
             for (int i = 0; i < data.length; i++) {
                 var tag = new App.Widgets.Tag (data[i]);
                 tag_grid.attach (tag, i, 0);
+                tag.update_tags.connect (() => {
+                    update_tags ();     
+                });
             }
-
-
             tag_grid.show_all ();
         }
     }
