@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Gitignore
-Comment=Gitignore reference for various languages
+Name=gitIgnore
+Comment=.gitignore reference for various languages
 Icon=com.github.arshubham.gitignore
 Exec=com.github.arshubham.gitignore
 Terminal=false
 Type=Application
 StartupNotify=true
 Categories=Development;
-Keywords=gitignore;
+Keywords=gitignore;git;development;cvs;versioning

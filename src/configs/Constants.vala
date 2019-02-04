@@ -22,8 +22,8 @@ namespace App.Configs {
     public class Constants {
 
         public abstract const string ID = "com.github.arshubham.gitignore";
-        public abstract const string VERSION = "1.0.0";
-        public abstract const string APP_NAME = "Gitignore";
+        public abstract const string VERSION = "2.0.0";
+        public abstract const string APP_NAME = "gitIgnore";
         public abstract const string APP_YEARS = "2018-2019";
         public abstract const string APP_ICON = "com.github.arshubham.gitignore";
         public abstract const string ABOUT_COMMENTS = "Gitignore reference for various languages";
@@ -32,8 +32,6 @@ namespace App.Configs {
         public abstract const string BUG_URL = "https://github.com/arshubham/gitignore/issues";
         public abstract const string HELP_URL = "https://github.com/arshubham/gitignore/wiki";
         public abstract const string TRANSLATE_URL = "https://github.com/arshubham/gitignore";
-        public abstract const string TEXT_FOR_ABOUT_DIALOG_WEBSITE = "Website";
-        public abstract const string TEXT_FOR_ABOUT_DIALOG_WEBSITE_URL = "https://shubhamarora.in";
         public abstract const string URL_CSS = "/com/github/arshubham/gitignore/css/style.css";
         public abstract const string [] ABOUT_AUTHORS = { "Shubham Arora <shubhamarora@protonmail.com>" };
         public abstract const Gtk.License ABOUT_LICENSE_TYPE = Gtk.License.GPL_3_0;

@@ -4,8 +4,8 @@
     <id>com.github.arshubham.gitignore</id>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0</project_license>
-    <name>Gitignore</name>
-    <summary>Gitignore reference for various languages</summary>
+    <name>gitIgnore</name>
+    <summary>.gitignore reference for various languages</summary>
     <developer_name>Shubham Arora</developer_name>
     <provides>
         <binary>com.github.arshubham.gitignore</binary>
@@ -16,9 +16,15 @@
         </screenshot>
     </screenshots>
     <description>
-        <p>A simple application for getting gitigore reference from gitignore.io. You can download .gitignore for multiple languages at once.</p>
+        <p>A simple application for getting .gitignore reference from gitignore.io. You can download .gitignore for multiple languages at once.</p>
     </description>  
     <releases>
+      <release version="2.0.0" date="2019-02-8">
+        <description>
+          <p>Redesigned UI/UX</p>
+          <p>Added i18n support</p>
+        </description>
+      </release>
       <release version="1.0.0" date="2018-08-12">
         <description>
           <p>Initial release!</p>
