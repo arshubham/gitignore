@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,175 +13,182 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
-
-using App.Configs;
-using App.Widgets;
 
 namespace App.Views {
 
-    /**
-     * The {@code AppView} class.
-     *
-     * @since 1.0.0
-     */
     public class AppView : Gtk.Grid {
 
-        /**
-         * Constructs a new {@code AppView} object.
-         */
+        public Gtk.Grid tag_grid;
+        private Gtk.Stack stack;
 
-            private Gtk.ScrolledWindow terminal_output;
-            private Gtk.SourceView source_view;
-            public Gtk.SourceBuffer source_buffer;
-            public string language;
-            private Gtk.Button copy;
-            private Gtk.Button reset;
-            private Granite.Widgets.Toast notification;
-            Gee.HashSet<string> selected_langs;
-            private App.Widgets.Button generate;
+        private App.Views.GitignoreView gitignore_view;
 
-            Gtk.Label t1;
-            Gtk.Label t2;
-            string slgs = "";
-            Granite.Widgets.Toast select_lang_toast;
+        private App.Widgets.Button generate_gitignore_button;
+        private Gtk.Button copy_button;
+        private Gtk.Button save_button;
+
+        private Granite.Widgets.Toast copy_toast;
+        private Granite.Widgets.Toast file_created_toast;
+
+        public signal void tags_changed ();
+
+        public AppView (Gdk.Display display) {
+            generate_gitignore_button.clicked.connect (() => {
+                stack.visible_child_name = "gitignore_view_stack";
+                gitignore_view.load_data ();
+                toggle_buttons ();
+            });
+
+            copy_button.clicked.connect (() => {
+                Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
+                clipboard.set_text (gitignore_view.source_buffer.text, -1);
+                copy_toast.valign = Gtk.Align.END;
+                copy_toast.send_notification ();
+            });
+
+            save_button.clicked.connect (() => {
+                var filech = Utils.new_file_chooser_dialog ( _("Save File"), null);
+                filech.do_overwrite_confirmation = true;
+                filech.set_current_name (".gitignore");
+
+                if (filech.run () == Gtk.ResponseType.ACCEPT) {
+                    try {
+                        var data_file = File.new_for_uri (filech.get_current_folder_uri () +"/.gitignore");
+
+                        {
+                            var file_stream = data_file.create (FileCreateFlags.NONE);
+
+                            if (data_file.query_exists ()) {
+                                debug ("File successfully created.");
+                            }
+
+                            var data_stream = new DataOutputStream (file_stream);
+                            data_stream.put_string (gitignore_view.source_buffer.text);
+                        }
+
+                        file_created_toast.valign = Gtk.Align.END;
+                        file_created_toast.send_notification ();
+                    } catch (Error e) {
+                        debug ("Error: " + e.message);
+                    }
+                }
+
+                filech.destroy ();
+            });
+
+            toggle_buttons ();
+        }
+
         construct {
-         select_lang_toast = new Granite.Widgets.Toast (_("Select at least one language to generate .gitignore!"));
-            Gtk.Box box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-            Gtk.Box content =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            content.margin = 10;
-            content.spacing = 5;
+            var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-            add_tags ();
-            t2 = new Gtk.Label ("");
+            var content_box =new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            content_box.margin = 10;
+            content_box.spacing = 5;
+            content_box.valign = Gtk.Align.CENTER;
 
-            generate =  new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
-            generate.set_tooltip_text ("Generate .gitignore from selected languages");
+            tag_grid = new Gtk.Grid ();
 
-            //TODO: V2
-           //save = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.BUTTON);
-            //save.set_tooltip_text ("Save generated .gitignore as file");
+            update_tags ();
 
-            copy = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.BUTTON);
-            copy.set_tooltip_text ("Copy generated gitignore");
+            save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
+            save_button.set_tooltip_text (_("Save as file"));
+            save_button.get_style_context ().add_class ("flat");
 
-            reset = new Gtk.Button.from_icon_name ("process-stop", Gtk.IconSize.BUTTON);
-            reset.set_tooltip_text ("Reset selected languages");
+            copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.LARGE_TOOLBAR);
+            copy_button.set_tooltip_text (_("Copy generated gitignore"));
+            copy_button.get_style_context ().add_class ("flat");
 
-            content.pack_start (t1, false, false, 0);
-            content.pack_start (t2, false, false, 0);
-            content.pack_end (generate, false, false, 0);
+            generate_gitignore_button = new App.Widgets.Button (_("Generate .gitignore"), "media-playback-start");
+            generate_gitignore_button.set_tooltip_text (_("Generate .gitignore from selected languages"));
+            generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            generate_gitignore_button.get_style_context ().add_class ("flat");
 
-            content.pack_end (copy, false, false, 0);
-            //content.pack_end (save, false, false, 0);
+            content_box.pack_start (tag_grid, false, false, 0);
+            content_box.pack_end (generate_gitignore_button, false, false, 0);
+            content_box.pack_end (copy_button, false, false, 0);
+            content_box.pack_end (save_button, false, false, 0);
 
-            content.pack_end (reset, false, false, 0);
+            var welcome_view = new App.Views.WelcomeView ();
+            gitignore_view = new App.Views.GitignoreView ();
 
-            source_buffer = new Gtk.SourceBuffer (null);
-            source_buffer.highlight_syntax = true;
-            source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("text");
+            stack = new Gtk.Stack ();
+            stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+            stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
+            stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
+            stack.show_all ();
+            stack.visible_child_name = "welcome_view_stack";
 
+            copy_toast = new Granite.Widgets.Toast (_("Copied content to clipboard"));
+            file_created_toast = new Granite.Widgets.Toast (_("File successfully created."));
 
-
-
-            source_view = new Gtk.SourceView ();
-
-
-            source_buffer.text = "\n\nSelect a Language from the dropdown and press enter.\nThe selected languages will appear in shown. Press Generate .gitignore to fetch .gitignore file.";
-
-
-
-
-
-            source_view.buffer = source_buffer;
-            source_view.editable = false;
-            source_view.monospace = true;
-            source_view.show_line_numbers = true;
-            terminal_output = new Gtk.ScrolledWindow (null, null);
-            terminal_output.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
-            terminal_output.expand = true;
-            terminal_output.add (source_view);
-            box.pack_start (content, false, true, 0);
-            box.pack_start (terminal_output, false, true, 0);
-            notification = new Granite.Widgets.Toast (_("Copied to clipboard"));
-            attach (notification, 0, 0, 1, 1);
+            box.pack_start (content_box, false, true, 0);
+            box.pack_start (stack, false, true, 0);
             attach (box, 0, 0, 1, 1);
-            attach (select_lang_toast, 0, 0, 1, 1);
-        }
-
-        public AppView (Gdk.Display display, Gee.HashSet<string> selected_langs) {
-            Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
-
-            copy.clicked.connect (() => {
-                clipboard.set_text (source_buffer.text, -1);
-
-                notification.valign = Gtk.Align.END;
-                notification.send_notification ();
-            });
-
-            reset.clicked.connect (() => {
-                    slgs = "";
-                    this.selected_langs.clear ();
-                     t2.set_text ("");
-            });
-
-            generate.clicked.connect (() => {
-            if (slgs.length == 0) {
-                select_lang_toast.send_notification ();
-            }
-            else {
-                 try {
-                    int exitCode;
-                    string std_out;
-                    string cmd = "curl -L -s https://www.gitignore.io/api/"+slgs.slice (0, slgs.length-1);
-                    debug (cmd);
-                    Process.spawn_command_line_sync(cmd, out std_out, null, out exitCode);
-                    stdout.printf (std_out);
-
-
-                    source_buffer.text = std_out;
-                    source_view.buffer = source_buffer;
-                    }   catch (Error e) {
-                        debug (e.message);
-                    }
-                    }
-            });
-
-
-                this.selected_langs = selected_langs;
-        }
-
-        public void dark_theme () {
-                source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-dark");
-
-        }
-
-        public void light_theme () {
-
-            source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
-
-        }
-
-        public void update_langs (Gee.HashSet<string> sl2) {
-            this.selected_langs = sl2;
-            add_tags();
-
+            attach (copy_toast, 0, 0, 1, 1);
+            attach (file_created_toast, 0, 0, 1, 1);
         }
 
         public void update_tags () {
-            slgs = "";
-            foreach (string l in selected_langs) {
-                slgs = slgs+l+",";
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            string[] data = settings.get_strv ("selected-langs");
+
+            for (int i = 0; i < data.length + 1; i++) {
+                tag_grid.remove_column (i);
             }
 
-        }
-        public void add_tags () {
-             t1 = new Gtk.Label ("Selected Languages:");
-             update_tags ();
-             debug("slgs : == "+ slgs);
+            var children = tag_grid.get_children ();
+            foreach (Gtk.Widget element in children) {
+                tag_grid.remove (element);
+            }
 
-             t2.set_text (" "+ slgs.slice (0, slgs.length-1));
+            for (int i = 0; i < data.length; i++) {
+                var tag = new App.Widgets.Tag (data[i]);
+                tag_grid.attach (tag, i, 0);
+                tag.tag_deleted.connect (() => {
+                    update_tags ();
+                });
+            }
+
+            tag_grid.show_all ();
+            toggle_buttons ();
+            gitignore_view.update_theme ();
+        }
+
+        public void toggle_buttons () {
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+            string[] data = settings.get_strv ("selected-langs");
+
+            if (stack.visible_child_name == "welcome_view_stack") {
+                save_button.set_sensitive (false);
+                save_button.set_opacity (0);
+                copy_button.set_sensitive (false);
+                copy_button.set_opacity (0);
+
+                if (data.length > 0) {
+                    generate_gitignore_button.set_sensitive (true);
+                } else {
+                    generate_gitignore_button.set_sensitive (false);
+                }
+            } else if (stack.visible_child_name == "gitignore_view_stack") {
+                if (data.length > 0) {
+                    generate_gitignore_button.set_sensitive (true);
+                } else {
+                    generate_gitignore_button.set_sensitive (false);
+                }
+
+                copy_button.set_sensitive (true);
+                save_button.set_sensitive (true);
+                save_button.set_opacity (1);
+                copy_button.set_opacity (1);
+                generate_gitignore_button.set_opacity (1);
+            }
         }
     }
 }

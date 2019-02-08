@@ -20,50 +20,29 @@
   <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
 </p>
 
-## Installation
-
 ### Dependencies
 These dependencies must be present before building:
  - `meson`
  - `valac`
- - `debhelper`
  - `libgranite-dev`
  - `libgtk-3-dev`
  - `libgranite-3.0-dev`
+ - `libsoup2.4-dev`
 
 
-Use the App script to simplify installation by running `./app install-deps`
+<h2>Installation</h2>
+<br>
+
+```
+git clone https://github.com/arshubham/gitignore.git
+cd gitignore
+meson build --prefix=/usr
+```
  
- ### Building
-
 ```
-git clone git@github.com:arshubham/gitignore.git.git com.github.arshubham.gitignore && cd com.github.arshubham.gitignore
-./app install-deps && ./app install
-```
-
-### Deconstruct
-
-```
-./app uninstall
-```
-
-### Development & Testing
-
-Gitignore includes a script to simplify the development process. This script can be accessed in the main project directory through `./app`.
-
-```
-Usage:
-  ./app [OPTION]
-
-Options:
-  clean             Removes build directories (can require sudo)
-  generate-i18n     Generates .pot and .po files for i18n (multi-language support)
-  install           Builds and installs application to the system (requires sudo)
-  install-deps      Installs missing build dependencies
-  run               Builds and runs the application
-  test              Builds and runs testing for the application
-  test-run          Builds application, runs testing and if successful application is started
-  uninstall         Removes the application from the system (requires sudo)
+cd build
+ninja
+sudo ninja install
 ```
 
 ### License

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,20 +13,19 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
-
-using App.Configs;
-using App.Controllers;
 
 namespace App {
 
     public class Application : Gtk.Application {
 
-        public AppController controller;
+        public App.Controllers.AppController controller;
 
         public Application () {
             Object (
-                application_id: Constants.ID,
+                application_id: App.Configs.Constants.ID,
                 flags: ApplicationFlags.FLAGS_NONE
             );
 
@@ -41,7 +40,7 @@ namespace App {
 
         public override void activate () {
             if (controller == null) {
-                controller = new AppController (this);
+                controller = new App.Controllers.AppController (this);
             }
 
             controller.activate ();

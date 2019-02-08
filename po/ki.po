@@ -1,0 +1,126 @@
+# Kikuyu translations for com.github.arshubham.gitignore package.
+# Copyright (C) 2019 THE com.github.arshubham.gitignore'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.arshubham.gitignore package.
+# Automatically generated, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.arshubham.gitignore\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-09 01:55+0530\n"
+"PO-Revision-Date: 2019-02-08 21:10+0530\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ki\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/views/AppView.vala:53
+msgid "Save File"
+msgstr ""
+
+#: src/views/AppView.vala:99
+msgid "Save as file"
+msgstr ""
+
+#: src/views/AppView.vala:103
+msgid "Copy generated gitignore"
+msgstr ""
+
+#: src/views/AppView.vala:106
+msgid "Generate .gitignore"
+msgstr ""
+
+#: src/views/AppView.vala:107
+msgid "Generate .gitignore from selected languages"
+msgstr ""
+
+#: src/views/AppView.vala:121
+msgid "Welcome View"
+msgstr ""
+
+#: src/views/AppView.vala:122
+msgid "Gitignore View"
+msgstr ""
+
+#: src/views/AppView.vala:126
+msgid "Copied content to clipboard"
+msgstr ""
+
+#: src/views/AppView.vala:127
+msgid "File successfully created."
+msgstr ""
+
+#: src/views/GitignoreView.vala:75
+msgid "Request failed. Please check your network connection."
+msgstr ""
+
+#: src/views/WelcomeView.vala:37 src/configs/Constants.vala:26
+#: data/com.github.arshubham.gitignore.desktop.in:3
+#: data/com.github.arshubham.gitignore.appdata.xml.in:7
+msgid "gitIgnore"
+msgstr ""
+
+#: src/views/WelcomeView.vala:40
+#: data/com.github.arshubham.gitignore.desktop.in:4
+#: data/com.github.arshubham.gitignore.appdata.xml.in:8
+msgid ".gitignore reference for various languages"
+msgstr ""
+
+#: src/views/WelcomeView.vala:42
+msgid ""
+"Select a Language from the dropdown and press enter.The selected languages "
+"will appear as tags. Press 'Generate .gitignore' to fetch .gitignore file. "
+"Internet connection is required to use gitIgnore"
+msgstr ""
+
+#: src/widgets/SearchEntry.vala:27
+msgid "Select a Language from the dropdown and press enter."
+msgstr ""
+
+#: src/widgets/HeaderBar.vala:122
+msgid "Light background"
+msgstr ""
+
+#: src/widgets/HeaderBar.vala:125
+msgid "Dark background"
+msgstr ""
+
+#: src/widgets/Tag.vala:47
+msgid "Remove Language"
+msgstr ""
+
+#: src/configs/Constants.vala:29
+msgid "Gitignore reference for languages"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.desktop.in:5
+msgid "com.github.arshubham.gitignore"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.desktop.in:11
+msgid "gitignore;git;development;cvs;versioning;"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:9
+msgid "Shubham Arora"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:19
+msgid ""
+"A simple application for getting .gitignore reference from gitignore.io. You "
+"can download .gitignore for multiple languages at once."
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:24
+msgid "Redesigned UI/UX"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:25
+msgid "Added i18n support"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:30
+msgid "Initial release!"
+msgstr ""

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018  Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,54 +13,44 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+* Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
-
-using App.Widgets;
-using App.Views;
 
 namespace App.Controllers {
 
     public class AppController {
 
         private Gtk.Application application;
-        private AppView app_view;
-        private Widgets.HeaderBar headerbar;
+        private App.Views.AppView app_view;
+        private App.Widgets.HeaderBar headerbar;
         private Gtk.ApplicationWindow window { get; private set; default = null; }
         private Gdk.Display display;
 
         public AppController (Gtk.Application application) {
             this.application = application;
-            this.window = new Window (this.application);
-            this.headerbar = new HeaderBar ();
-
-            var selected_languages = this.headerbar.get_selected_languages ();
-
-            var search_entry = this.headerbar.get_search_entry ();
-
-            search_entry.activate.connect (() => {
-                this.app_view.update_langs (selected_languages);
-            });
-
+            window = new Window (this.application);
+            headerbar = new App.Widgets.HeaderBar ();
             display = window.get_display ();
 
-            this.app_view = new AppView (display, selected_languages);
-
-            this.window.add (this.app_view);
-            this.window.set_default_size (900, 540);
-            this.window.set_size_request (900, 540);
-            this.window.set_gravity (Gdk.Gravity.CENTER);
-            this.window.set_titlebar (this.headerbar);
-            this.application.add_window (window);
-
-            var ds = this.headerbar.get_dark_switch ();
-            ds.notify["active"].connect (() => {
-                if (ds.active) {
-                    app_view.dark_theme ();
-                } else {
-                    app_view.light_theme ();
-                }
-
+            app_view = new App.Views.AppView (display);
+            headerbar.changed.connect (() => {
+                app_view.update_tags ();
+                int window_width, window_height;
+                window.get_size (out window_width, out window_height);
+                window.resize (window_width+1, window_height);
+                headerbar.search_entry.grab_focus_without_selecting ();
+                window.get_size (out window_width, out window_height);
+                window.resize (window_width-1, window_height);
             });
+
+            headerbar.switch_theme.connect (() => {
+                app_view.update_tags ();
+            });
+
+            window.add (app_view);
+            window.set_titlebar (headerbar);
+            application.add_window (window);
         }
 
         public void activate () {
