@@ -16,6 +16,7 @@ sources += files(
     'widgets/SourceView.vala',
 
     'utils/FileUtils.vala',
+    'utils/DataUtils.vala',
     
     'Application.vala',
     'Main.vala',
