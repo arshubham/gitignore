@@ -75,7 +75,7 @@ namespace App.Views {
                         file_created_toast.valign = Gtk.Align.END;
                         file_created_toast.send_notification ();
                     } catch (Error e) {
-                        stderr.printf ("Error: %s\n", e.message);
+                        debug ("Error: " + e.message);
                     }
                 }
 
@@ -99,15 +99,15 @@ namespace App.Views {
             update_tags ();
             
             save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
-            save_button.set_tooltip_text ("Save as file");
+            save_button.set_tooltip_text (_("Save as file"));
             save_button.get_style_context ().add_class ("flat");
 
             copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.LARGE_TOOLBAR);
-            copy_button.set_tooltip_text ("Copy generated gitignore");
+            copy_button.set_tooltip_text (_("Copy generated gitignore"));
             copy_button.get_style_context ().add_class ("flat");
 
-            generate_gitignore_button = new App.Widgets.Button ("Generate .gitignore", "media-playback-start");
-            generate_gitignore_button.set_tooltip_text ("Generate .gitignore from selected languages");
+            generate_gitignore_button = new App.Widgets.Button (_("Generate .gitignore"), "media-playback-start");
+            generate_gitignore_button.set_tooltip_text (_("Generate .gitignore from selected languages"));
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             generate_gitignore_button.get_style_context ().add_class ("flat");
             

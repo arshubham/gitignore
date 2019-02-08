@@ -1,0 +1,6 @@
+src/views/AppView.vala
+src/views/GitignoreView.vala
+src/views/WelcomeView.vala
+src/widgets/SearchEntry.vala
+data/com.github.arshubham.gitignore.desktop.in
+data/com.github.arshubham.gitignore.appdata.xml.in
