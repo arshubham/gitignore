@@ -5,9 +5,6 @@
 </div>
 
 <br/>
-<center>
-[![Build Status](https://travis-ci.org/arshubham/gitignore.svg?branch=master)](https://travis-ci.org/arshubham/gitignore)
-<center>
 
 <p align="center">
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
@@ -16,7 +13,8 @@
 </p>
 
 <p align="center">
-    <img  src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/screenshot.png" alt="Screenshot"> <br>
+    <img  src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-1.png" alt="Screenshot-1"> <br>
+    <img  src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-3.png" alt="Screenshot-3"> <br>
   <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
 </p>
 
