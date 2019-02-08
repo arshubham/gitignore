@@ -36,13 +36,10 @@ namespace App.Views {
         public signal void tags_changed ();
 
         public AppView (Gdk.Display display) {
-            stack.show_all ();
-            stack.visible_child_name = "welcome_view_stack";
-
             generate_gitignore_button.clicked.connect (() => {
                 stack.visible_child_name = "gitignore_view_stack";
                 gitignore_view.load_data ();
-                toggle_buttons();
+                toggle_buttons ();
             });
 
             copy_button.clicked.connect (() => {
@@ -82,7 +79,7 @@ namespace App.Views {
                 filech.destroy ();
             });
 
-            toggle_buttons();
+            toggle_buttons ();
         }
 
         construct {
@@ -97,7 +94,7 @@ namespace App.Views {
             tag_grid = new Gtk.Grid ();
 
             update_tags ();
-            
+
             save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
             save_button.set_tooltip_text (_("Save as file"));
             save_button.get_style_context ().add_class ("flat");
@@ -110,7 +107,7 @@ namespace App.Views {
             generate_gitignore_button.set_tooltip_text (_("Generate .gitignore from selected languages"));
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             generate_gitignore_button.get_style_context ().add_class ("flat");
-            
+
             content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
             content_box.pack_end (copy_button, false, false, 0);
@@ -123,6 +120,8 @@ namespace App.Views {
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
             stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
+            stack.show_all ();
+            stack.visible_child_name = "welcome_view_stack";
 
             copy_toast = new Granite.Widgets.Toast (_("Copied content to clipboard"));
             file_created_toast = new Granite.Widgets.Toast (_("File successfully created."));
@@ -157,7 +156,7 @@ namespace App.Views {
             }
 
             tag_grid.show_all ();
-            toggle_buttons();
+            toggle_buttons ();
             gitignore_view.update_theme ();
         }
 
@@ -177,8 +176,6 @@ namespace App.Views {
                 } else {
                     generate_gitignore_button.set_sensitive (false);
                 }
-                
-                
             } else if (stack.visible_child_name == "gitignore_view_stack") {
                 if (data.length > 0) {
                     generate_gitignore_button.set_sensitive (true);

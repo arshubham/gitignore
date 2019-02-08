@@ -27,7 +27,7 @@ namespace App.Widgets {
                 popup_single_match: false
             );
 
-            var data = App.Utils.DataUtils.data;
+            var data = App.Utils.DataUtils.DATA;
 
             var list_store = new Gtk.ListStore (1, typeof (string));
             set_model (list_store);

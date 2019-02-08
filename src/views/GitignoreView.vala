@@ -44,7 +44,7 @@ namespace App.Views {
             source_buffer = new Gtk.SourceBuffer (null);
             source_buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("text");
             source_buffer.style_scheme = new Gtk.SourceStyleSchemeManager ().get_scheme ("solarized-light");
-            
+
             source_view = new App.Widgets.SourceView (source_buffer);
 
             scroll_window = new Gtk.ScrolledWindow (null, null);
@@ -90,7 +90,6 @@ namespace App.Views {
         }
 
         public void update_theme () {
-            
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
             bool prefer_dark;
