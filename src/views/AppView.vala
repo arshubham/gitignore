@@ -65,7 +65,7 @@ namespace App.Views {
                             var file_stream = data_file.create (FileCreateFlags.NONE);
 
                             if (data_file.query_exists ()) {
-                                debug (_("File successfully created."));
+                                debug ("File successfully created.");
                             }
 
                             var data_stream = new DataOutputStream (file_stream);
@@ -75,7 +75,7 @@ namespace App.Views {
                         file_created_toast.valign = Gtk.Align.END;
                         file_created_toast.send_notification ();
                     } catch (Error e) {
-                        stderr.printf (_("Error: ")+"%s\n", e.message);
+                        debug ("Error: ");
                     }
                 }
 

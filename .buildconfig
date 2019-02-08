@@ -1,0 +1,10 @@
+[default]
+name=Default
+runtime=host
+config-opts=
+run-opts=
+prefix=/home/sahilarora/.cache/gnome-builder/install/gitignore-1/host
+app-id=
+postbuild=
+prebuild=
+default=true
