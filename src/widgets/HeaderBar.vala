@@ -43,7 +43,8 @@ namespace App.Widgets {
 
             selected_languages = new Gee.HashSet<string> ();
 
-            string[] data_set = App.Utils.DataUtils.generate_data_set ();
+            var data_set = App.Utils.DataUtils.data;
+          
 
             Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
             for (int i = 0; i < data_set.length; i++) {

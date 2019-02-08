@@ -10,7 +10,6 @@ sources += files(
     'widgets/HeaderBar.vala',
     'widgets/Tag.vala',
     'widgets/Button.vala',
-    'widgets/DataSet.vala',
     'widgets/SearchEntry.vala',
     'widgets/EntryCompletion.vala',
     'widgets/SourceView.vala',
