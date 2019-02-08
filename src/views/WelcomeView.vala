@@ -24,7 +24,7 @@ namespace App.Views {
             Object (
                 halign: Gtk.Align.CENTER,
                 hexpand: true,
-                margin_bottom: 200,
+                margin_bottom: 150,
                 row_spacing: 10,
                 valign: Gtk.Align.CENTER,
                 vexpand: true
