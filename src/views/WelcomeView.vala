@@ -40,8 +40,8 @@ namespace App.Views {
             var subtitle = new Gtk.Label (_(".gitignore reference for various languages"));
 
             var usage_instructions = _("Select a Language from the dropdown and press enter."
-                       + "The selected languages will appear as tags. Press \"Generate .gitignore\" "
-                       + "to fetch .gitignore file.");
+                       + "The selected languages will appear as tags. Press 'Generate .gitignore' "
+                       + "to fetch .gitignore file. Internet connection is required to use gitIgnore");
 
             var copy = new Gtk.Label ("<b>%s</b>".printf (usage_instructions));
             copy.margin = 24;

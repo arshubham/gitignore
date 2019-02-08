@@ -44,6 +44,7 @@ namespace App.Widgets {
             icon = new Gtk.Image.from_icon_name ("window-close-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon.margin_start = 4;
             icon.margin_end = 2;
+            icon.tooltip_text = _("Remove Language");
 
             close_button = new Gtk.EventBox ();
             close_button.add (icon);
