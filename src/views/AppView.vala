@@ -75,7 +75,7 @@ namespace App.Views {
                         file_created_toast.valign = Gtk.Align.END;
                         file_created_toast.send_notification ();
                     } catch (Error e) {
-                        debug ("Error: ");
+                        debug ("Error: " + e.message);
                     }
                 }
 
