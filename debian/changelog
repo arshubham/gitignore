@@ -1,5 +1,12 @@
 com.github.arshubham.gitignore (1.0.0) xenial; urgency=low
 
+  * Redesigned UI/UX
+  * Added i18n support
+
+ -- Shubham Arora <shubhamarora@protonmail.com>  Sun, 10 Feb 2018 22:10:00 +0530
+ 
+com.github.arshubham.gitignore (1.0.0) xenial; urgency=low
+
   * Initial Release
 
  -- Shubham Arora <shubhamarora@protonmail.com>  Sun, 29 Aug 2018 22:10:00 -0500
