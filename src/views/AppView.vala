@@ -106,7 +106,7 @@ namespace App.Views {
             copy_button.set_tooltip_text (_("Copy generated gitignore"));
             copy_button.get_style_context ().add_class ("flat");
 
-            generate_gitignore_button = new App.Widgets.Button (_("Generate .gitignore"), _("media-playback-start"));
+            generate_gitignore_button = new App.Widgets.Button (_("Generate .gitignore"), "media-playback-start");
             generate_gitignore_button.set_tooltip_text (_("Generate .gitignore from selected languages"));
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             generate_gitignore_button.get_style_context ().add_class ("flat");
