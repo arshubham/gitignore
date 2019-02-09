@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.arshubham.gitignore\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 01:55+0530\n"
+"POT-Creation-Date: 2019-02-09 11:07+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,19 +57,19 @@ msgstr ""
 msgid "Request failed. Please check your network connection."
 msgstr ""
 
-#: src/views/WelcomeView.vala:37 src/configs/Constants.vala:26
+#: src/views/WelcomeView.vala:36 src/configs/Constants.vala:26
 #: data/com.github.arshubham.gitignore.desktop.in:3
 #: data/com.github.arshubham.gitignore.appdata.xml.in:7
 msgid "gitIgnore"
 msgstr ""
 
-#: src/views/WelcomeView.vala:40
+#: src/views/WelcomeView.vala:39
 #: data/com.github.arshubham.gitignore.desktop.in:4
 #: data/com.github.arshubham.gitignore.appdata.xml.in:8
 msgid ".gitignore reference for various languages"
 msgstr ""
 
-#: src/views/WelcomeView.vala:42
+#: src/views/WelcomeView.vala:41
 msgid ""
 "Select a Language from the dropdown and press enter.The selected languages "
 "will appear as tags. Press 'Generate .gitignore' to fetch .gitignore file. "
@@ -108,20 +108,20 @@ msgstr ""
 msgid "Shubham Arora"
 msgstr ""
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:19
+#: data/com.github.arshubham.gitignore.appdata.xml.in:28
 msgid ""
 "A simple application for getting .gitignore reference from gitignore.io. You "
 "can download .gitignore for multiple languages at once."
 msgstr ""
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:24
+#: data/com.github.arshubham.gitignore.appdata.xml.in:33
 msgid "Redesigned UI/UX"
 msgstr ""
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:25
+#: data/com.github.arshubham.gitignore.appdata.xml.in:34
 msgid "Added i18n support"
 msgstr ""
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:30
+#: data/com.github.arshubham.gitignore.appdata.xml.in:39
 msgid "Initial release!"
 msgstr ""

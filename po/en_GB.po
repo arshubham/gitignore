@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.arshubham.gitignore\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 01:55+0530\n"
+"POT-Creation-Date: 2019-02-09 11:07+0530\n"
 "PO-Revision-Date: 2019-02-08 21:10+0530\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -57,19 +57,19 @@ msgstr "File successfully created."
 msgid "Request failed. Please check your network connection."
 msgstr "Request failed. Please check your network connection."
 
-#: src/views/WelcomeView.vala:37 src/configs/Constants.vala:26
+#: src/views/WelcomeView.vala:36 src/configs/Constants.vala:26
 #: data/com.github.arshubham.gitignore.desktop.in:3
 #: data/com.github.arshubham.gitignore.appdata.xml.in:7
 msgid "gitIgnore"
 msgstr "gitIgnore"
 
-#: src/views/WelcomeView.vala:40
+#: src/views/WelcomeView.vala:39
 #: data/com.github.arshubham.gitignore.desktop.in:4
 #: data/com.github.arshubham.gitignore.appdata.xml.in:8
 msgid ".gitignore reference for various languages"
 msgstr ".gitignore reference for various languages"
 
-#: src/views/WelcomeView.vala:42
+#: src/views/WelcomeView.vala:41
 #, fuzzy
 msgid ""
 "Select a Language from the dropdown and press enter.The selected languages "
@@ -112,7 +112,7 @@ msgstr "gitignore;git;development;cvs;versioning;"
 msgid "Shubham Arora"
 msgstr "Shubham Arora"
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:19
+#: data/com.github.arshubham.gitignore.appdata.xml.in:28
 msgid ""
 "A simple application for getting .gitignore reference from gitignore.io. You "
 "can download .gitignore for multiple languages at once."
@@ -120,14 +120,14 @@ msgstr ""
 "A simple application for getting .gitignore reference from gitignore.io. You "
 "can download .gitignore for multiple languages at once."
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:24
+#: data/com.github.arshubham.gitignore.appdata.xml.in:33
 msgid "Redesigned UI/UX"
 msgstr "Redesigned UI/UX"
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:25
+#: data/com.github.arshubham.gitignore.appdata.xml.in:34
 msgid "Added i18n support"
 msgstr "Added i18n support"
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:30
+#: data/com.github.arshubham.gitignore.appdata.xml.in:39
 msgid "Initial release!"
 msgstr "Initial release!"
