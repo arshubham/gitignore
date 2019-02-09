@@ -28,7 +28,7 @@
         <p>A simple application for getting .gitignore reference from gitignore.io. You can download .gitignore for multiple languages at once.</p>
     </description>  
     <releases>
-      <release version="2.0.0" date="2019-02-10">
+      <release version="2.0.0" date="2019-02-09">
         <description>
           <p>Redesigned UI/UX</p>
           <p>Added i18n support</p>
