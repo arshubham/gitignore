@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.arshubham.gitignore\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 11:07+0530\n"
+"POT-Creation-Date: 2019-02-09 16:03+0530\n"
 "PO-Revision-Date: 2019-02-08 21:10+0530\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -123,6 +123,10 @@ msgstr ""
 msgid "Added i18n support"
 msgstr ""
 
-#: data/com.github.arshubham.gitignore.appdata.xml.in:39
+#: data/com.github.arshubham.gitignore.appdata.xml.in:35
+msgid "Added French Translations"
+msgstr ""
+
+#: data/com.github.arshubham.gitignore.appdata.xml.in:40
 msgid "Initial release!"
 msgstr ""
