@@ -2,6 +2,7 @@ com.github.arshubham.gitignore (2.0.0) xenial; urgency=low
 
   * Redesigned UI/UX
   * Added i18n support
+  * Add French Translations
 
  -- Shubham Arora <shubhamarora@protonmail.com>  Sun, 10 Feb 2018 22:10:00 +0530
  
