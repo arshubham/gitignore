@@ -32,6 +32,7 @@
         <description>
           <p>Redesigned UI/UX</p>
           <p>Added i18n support</p>
+          <p>Added French Translations</p>
         </description>
       </release>
       <release version="1.0.0" date="2018-08-12">
