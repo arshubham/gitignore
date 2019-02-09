@@ -129,7 +129,7 @@ msgstr "Ajout du support i18n"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:35
 msgid "Added French Translations"
-msgstr ""
+msgstr "Ajout des traductions en français"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:40
 msgid "Initial release!"
