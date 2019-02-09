@@ -24,7 +24,6 @@ namespace App.Views {
             Object (
                 halign: Gtk.Align.CENTER,
                 hexpand: true,
-                margin_bottom: 150,
                 row_spacing: 10,
                 valign: Gtk.Align.CENTER,
                 vexpand: true
@@ -48,6 +47,7 @@ namespace App.Views {
             copy.max_width_chars = 70;
             copy.use_markup = true;
             copy.wrap = true;
+            copy.margin_bottom = 150;
 
             attach (image, 0, 0);
             attach (title, 0, 1);
