@@ -18,8 +18,13 @@
   <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
 </p>
 
-### Dependencies
-These dependencies must be present before building:
+# Contents
+ - [Prerequisites](http://Prerequisites)
+ - [Installation](http://Installation)
+ - [License](http://License)
+
+# <b>Prerequisites</b>
+What things you need to install before building it:
  - `meson`
  - `valac`
  - `libgranite-dev`
@@ -29,6 +34,10 @@ These dependencies must be present before building:
 
 
 <h2>Installation</h2>
+<br>
+A step by step series of examples that tell you how to get a development env running
+<br>
+Say what the step will be
 <br>
 
 ```
@@ -43,6 +52,6 @@ ninja
 sudo ninja install
 ```
 
-### License
+# <b> License </b>
 
-This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE.md) file for details.
+This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details.
