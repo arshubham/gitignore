@@ -50,22 +50,6 @@ namespace App.Controllers {
                 app_view.update_tags ();
             });
 
-            //  var bookmark  = new Models.Bookmark ("Bookmark1", "c,vala,csharp");
-            //  db.add_bookmark (bookmark);
-
-            //  foreach (var item in db.get_all_bookmarks ()) {
-            //      debug (item.bookmarkId.to_string () + "  " + item.bookmarkName);
-
-            //      if (item.bookmarkId == 5) {
-            //          db.remove_bookmark (item);
-            //      }
-            //  }
-
-            //  foreach (var item in db.get_all_bookmarks ()) {
-            //      debug (item.bookmarkId.to_string () + "  " + item.bookmarkName);
-            //  }
-            
-
             window.add (app_view);
             window.set_titlebar (headerbar);
             application.add_window (window);
