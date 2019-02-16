@@ -86,6 +86,25 @@ namespace App.Services {
             }  
         }
 
+        public void remove_bookmark (Models.Bookmark bookmark) {
+
+            Sqlite.Statement stmt;
+
+            int res = db.prepare_v2 ("DELETE FROM bookmarks " +
+                "WHERE bookmarkId = ?", -1, out stmt);
+            assert (res == Sqlite.OK);
+
+            res = stmt.bind_int (1, bookmark.bookmarkId);
+            assert (res == Sqlite.OK);
+
+            res = stmt.step ();
+
+            if (res == Sqlite.OK) {
+                debug ("User removed: " + bookmark.bookmarkName);
+            }
+
+        }
+
         public Gee.ArrayList<Models.Bookmark?> get_all_bookmarks () {
             Sqlite.Statement stmt;
             int res = db.prepare_v2 ("SELECT * FROM bookmarks",
