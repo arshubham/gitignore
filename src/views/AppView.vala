@@ -39,6 +39,9 @@ namespace App.Views {
         public signal void tags_changed ();
 
         public AppView (Gdk.Display display) {
+            var icon = new Gtk.Image ();
+            icon.gicon = new ThemedIcon ("starred");
+            icon.pixel_size = 24;
 
             db = new Services.Database ();
 
@@ -59,6 +62,7 @@ namespace App.Views {
 
                 languages = languages.slice (0, languages.length-1);
 
+                bookmark_button.set_image (icon);
                 db.add_bookmark (new Models.Bookmark ("Bk",languages));
 
             });
