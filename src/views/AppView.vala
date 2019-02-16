@@ -29,17 +29,38 @@ namespace App.Views {
         private App.Widgets.Button generate_gitignore_button;
         private Gtk.Button copy_button;
         private Gtk.Button save_button;
+        private Gtk.Button bookmark_button;
 
         private Granite.Widgets.Toast copy_toast;
         private Granite.Widgets.Toast file_created_toast;
 
+        private Services.Database db;
+
         public signal void tags_changed ();
 
         public AppView (Gdk.Display display) {
+
+            db = new Services.Database ();
+
             generate_gitignore_button.clicked.connect (() => {
                 stack.visible_child_name = "gitignore_view_stack";
                 gitignore_view.load_data ();
                 toggle_buttons ();
+            });
+
+            bookmark_button.clicked.connect (() => {
+                var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+                string[] data = settings.get_strv ("selected-langs");
+
+                string languages = "";
+                for (int i = 0; i < data.length; i++) {
+                    languages = languages + data[i] + ",";
+                }
+
+                languages = languages.slice (0, languages.length-1);
+
+                db.add_bookmark (new Models.Bookmark ("Bk",languages));
+
             });
 
             copy_button.clicked.connect (() => {
@@ -103,6 +124,10 @@ namespace App.Views {
             copy_button.set_tooltip_text (_("Copy generated gitignore"));
             copy_button.get_style_context ().add_class ("flat");
 
+            bookmark_button = new Gtk.Button.from_icon_name ("non-starred", Gtk.IconSize.LARGE_TOOLBAR);
+            bookmark_button.set_tooltip_text (_("Bookmark selected languages"));
+            bookmark_button.get_style_context ().add_class ("flat");
+
             generate_gitignore_button = new App.Widgets.Button (_("Generate .gitignore"), "media-playback-start");
             generate_gitignore_button.set_tooltip_text (_("Generate .gitignore from selected languages"));
             generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
@@ -110,6 +135,7 @@ namespace App.Views {
 
             content_box.pack_start (tag_grid, false, false, 0);
             content_box.pack_end (generate_gitignore_button, false, false, 0);
+            content_box.pack_end (bookmark_button, false, false, 0);
             content_box.pack_end (copy_button, false, false, 0);
             content_box.pack_end (save_button, false, false, 0);
 
@@ -173,14 +199,22 @@ namespace App.Views {
 
                 if (data.length > 0) {
                     generate_gitignore_button.set_sensitive (true);
+                    bookmark_button.set_sensitive (true);
+                    bookmark_button.set_opacity (1);
                 } else {
                     generate_gitignore_button.set_sensitive (false);
+                    bookmark_button.set_sensitive (false);
+                    bookmark_button.set_opacity (0);
                 }
             } else if (stack.visible_child_name == "gitignore_view_stack") {
                 if (data.length > 0) {
                     generate_gitignore_button.set_sensitive (true);
+                    bookmark_button.set_sensitive (true);
+                    bookmark_button.set_opacity (1);
                 } else {
                     generate_gitignore_button.set_sensitive (false);
+                    bookmark_button.set_sensitive (false);
+                    bookmark_button.set_opacity (0);
                 }
 
                 copy_button.set_sensitive (true);
