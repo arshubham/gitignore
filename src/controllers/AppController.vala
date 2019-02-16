@@ -26,12 +26,14 @@ namespace App.Controllers {
         private App.Widgets.HeaderBar headerbar;
         private Gtk.ApplicationWindow window { get; private set; default = null; }
         private Gdk.Display display;
+        private Services.Database db;
 
         public AppController (Gtk.Application application) {
             this.application = application;
             window = new Window (this.application);
             headerbar = new App.Widgets.HeaderBar ();
             display = window.get_display ();
+            db = new Services.Database ();
 
             app_view = new App.Views.AppView (display);
             headerbar.changed.connect (() => {
@@ -47,6 +49,9 @@ namespace App.Controllers {
             headerbar.switch_theme.connect (() => {
                 app_view.update_tags ();
             });
+
+            var bookmark  = new Models.Bookmark ("Bookmark1", "c,vala,csharp");
+            db.add_bookmark (bookmark);
 
             window.add (app_view);
             window.set_titlebar (headerbar);

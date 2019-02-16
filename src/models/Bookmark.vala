@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,16 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-public class Main {
+namespace App.Models {
 
-    public static void main (string [] args) {
-        App.Utils.create_dir_with_parents ("/.local/share/com.github.arshubham.gitignore");
+    public class Bookmark {
+        public string bookmarkName {get; set;}
+        public string languages {get; set;}
 
-        var app = new App.Application ();
-        app.run (args);
+        public Bookmark (string bookmarkName, string languages) {
+            this.bookmarkName = bookmarkName;
+            this.languages = languages;
+        }
     }
+
 }

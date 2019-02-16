@@ -41,6 +41,7 @@ dependencies = [
     dependency('gee-0.8'),
     dependency('gtksourceview-3.0'),
     dependency('libsoup-2.4'),
+    dependency('sqlite3'),
 ]
 
 e = executable('com.github.arshubham.gitignore',
