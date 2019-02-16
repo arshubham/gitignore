@@ -85,5 +85,27 @@ namespace App.Services {
                 debug ("Bookmark Added");
             }  
         }
+
+        public Gee.ArrayList<Models.Bookmark?> get_all_bookmarks () {
+            Sqlite.Statement stmt;
+            int res = db.prepare_v2 ("SELECT * FROM bookmarks",
+            -1, out stmt);
+
+            assert (res == Sqlite.OK);
+
+            var all = new Gee.ArrayList<Models.Bookmark?> ();
+
+            while ((res = stmt.step()) == Sqlite.ROW) {
+                var bookmark = new Models.Bookmark ();
+
+                bookmark.bookmarkId = stmt.column_int (0);
+                bookmark.bookmarkName = stmt.column_text (1);
+                bookmark.languages = stmt.column_text (2);
+
+                all.add (bookmark);
+            }
+            return all;
+        }
+
     }
 }

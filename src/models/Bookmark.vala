@@ -20,10 +20,11 @@
 namespace App.Models {
 
     public class Bookmark {
+        public int bookmarkId {get; set;}
         public string bookmarkName {get; set;}
         public string languages {get; set;}
 
-        public Bookmark (string bookmarkName, string languages) {
+        public Bookmark (string bookmarkName = "", string languages = "", int bookmarkId = 0) {
             this.bookmarkName = bookmarkName;
             this.languages = languages;
         }
