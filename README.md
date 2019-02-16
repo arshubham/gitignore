@@ -37,8 +37,6 @@ What things you need to install before building it:
 <br>
 A step by step series of examples that tell you how to get a development env running
 <br>
-Say what the step will be
-<br>
 
 ```
 git clone https://github.com/arshubham/gitignore.git
