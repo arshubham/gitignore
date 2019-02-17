@@ -21,6 +21,7 @@ namespace App.Widgets {
     public class BookmarkItem : Gtk.EventBox {
 
         private Gtk.Label bookmark_name_label;
+        private Gtk.Label languages_label;
 
         public BookmarkItem (Models.Bookmark bookmark) {
             Object (
@@ -29,6 +30,8 @@ namespace App.Widgets {
             );
 
             bookmark_name_label.label = bookmark.bookmarkName;
+            
+            languages_label.label = bookmark.languages.replace (",", " ").strip ();
         }
 
         construct {
@@ -39,7 +42,13 @@ namespace App.Widgets {
             bookmark_name_label = new Gtk.Label ("");
             bookmark_name_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
             bookmark_name_label.ellipsize = Pango.EllipsizeMode.END;
-            bookmark_name_label.xalign = 0;
+            bookmark_name_label.halign = Gtk.Align.START;
+            bookmark_name_label.margin_start = 4;
+
+            languages_label = new Gtk.Label ("");
+            languages_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+            languages_label.ellipsize = Pango.EllipsizeMode.END;
+            languages_label.halign = Gtk.Align.START;
 
             var edit_button = new Gtk.Button.from_icon_name ("document-edit-symbolic",  Gtk.IconSize.MENU);
             edit_button.valign = Gtk.Align.CENTER;
@@ -102,6 +111,7 @@ namespace App.Widgets {
 
             grid.column_spacing = 12;
             grid.attach (bookmark_name_label, 0, 0, 1, 1);
+            grid.attach (languages_label, 0, 1, 1, 1);
             grid.attach (action_revealer, 1, 0, 2, 2);
             add (grid);
             show_all ();

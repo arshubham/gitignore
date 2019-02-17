@@ -21,7 +21,8 @@ namespace App.Widgets {
     public class BookmarksPopover : Gtk.Popover {
 
         private Gtk.Stack stack;
-        public Gtk.ListBox listbox;
+        private Gtk.ListBox listbox;
+        private Services.Database db;
 
         public BookmarksPopover (Gtk.Widget relative, Gtk.ApplicationWindow window) {
             Object (
@@ -29,6 +30,9 @@ namespace App.Widgets {
                 position: Gtk.PositionType.BOTTOM,
                 relative_to: relative
             );
+
+            db = new Services.Database ();
+            create_bookmark_list ();
 
             set_size_request(300, 400);
         }
@@ -41,7 +45,7 @@ namespace App.Widgets {
             stack.add_titled ( no_bookmarks_grid (), "no_bookmarks_stack", _("New User"));
 
             stack.visible_child_name = "bookmark_list_stack";
-            create_bookmark_list ();
+            
 
             var content_grid = new Gtk.Grid ();
             content_grid.attach (stack, 0, 0, 1, 1);
@@ -92,14 +96,12 @@ namespace App.Widgets {
             return grid;
         }
 
-            private void create_bookmark_list () {
-
-                for (int i = 0; i < 10; i++) {
-                    var row = new Widgets.BookmarkItem (new Models.Bookmark ("Bookmarks" + i.to_string (), "asda"));
-                    listbox.add (row);
-                }
-     
+        private void create_bookmark_list () {
+            foreach (var bookmark in db.get_all_bookmarks ()) {
+                var row = new Widgets.BookmarkItem (bookmark);
+                listbox.add (row);
             }
+        }
 
     }
 }
