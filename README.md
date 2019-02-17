@@ -21,7 +21,7 @@
 # Contents
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](https://github.com/manavbabber/gitignore#installation)
- - [License](http://License)
+ - [License](https://github.com/manavbabber/gitignore#-license-)
 
 # <b>Prerequisites</b>
 What things you need to install before building it:
