@@ -18,6 +18,7 @@ sources += files(
     'widgets/SourceView.vala',
     'widgets/BookmarkDialog.vala',
     'widgets/BookmarksPopover.vala',
+    'widgets/BookmarkItem.vala',
 
     'utils/FileUtils.vala',
     'utils/DataUtils.vala',

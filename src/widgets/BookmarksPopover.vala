@@ -21,6 +21,7 @@ namespace App.Widgets {
     public class BookmarksPopover : Gtk.Popover {
 
         private Gtk.Stack stack;
+        public Gtk.ListBox listbox;
 
         public BookmarksPopover (Gtk.Widget relative, Gtk.ApplicationWindow window) {
             Object (
@@ -36,8 +37,11 @@ namespace App.Widgets {
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-            //  stack.add_titled ( bookmark_list_grid (), "bookmark_list_stack", _("Bookmark List"));
+            stack.add_titled ( bookmark_list_grid (), "bookmark_list_stack", _("Bookmark List"));
             stack.add_titled ( no_bookmarks_grid (), "no_bookmarks_stack", _("New User"));
+
+            stack.visible_child_name = "bookmark_list_stack";
+            create_bookmark_list ();
 
             var content_grid = new Gtk.Grid ();
             content_grid.attach (stack, 0, 0, 1, 1);
@@ -65,6 +69,37 @@ namespace App.Widgets {
 
             return grid;
         }
+
+        private Gtk.Widget bookmark_list_grid () {
+            var grid = new Gtk.Grid ();
+            grid.orientation = Gtk.Orientation.VERTICAL;
+            grid.row_spacing = 4;
+            grid.margin = 12;
+            grid.column_homogeneous = true;
+            grid.expand = true;
+
+            listbox = new Gtk.ListBox ();
+            listbox.activate_on_single_click = true;
+            listbox.selection_mode = Gtk.SelectionMode.SINGLE;
+            listbox.expand = true;
+
+            var scrolled_window = new Gtk.ScrolledWindow (null, null);
+            scrolled_window.expand = true;
+            scrolled_window.add (listbox);
+
+            grid.attach (scrolled_window, 0, 0);
+
+            return grid;
+        }
+
+            private void create_bookmark_list () {
+
+                for (int i = 0; i < 10; i++) {
+                    var row = new Widgets.BookmarkItem (new Models.Bookmark ("Bookmarks" + i.to_string (), "asda"));
+                    listbox.add (row);
+                }
+     
+            }
 
     }
 }
