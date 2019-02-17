@@ -34,10 +34,7 @@ What things you need to install before building it:
  - `libsoup2.4-dev`
 
 
-<h2>Installation</h2>
-<br>
-A step by step series of examples that tell you how to get a development env running
-<br>
+# Installation
 
 ```
 git clone https://github.com/arshubham/gitignore.git
@@ -50,7 +47,6 @@ cd build
 ninja
 sudo ninja install
 ```
-
 # Contributing workflow
 Here’s how we suggest you go about proposing a change to this project:
 
@@ -66,14 +62,5 @@ by automatically forking the project and prompting to send a pull request too
 [branch]: https://help.github.com/articles/creating-and-deleting-branches-within-your-repository
 [pr]: https://help.github.com/articles/using-pull-requests/
 
-
-
-
-
-
-
-
-
-
 # License 
-This project is licensed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
+This project is distributed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
