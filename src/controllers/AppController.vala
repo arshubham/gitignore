@@ -31,7 +31,7 @@ namespace App.Controllers {
         public AppController (Gtk.Application application) {
             this.application = application;
             window = new Window (this.application);
-            headerbar = new App.Widgets.HeaderBar ();
+            headerbar = new App.Widgets.HeaderBar (window);
             display = window.get_display ();
             db = new Services.Database ();
 

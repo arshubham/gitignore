@@ -27,17 +27,26 @@ namespace App.Widgets {
         private Gtk.Image light_icon;
         private Gtk.Image dark_icon;
 
+
         private Gee.HashSet<string> selected_languages;
+
+        private Widgets.BookmarksPopover bookmarks_popover;
+
+        private Gtk.Button bookmarks_popver_button;
+
+        private Gtk.ApplicationWindow window;
 
         public signal void switch_theme ();
         public signal void changed ();
 
-        public HeaderBar () {
+        public HeaderBar (Gtk.ApplicationWindow window) {
             Object (
                 has_subtitle: false,
                 show_close_button: true,
                 title: App.Configs.Constants.APP_NAME
             );
+
+            this.window = window;
 
             var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
@@ -113,6 +122,10 @@ namespace App.Widgets {
             entry_completion = new App.Widgets.EntryCompletion ();
             search_entry = new App.Widgets.SearchEntry (entry_completion);
 
+            bookmarks_popver_button = new Gtk.Button ();
+            bookmarks_popver_button.set_image (new Gtk.Image.from_icon_name ("user-bookmarks", Gtk.IconSize.LARGE_TOOLBAR));
+            bookmarks_popver_button.clicked.connect (show_hide_popover);
+
             get_style_context ().add_class ("flat");
             dark_switch = new Gtk.Switch ();
             dark_switch.valign = Gtk.Align.CENTER;
@@ -124,9 +137,16 @@ namespace App.Widgets {
             dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             dark_icon.tooltip_text = _("Dark background");
 
+            
             pack_end (dark_icon);
             pack_end (dark_switch);
             pack_end (light_icon);
+            pack_end (bookmarks_popver_button);
+        }
+
+        private void show_hide_popover () {
+            bookmarks_popover = new Widgets.BookmarksPopover (bookmarks_popver_button, window);
+            bookmarks_popover.show_all ();
         }
     }
 }
