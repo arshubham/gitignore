@@ -21,7 +21,7 @@
 # Contents
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](https://github.com/manavbabber/gitignore#installation)
- -[Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#contributing-workflow)
+ - [Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#contributing-workflow)
  - [License](https://github.com/manavbabber/gitignore#-license-)
 
 # Prerequisites
