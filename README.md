@@ -23,7 +23,7 @@
  - [Installation](https://github.com/manavbabber/gitignore#installation)
  - [License](https://github.com/manavbabber/gitignore#-license-)
 
-# <b>Prerequisites</b>
+# Prerequisites
 What things you need to install before building it:
  - `meson`
  - `valac`
@@ -50,6 +50,5 @@ ninja
 sudo ninja install
 ```
 
-# <b> License </b>
-
-This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details.
+# License 
+This project is licensed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
