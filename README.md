@@ -4,7 +4,7 @@
   <h3 align="center">Gitignore reference for various languages</h3>
 </div>
 
-<br/>
+
 
 <p align="center">
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
@@ -12,11 +12,18 @@
   </a>
 </p>
 
-<p align="center">
-    <img  src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-1.png" alt="Screenshot-1"> <br>
-    <img  src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-3.png" alt="Screenshot-3"> <br>
-  <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
-</p>
+
+
+
+
+
+
+
+
+
+![Screenshot-1](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-1.png)
+![screenshot-2](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-3.png)
+[Report a problem!](https://github.com/arshubham/gitignore/issues)
 
 # Contents
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
@@ -25,7 +32,7 @@
  - [License](https://github.com/manavbabber/gitignore#-license-)
 
 # Prerequisites
-What things you need to install before building it:
+Dependencies required before building:
  - `meson`
  - `valac`
  - `libgranite-dev`
@@ -41,7 +48,6 @@ git clone https://github.com/arshubham/gitignore.git
 cd gitignore
 meson build --prefix=/usr
 ```
- 
 ```
 cd build
 ninja
