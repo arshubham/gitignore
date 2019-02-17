@@ -38,7 +38,7 @@ namespace App.Views {
 
         public signal void tags_changed ();
 
-        public AppView (Gdk.Display display) {
+        public AppView (Gdk.Display display, Gtk.ApplicationWindow window) {
             var icon = new Gtk.Image ();
             icon.gicon = new ThemedIcon ("starred");
             icon.pixel_size = 24;
@@ -55,16 +55,12 @@ namespace App.Views {
                 var settings = new GLib.Settings ("com.github.arshubham.gitignore");
                 string[] data = settings.get_strv ("selected-langs");
 
-                string languages = "";
-                for (int i = 0; i < data.length; i++) {
-                    languages = languages + data[i] + ",";
-                }
+                var bookmark_dialog = new Widgets.BookmarkDialog (window, data, db);
+                bookmark_dialog.show_all ();
 
-                languages = languages.slice (0, languages.length-1);
-
-                bookmark_button.set_image (icon);
-                db.add_bookmark (new Models.Bookmark ("Bk",languages));
-
+                bookmark_dialog.bookmark_added.connect (() => {
+                    bookmark_button.set_image (icon);
+                });
             });
 
             copy_button.clicked.connect (() => {

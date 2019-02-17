@@ -16,6 +16,7 @@ sources += files(
     'widgets/SearchEntry.vala',
     'widgets/EntryCompletion.vala',
     'widgets/SourceView.vala',
+    'widgets/BookmarkDialog.vala',
 
     'utils/FileUtils.vala',
     'utils/DataUtils.vala',

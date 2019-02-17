@@ -35,7 +35,7 @@ namespace App.Controllers {
             display = window.get_display ();
             db = new Services.Database ();
 
-            app_view = new App.Views.AppView (display);
+            app_view = new App.Views.AppView (display, window);
             headerbar.changed.connect (() => {
                 app_view.update_tags ();
                 int window_width, window_height;
