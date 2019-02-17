@@ -19,7 +19,7 @@
 </p>
 
 # Contents
- - [Prerequisites](http://Prerequisites)
+ - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](http://Installation)
  - [License](http://License)
 
