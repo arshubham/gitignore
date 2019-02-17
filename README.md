@@ -1,25 +1,14 @@
-<div align="center">
+<div class="s1">
   <span align="center">     <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore"><img width="80" height="80" class="center" src="https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png" alt="Icon">    </a></span>
-  <h1 align="center">Gitignore</h1>
-  <h3 align="center">Gitignore reference for various languages</h3>
+
+# Gitignore
+### Gitignore reference for various languages
 </div>
-
-
-
 <p align="center">
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/license-GPLv3-brightgreen.svg">
   </a>
 </p>
-
-
-
-
-
-
-
-
-
 
 ![Screenshot-1](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-1.png)
 ![screenshot-2](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-3.png)
