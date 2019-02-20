@@ -36,6 +36,7 @@
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](https://github.com/manavbabber/gitignore#installation)
  - [Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#contributing-workflow)
+ - [Special Thanks](https://github.com/sahilarora3117)
  - [License](https://github.com/manavbabber/gitignore#-license-)
 
 # Prerequisites
@@ -76,9 +77,8 @@ by automatically forking the project and prompting to send a pull request too
 [pr]: https://help.github.com/articles/using-pull-requests/
 
 # Special Thanks 
-[Nathan Bnm](https://github.com/NathanBnm) for his help in French translations
-
-[Sahil Arora](https://github.com/sahilarora3117) for icon
+- [Nathan Bnm](https://github.com/NathanBnm) for his help in French translations
+- [Sahil Arora](https://github.com/sahilarora3117) for icon
 
 # License 
 This project is distributed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
