@@ -10,12 +10,28 @@
   </a>
 </p>
 
-![Screenshot-1](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-1.png)
-![screenshot-2](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/Screenshot-3.png)
-  
-  [Report a problem!](https://github.com/arshubham/gitignore/issues)
-  
-  
+
+<p align="center">
+    <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-2.png" alt="Screenshot">
+    <table>
+      <tr>
+        <td>
+          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-4.png" alt="Screenshot">
+        </td>
+        <td>
+          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-1.png" alt="Screenshot">
+        </td>
+        <td>
+          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-3.png" alt="Screenshot">
+        </td>
+      </tr>
+    </table>
+</p>
+
+<p align="center">
+ <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
+</p>
+
 # Contents
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](https://github.com/manavbabber/gitignore#installation)
