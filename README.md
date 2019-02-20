@@ -75,5 +75,10 @@ by automatically forking the project and prompting to send a pull request too
 [branch]: https://help.github.com/articles/creating-and-deleting-branches-within-your-repository
 [pr]: https://help.github.com/articles/using-pull-requests/
 
+# Special Thanks 
+[Nathan Bnm](https://github.com/NathanBnm) for his help in French translations
+
+[Sahil Arora](https://github.com/sahilarora3117) for icon
+
 # License 
 This project is distributed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
