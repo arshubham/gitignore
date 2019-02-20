@@ -36,7 +36,7 @@
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](https://github.com/manavbabber/gitignore#installation)
  - [Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#contributing-workflow)
- - [Special Thanks](https://github.com/sahilarora3117)
+ - [Special Thanks](https://github.com/manavbabber/gitignore/blob/master/README.md#special-thanks)
  - [License](https://github.com/manavbabber/gitignore#-license-)
 
 # Prerequisites
