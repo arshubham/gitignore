@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve.
+about: Bug
 title: ''
 labels: ''
 assignees: ''
@@ -13,9 +13,9 @@ Explain your problem.
 **To Reproduce**  
 Execute the program using the following command and attach the data.
 
-```
+`
  G_MESSAGES_DEBUG=all com.github.arshubham.gitignore 
-```
+`
 
 
 **Expected behavior**  
