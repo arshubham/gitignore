@@ -1,22 +1,25 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a report to help us improve.
 title: ''
 labels: ''
 assignees: ''
 
 ---
 
-**Description**
+**Descriptions**  
+Explain your problem.  
 
-**To Reproduce**
-Also attach debug dump.
+**To Reproduce**  
+Execute the program using the following command and attach the data.
 
 ```
-./Binary_Name --gtk-debug=all
+ G_MESSAGES_DEBUG=all com.github.arshubham.gitignore 
 ```
 
-**Expected behavior**
+
+**Expected behavior**  
+Explain how it should really perform.
 
 **Screenshots**
 
