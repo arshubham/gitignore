@@ -12,17 +12,17 @@
 
 
 <p align="center">
-    <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-2.png" alt="Screenshot">
+    <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-1.png" alt="Screenshot">
     <table>
       <tr>
         <td>
-          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-4.png" alt="Screenshot">
-        </td>
-        <td>
-          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-1.png" alt="Screenshot">
-        </td>
-        <td>
           <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-3.png" alt="Screenshot">
+        </td>
+        <td>
+          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-2.png" alt="Screenshot">
+        </td>
+        <td>
+          <img src="https://github.com/arshubham/gitignore/blob/master/data/images/Screenshot-4.png" alt="Screenshot">
         </td>
       </tr>
     </table>
