@@ -47,6 +47,7 @@ Dependencies required before building:
  - `libgtk-3-dev`
  - `libgranite-3.0-dev`
  - `libsoup2.4-dev`
+ - `libsqlite3-dev`
 
 
 # Installation
