@@ -8,7 +8,6 @@
   <a href="https://github.com/arshubham/gitignore/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/license-GPLv3-brightgreen.svg">
     <img src="https://img.shields.io/static/v1.svg?label=TravisCI&message=Passing&color=blue">
-    <img src="">
   </a>
   <br>
   <a href="https://appcenter.elementary.io/com.github.arshubham.gitignore.desktop">
