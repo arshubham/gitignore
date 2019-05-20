@@ -48,6 +48,24 @@ namespace App.Controllers {
                 app_view.update_tags ();
             });
 
+            // Focus the search_entry on ctrl+l (like browser)
+            window.key_press_event.connect ((ev) => {
+                var ctrl = (ev.state == Gdk.ModifierType.CONTROL_MASK);
+                if (ctrl && ev.keyval == 108)
+                    headerbar.search_entry.grab_focus_without_selecting ();
+                return false;
+            });
+
+            // Generate gitignore on ctrl+enter only if button is sensitive
+            headerbar.search_entry.key_press_event.connect ((ev) => {
+                var ctrl = (ev.state == Gdk.ModifierType.CONTROL_MASK);
+                if (ctrl && ev.keyval == 65293)
+                if (app_view.generate_gitignore_button.get_sensitive()) {
+                    app_view.generate_gitignore_button.clicked();
+                }
+                return false;
+            });
+
             window.add (app_view);
             window.set_titlebar (headerbar);
             application.add_window (window);
