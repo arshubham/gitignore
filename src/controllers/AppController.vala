@@ -60,8 +60,8 @@ namespace App.Controllers {
             headerbar.search_entry.key_press_event.connect ((ev) => {
                 var ctrl = (ev.state == Gdk.ModifierType.CONTROL_MASK);
                 if (ctrl && ev.keyval == 65293)
-                if (app_view.generate_gitignore_button.get_sensitive()) {
-                    app_view.generate_gitignore_button.clicked();
+                if (app_view.generate_gitignore_button.get_sensitive ()) {
+                    app_view.generate_gitignore_button.clicked ();
                 }
                 return false;
             });
