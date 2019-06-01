@@ -38,15 +38,16 @@
  <a href="https://github.com/arshubham/gitignore/issues"> Report a problem! </a>
 </p>
 
-# Contents
+# :closed_book: Contents
  - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
  - [Installation](https://github.com/manavbabber/gitignore#installation)
  - [Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#contributing-workflow)
  - [Special Thanks](https://github.com/manavbabber/gitignore/blob/master/README.md#special-thanks)
  - [License](https://github.com/manavbabber/gitignore#-license-)
 
-# Prerequisites
-Dependencies required before building:
+# :hammer_and_wrench: Prerequisites
+Dependencies required
+before building:
  - `meson`
  - `valac`
  - `libgranite-dev`
@@ -56,7 +57,7 @@ Dependencies required before building:
  - `libsqlite3-dev`
 
 
-# Installation
+# :link: Installation
 
 ```
 git clone https://github.com/arshubham/gitignore.git
@@ -68,7 +69,7 @@ cd build
 ninja
 sudo ninja install
 ```
-# Contributing workflow
+# :computer: Contributing workflow
 Here’s how we suggest you go about proposing a change to this project:
 
 1. [Fork this project][fork] to your account.
@@ -80,9 +81,9 @@ Here’s how we suggest you go about proposing a change to this project:
 [branch]: https://help.github.com/articles/creating-and-deleting-branches-within-your-repository
 [pr]: https://help.github.com/articles/using-pull-requests/
 
-# Special Thanks 
+# :tada: Special Thanks 
 - [Nathan Bnm](https://github.com/NathanBnm) for his help in French translations
 - [Sahil Arora](https://github.com/sahilarora3117) for icon
 
-# License 
+# :page_facing_up: License 
 This project is distributed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
