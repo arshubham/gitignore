@@ -39,11 +39,11 @@
 </p>
 
 # :closed_book: Contents
- - [Prerequisites](https://github.com/manavbabber/gitignore#prerequisites)
- - [Installation](https://github.com/manavbabber/gitignore#installation)
- - [Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#contributing-workflow)
- - [Special Thanks](https://github.com/manavbabber/gitignore/blob/master/README.md#special-thanks)
- - [License](https://github.com/manavbabber/gitignore#-license-)
+ - [Prerequisites](https://github.com/manavbabber/gitignore/blob/master/README.md#hammer_and_wrench-prerequisites)
+ - [Installation](https://github.com/manavbabber/gitignore/blob/master/README.md#link-installation)
+ - [Contributing workflow](https://github.com/manavbabber/gitignore/blob/master/README.md#computer-contributing-workflow)
+ - [Special Thanks](https://github.com/manavbabber/gitignore/blob/master/README.md#tada-special-thanks)
+ - [License](https://github.com/manavbabber/gitignore/blob/master/README.md#page_facing_up-license)
 
 # :hammer_and_wrench: Prerequisites
 Dependencies required
