@@ -17,7 +17,7 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Utils {
+namespace Gitignore.Utils {
 
     public string? last_path = null;
 

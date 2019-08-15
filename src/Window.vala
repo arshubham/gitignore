@@ -17,70 +17,67 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App {
+public class Gitignore.Window : Gtk.ApplicationWindow {
 
-    public class Window : Gtk.ApplicationWindow {
+    public Window (Gtk.Application app) {
+        Object (
+            application: app,
+            deletable: true,
+            gravity: Gdk.Gravity.CENTER,
+            icon_name: Gitignore.Constants.APP_ICON,
+            resizable: true,
+            title: Gitignore.Constants.APP_NAME
+        );
 
-        public Window (Gtk.Application app) {
-            Object (
-                application: app,
-                deletable: true,
-                gravity: Gdk.Gravity.CENTER,
-                icon_name: App.Configs.Constants.APP_ICON,
-                resizable: true,
-                title: App.Configs.Constants.APP_NAME
-            );
+        var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+        settings.set_strv ("selected-langs", null);
 
-            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+        int window_x, window_y;
+        settings.get ("window-position", "(ii)", out window_x, out window_y);
+
+        if (window_x != -1 || window_y != -1) {
+            move (window_x, window_y);
+        }
+
+        int window_width, window_height;
+        settings.get ("window-size", "(ii)", out window_width, out window_height);
+
+        set_default_size (window_width, window_height);
+
+        if (settings.get_boolean ("window-maximized")) {
+            this.maximize ();
+        }
+
+        delete_event.connect (() => {
             settings.set_strv ("selected-langs", null);
 
-            int window_x, window_y;
-            settings.get ("window-position", "(ii)", out window_x, out window_y);
+            if (this.is_maximized) {
+                settings.set_boolean ("window-maximized", true);
+            } else {
+                settings.set_boolean ("window-maximized", false);
 
-            if (window_x != -1 || window_y != -1) {
-                move (window_x, window_y);
+                int width, height;
+                get_size (out width, out height);
+                settings.set ("window-size", "(ii)", width, height);
+
+                int root_x, root_y;
+                get_position (out root_x, out root_y);
+                settings.set ("window-position", "(ii)", root_x, root_y);
             }
+            return false;
+        });
 
-            int window_width, window_height;
-            settings.get ("window-size", "(ii)", out window_width, out window_height);
+        style_provider ();
+    }
 
-            set_default_size (window_width, window_height);
+    private void style_provider () {
+        var css_provider = new Gtk.CssProvider ();
+        css_provider.load_from_resource (Gitignore.Constants.URL_CSS);
 
-            if (settings.get_boolean ("window-maximized")) {
-                this.maximize ();
-            }
-
-            delete_event.connect (() => {
-                settings.set_strv ("selected-langs", null);
-
-                if (this.is_maximized) {
-                    settings.set_boolean ("window-maximized", true);
-                } else {
-                    settings.set_boolean ("window-maximized", false);
-
-                    int width, height;
-                    get_size (out width, out height);
-                    settings.set ("window-size", "(ii)", width, height);
-
-                    int root_x, root_y;
-                    get_position (out root_x, out root_y);
-                    settings.set ("window-position", "(ii)", root_x, root_y);
-                }
-                return false;
-            });
-
-            style_provider ();
-        }
-
-        private void style_provider () {
-            var css_provider = new Gtk.CssProvider ();
-            css_provider.load_from_resource (App.Configs.Constants.URL_CSS);
-
-            Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (),
-                css_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            );
-        }
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
     }
 }

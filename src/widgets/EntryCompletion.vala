@@ -17,27 +17,24 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Widgets {
+public class Gitignore.Widgets.EntryCompletion : Gtk.EntryCompletion {
 
-    public class EntryCompletion : Gtk.EntryCompletion {
+    public EntryCompletion () {
+        Object (
+            inline_selection: true,
+            popup_single_match: false
+        );
 
-        public EntryCompletion () {
-            Object (
-                inline_selection: true,
-                popup_single_match: false
-            );
+        var data = Gitignore.Utils.DataUtils.DATA;
 
-            var data = App.Utils.DataUtils.DATA;
+        var list_store = new Gtk.ListStore (1, typeof (string));
+        set_model (list_store);
+        set_text_column (0);
 
-            var list_store = new Gtk.ListStore (1, typeof (string));
-            set_model (list_store);
-            set_text_column (0);
-
-            Gtk.TreeIter iter;
-            for (int i = 0; i < data.length ; i++) {
-                list_store.append (out iter);
-                list_store.set (iter, 0, data[i]);
-            }
+        Gtk.TreeIter iter;
+        for (int i = 0; i < data.length ; i++) {
+            list_store.append (out iter);
+            list_store.set (iter, 0, data[i]);
         }
     }
 }

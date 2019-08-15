@@ -19,7 +19,7 @@
 
 public class Main {
     public static void main (string [] args) {
-        var app = new App.Application ();
+        var app = new Gitignore.Application ();
         app.run (args);
     }
 }

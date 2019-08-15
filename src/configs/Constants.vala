@@ -17,23 +17,20 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Configs {
+public class Gitignore.Constants {
 
-    public class Constants {
-
-        public abstract const string ID = "com.github.arshubham.gitignore";
-        public abstract const string VERSION = "2.0.0";
-        public abstract const string APP_NAME = _("gitIgnore");
-        public abstract const string APP_YEARS = "2018-2019";
-        public abstract const string APP_ICON = "com.github.arshubham.gitignore";
-        public abstract const string ABOUT_COMMENTS = _("Gitignore reference for languages");
-        public abstract const string TRANSLATOR_CREDITS = "Translators";
-        public abstract const string MAIN_URL = "https://shubhamarora.in";
-        public abstract const string BUG_URL = "https://github.com/arshubham/gitignore/issues";
-        public abstract const string HELP_URL = "https://github.com/arshubham/gitignore/wiki";
-        public abstract const string TRANSLATE_URL = "https://github.com/arshubham/gitignore";
-        public abstract const string URL_CSS = "/com/github/arshubham/gitignore/css/style.css";
-        public abstract const string [] ABOUT_AUTHORS = { "Shubham Arora <shubhamarora@protonmail.com>" };
-        public abstract const Gtk.License ABOUT_LICENSE_TYPE = Gtk.License.GPL_3_0;
-    }
+    public abstract const string ID = "com.github.arshubham.gitignore";
+    public abstract const string VERSION = "2.0.0";
+    public abstract const string APP_NAME = _("gitIgnore");
+    public abstract const string APP_YEARS = "2018-2019";
+    public abstract const string APP_ICON = "com.github.arshubham.gitignore";
+    public abstract const string ABOUT_COMMENTS = _("Gitignore reference for languages");
+    public abstract const string TRANSLATOR_CREDITS = "Translators";
+    public abstract const string MAIN_URL = "https://shubhamarora.in";
+    public abstract const string BUG_URL = "https://github.com/arshubham/gitignore/issues";
+    public abstract const string HELP_URL = "https://github.com/arshubham/gitignore/wiki";
+    public abstract const string TRANSLATE_URL = "https://github.com/arshubham/gitignore";
+    public abstract const string URL_CSS = "/com/github/arshubham/gitignore/css/style.css";
+    public abstract const string [] ABOUT_AUTHORS = { "Shubham Arora <shubhamarora@protonmail.com>" };
+    public abstract const Gtk.License ABOUT_LICENSE_TYPE = Gtk.License.GPL_3_0;
 }

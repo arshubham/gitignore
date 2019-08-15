@@ -17,76 +17,73 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Widgets {
+public class Gitignore.Widgets.Tag : Gtk.Grid {
 
-    public class Tag : Gtk.Grid {
+    private Gtk.Label label;
+    private Gtk.EventBox close_button;
+    public signal void tag_deleted ();
+    private Gtk.Image icon;
 
-        private Gtk.Label label;
-        private Gtk.EventBox close_button;
-        public signal void tag_deleted ();
-        private Gtk.Image icon;
+    public Tag (string language) {
+        Object (
+            valign: Gtk.Align.CENTER,
+            margin_start: 6,
+            margin_end: 6
+        );
 
-        public Tag (string language) {
-            Object (
-                valign: Gtk.Align.CENTER,
-                margin_start: 6,
-                margin_end: 6
-            );
+        label.set_text (language);
+    }
 
-            label.set_text (language);
-        }
+    construct {
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        label = new Gtk.Label ("");
+        label.margin_end = 4;
 
-        construct {
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            label = new Gtk.Label ("");
-            label.margin_end = 4;
+        icon = new Gtk.Image.from_icon_name ("window-close-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        icon.margin_start = 4;
+        icon.margin_end = 2;
+        icon.tooltip_text = _("Remove Language");
 
-            icon = new Gtk.Image.from_icon_name ("window-close-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-            icon.margin_start = 4;
-            icon.margin_end = 2;
-            icon.tooltip_text = _("Remove Language");
+        close_button = new Gtk.EventBox ();
+        close_button.add (icon);
+        close_button.visible_window = false;
+        close_button.button_release_event.connect (on_button_released);
 
-            close_button = new Gtk.EventBox ();
-            close_button.add (icon);
-            close_button.visible_window = false;
-            close_button.button_release_event.connect (on_button_released);
+        box.pack_start (close_button);
+        box.pack_end (label);
+        switch_tag_theme ();
+        attach (box, 0, 0);
+    }
 
-            box.pack_start (close_button);
-            box.pack_end (label);
-            switch_tag_theme ();
-            attach (box, 0, 0);
-        }
+    private bool on_button_released (Gtk.Widget sender, Gdk.EventButton event) {
+        var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
-        private bool on_button_released (Gtk.Widget sender, Gdk.EventButton event) {
-            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+        string[] data = settings.get_strv ("selected-langs");
 
-            string[] data = settings.get_strv ("selected-langs");
-
-            GenericArray<string> array = new GenericArray<string> ();
-            for (var i = 0; i < data.length; i++) {
-                if (data[i] != label.label) {
-                    array.add (data[i]);
-                }
+        GenericArray<string> array = new GenericArray<string> ();
+        for (var i = 0; i < data.length; i++) {
+            if (data[i] != label.label) {
+                array.add (data[i]);
             }
-
-            string[] output = array.data;
-            settings.set_strv ("selected-langs", output);
-            tag_deleted ();
-
-            return true;
         }
 
-        public void switch_tag_theme () {
-            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+        string[] output = array.data;
+        settings.set_strv ("selected-langs", output);
+        tag_deleted ();
 
-            bool prefer_dark;
-            settings.get ("prefer-dark", "b", out prefer_dark );
+        return true;
+    }
 
-            if (prefer_dark) {
-                get_style_context ().add_class ("tag_dark");
-            } else {
-                get_style_context ().add_class ("tag");
-            }
+    public void switch_tag_theme () {
+        var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+
+        bool prefer_dark;
+        settings.get ("prefer-dark", "b", out prefer_dark );
+
+        if (prefer_dark) {
+            get_style_context ().add_class ("tag_dark");
+        } else {
+            get_style_context ().add_class ("tag");
         }
     }
 }

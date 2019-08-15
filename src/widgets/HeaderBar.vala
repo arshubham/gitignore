@@ -17,116 +17,113 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Widgets {
+public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
+    public Gitignore.Widgets.SearchEntry search_entry;
+    private Gitignore.Widgets.EntryCompletion entry_completion;
 
-    public class HeaderBar : Gtk.HeaderBar {
-        public App.Widgets.SearchEntry search_entry;
-        private App.Widgets.EntryCompletion entry_completion;
+    private Gtk.Switch dark_switch;
+    private Gtk.Image light_icon;
+    private Gtk.Image dark_icon;
 
-        private Gtk.Switch dark_switch;
-        private Gtk.Image light_icon;
-        private Gtk.Image dark_icon;
+    private Gee.HashSet<string> selected_languages;
 
-        private Gee.HashSet<string> selected_languages;
+    public signal void switch_theme ();
+    public signal void changed ();
 
-        public signal void switch_theme ();
-        public signal void changed ();
+    public HeaderBar () {
+        Object (
+            has_subtitle: false,
+            show_close_button: true,
+            title: Gitignore.Constants.APP_NAME
+        );
 
-        public HeaderBar () {
-            Object (
-                has_subtitle: false,
-                show_close_button: true,
-                title: App.Configs.Constants.APP_NAME
-            );
+        var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
-            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+        selected_languages = new Gee.HashSet<string> ();
 
-            selected_languages = new Gee.HashSet<string> ();
+        var data_set = Gitignore.Utils.DataUtils.DATA;
 
-            var data_set = App.Utils.DataUtils.DATA;
+        Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
+        for (int i = 0; i < data_set.length; i++) {
+            list.add (data_set[i]);
+        }
 
-            Gee.ArrayList<string> list = new Gee.ArrayList<string> ();
-            for (int i = 0; i < data_set.length; i++) {
-                list.add (data_set[i]);
+        search_entry.activate.connect (() => {
+            string[] data = settings.get_strv ("selected-langs");
+
+            if (data.length == 0) {
+                selected_languages.clear ();
             }
 
-            search_entry.activate.connect (() => {
-                string[] data = settings.get_strv ("selected-langs");
+            GenericArray<string> array = new GenericArray<string> ();
+            for (var i = 0; i < data.length; i++) {
+                array.add (data[i]);
+            }
 
-                if (data.length == 0) {
-                    selected_languages.clear ();
-                }
+            var entered_language = search_entry.text;
+            array.add (entered_language);
 
-                GenericArray<string> array = new GenericArray<string> ();
-                for (var i = 0; i < data.length; i++) {
-                    array.add (data[i]);
-                }
+            string[] output = array.data;
 
-                var entered_language = search_entry.text;
-                array.add (entered_language);
-
-                string[] output = array.data;
-
-                if (list.contains (entered_language) && !selected_languages.contains (entered_language) && entered_language.strip ().length != 0) {
-                    settings.set_strv ("selected-langs", output);
-                } else if (selected_languages.contains (entered_language)) {
-                    debug ("Selected Language already entered.");
-                } else {
-                    debug ("Unknown Language.");
-                }
-
-                for (int i = 0 ; i < output.length; i++) {
-                    selected_languages.add (output [i]);
-                }
-
-                changed ();
-            });
-
-            var window_settings = Gtk.Settings.get_default ();
-
-            bool prefer_dark;
-            settings.get ("prefer-dark", "b", out prefer_dark );
-
-            if (prefer_dark) {
-                dark_switch.active = true;
-                window_settings.gtk_application_prefer_dark_theme = true;
+            if (list.contains (entered_language) && !selected_languages.contains (entered_language) && entered_language.strip ().length != 0) {
+                settings.set_strv ("selected-langs", output);
+            } else if (selected_languages.contains (entered_language)) {
+                debug ("Selected Language already entered.");
             } else {
-                dark_switch.active = false;
-                window_settings.gtk_application_prefer_dark_theme = false;
+                debug ("Unknown Language.");
             }
 
-            dark_switch.notify["active"].connect (() => {
-                if (dark_switch.active) {
-                    window_settings.gtk_application_prefer_dark_theme = true;
-                    settings.set ("prefer-dark", "b", true );
-                } else {
-                    window_settings.gtk_application_prefer_dark_theme = false;
-                    settings.set ("prefer-dark", "b", false );
-                }
-                switch_theme ();
-            });
+            for (int i = 0 ; i < output.length; i++) {
+                selected_languages.add (output [i]);
+            }
 
-            set_custom_title (search_entry);
+            changed ();
+        });
+
+        var window_settings = Gtk.Settings.get_default ();
+
+        bool prefer_dark;
+        settings.get ("prefer-dark", "b", out prefer_dark );
+
+        if (prefer_dark) {
+            dark_switch.active = true;
+            window_settings.gtk_application_prefer_dark_theme = true;
+        } else {
+            dark_switch.active = false;
+            window_settings.gtk_application_prefer_dark_theme = false;
         }
 
-        construct {
-            entry_completion = new App.Widgets.EntryCompletion ();
-            search_entry = new App.Widgets.SearchEntry (entry_completion);
+        dark_switch.notify["active"].connect (() => {
+            if (dark_switch.active) {
+                window_settings.gtk_application_prefer_dark_theme = true;
+                settings.set ("prefer-dark", "b", true );
+            } else {
+                window_settings.gtk_application_prefer_dark_theme = false;
+                settings.set ("prefer-dark", "b", false );
+            }
+            switch_theme ();
+        });
 
-            get_style_context ().add_class ("flat");
-            dark_switch = new Gtk.Switch ();
-            dark_switch.valign = Gtk.Align.CENTER;
-            dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
+        set_custom_title (search_entry);
+    }
 
-            light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-            light_icon.tooltip_text = _("Light background");
+    construct {
+        entry_completion = new Gitignore.Widgets.EntryCompletion ();
+        search_entry = new Gitignore.Widgets.SearchEntry (entry_completion);
 
-            dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-            dark_icon.tooltip_text = _("Dark background");
+        get_style_context ().add_class ("flat");
+        dark_switch = new Gtk.Switch ();
+        dark_switch.valign = Gtk.Align.CENTER;
+        dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
 
-            pack_end (dark_icon);
-            pack_end (dark_switch);
-            pack_end (light_icon);
-        }
+        light_icon = new Gtk.Image.from_icon_name ("display-brightness-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        light_icon.tooltip_text = _("Light background");
+
+        dark_icon = new Gtk.Image.from_icon_name ("weather-clear-night-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        dark_icon.tooltip_text = _("Dark background");
+
+        pack_end (dark_icon);
+        pack_end (dark_switch);
+        pack_end (light_icon);
     }
 }

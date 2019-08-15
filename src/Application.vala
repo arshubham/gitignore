@@ -17,33 +17,30 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App {
+public class Gitignore.Application : Gtk.Application {
 
-    public class Application : Gtk.Application {
+    public Gitignore.Controller controller;
 
-        public App.Controllers.AppController controller;
+    public Application () {
+        Object (
+            application_id: Gitignore.Constants.ID,
+            flags: ApplicationFlags.FLAGS_NONE
+        );
 
-        public Application () {
-            Object (
-                application_id: App.Configs.Constants.ID,
-                flags: ApplicationFlags.FLAGS_NONE
-            );
+        var quit_action = new SimpleAction ("quit", null);
+        quit_action.activate.connect (() => {
+            controller.quit ();
+        });
 
-            var quit_action = new SimpleAction ("quit", null);
-            quit_action.activate.connect (() => {
-                controller.quit ();
-            });
+        add_action (quit_action);
+        set_accels_for_action ("app.quit", {"<Control>q"});
+    }
 
-            add_action (quit_action);
-            set_accels_for_action ("app.quit", {"<Control>q"});
+    public override void activate () {
+        if (controller == null) {
+            controller = new Gitignore.Controller (this);
         }
 
-        public override void activate () {
-            if (controller == null) {
-                controller = new App.Controllers.AppController (this);
-            }
-
-            controller.activate ();
-        }
+        controller.activate ();
     }
 }

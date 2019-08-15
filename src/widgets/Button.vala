@@ -17,35 +17,32 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Widgets {
+public class Gitignore.Widgets.Button : Gtk.Button {
 
-    public class Button : Gtk.Button {
+    private new Gtk.Label label;
+    private new Gtk.Image image;
 
-        private new Gtk.Label label;
-        private new Gtk.Image image;
+    public Button (string text, string icon) {
+        Object (
+            margin_start: 8
+        );
 
-        public Button (string text, string icon) {
-            Object (
-                margin_start: 8
-            );
+        label.set_text (text);
+        image.gicon = new ThemedIcon (icon);
+    }
 
-            label.set_text (text);
-            image.gicon = new ThemedIcon (icon);
-        }
+    construct {
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        construct {
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        label = new Gtk.Label ("");
 
-            label = new Gtk.Label ("");
+        image = new Gtk.Image ();
+        image.pixel_size = 16;
+        image.margin_end = 4;
 
-            image = new Gtk.Image ();
-            image.pixel_size = 16;
-            image.margin_end = 4;
+        box.add (image);
+        box.add (label);
 
-            box.add (image);
-            box.add (label);
-
-            add (box);
-        }
+        add (box);
     }
 }
