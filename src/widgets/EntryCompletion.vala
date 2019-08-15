@@ -24,7 +24,7 @@ namespace App.Widgets {
         public EntryCompletion () {
             Object (
                 inline_selection: true,
-                popup_single_match: false
+                popup_single_match: true
             );
 
             var data = App.Utils.DataUtils.DATA;

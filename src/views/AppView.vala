@@ -26,7 +26,7 @@ namespace App.Views {
 
         private App.Views.GitignoreView gitignore_view;
 
-        private App.Widgets.Button generate_gitignore_button;
+        public App.Widgets.Button generate_gitignore_button;
         private Gtk.Button copy_button;
         private Gtk.Button save_button;
 

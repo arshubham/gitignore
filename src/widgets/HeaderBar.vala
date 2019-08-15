@@ -50,7 +50,7 @@ namespace App.Widgets {
                 list.add (data_set[i]);
             }
 
-            search_entry.activate.connect (() => {
+            entry_completion.match_selected.connect (() => {
                 string[] data = settings.get_strv ("selected-langs");
 
                 if (data.length == 0) {
@@ -80,6 +80,9 @@ namespace App.Widgets {
                 }
 
                 changed ();
+
+                search_entry.text = "";
+                return true;
             });
 
             var window_settings = Gtk.Settings.get_default ();
