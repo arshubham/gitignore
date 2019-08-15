@@ -22,7 +22,7 @@ public class Main {
     public static void main (string [] args) {
         App.Utils.create_dir_with_parents ("/.local/share/com.github.arshubham.gitignore");
 
-        var app = new App.Application ();
+        var app = new Gitignore.Application ();
         app.run (args);
     }
 }

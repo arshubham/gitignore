@@ -17,17 +17,13 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Models {
+public class Gitignore.Models.Bookmark {
+    public int bookmarkId {get; set;}
+    public string bookmarkName {get; set;}
+    public string languages {get; set;}
 
-    public class Bookmark {
-        public int bookmarkId {get; set;}
-        public string bookmarkName {get; set;}
-        public string languages {get; set;}
-
-        public Bookmark (string bookmarkName = "", string languages = "", int bookmarkId = 0) {
-            this.bookmarkName = bookmarkName;
-            this.languages = languages;
-        }
+    public Bookmark (string bookmarkName = "", string languages = "", int bookmarkId = 0) {
+        this.bookmarkName = bookmarkName;
+        this.languages = languages;
     }
-
 }

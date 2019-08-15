@@ -17,19 +17,16 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Widgets {
+public class Gitignore.Widgets.SearchEntry : Gtk.SearchEntry {
 
-    public class SearchEntry : Gtk.SearchEntry {
+    public SearchEntry (Gitignore.Widgets.EntryCompletion entry_completion) {
+        Object (
+            hexpand: true,
+            placeholder_text: _("Select a Language from the dropdown and press enter."),
+            valign: Gtk.Align.CENTER
+        );
 
-        public SearchEntry (App.Widgets.EntryCompletion entry_completion) {
-            Object (
-                hexpand: true,
-                placeholder_text: _("Select a Language from the dropdown and press enter."),
-                valign: Gtk.Align.CENTER
-            );
-
-            set_completion (entry_completion);
-            grab_focus_without_selecting ();
-        }
+        set_completion (entry_completion);
+        grab_focus_without_selecting ();
     }
 }

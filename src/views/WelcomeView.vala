@@ -17,43 +17,40 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-namespace App.Views {
+public class Gitignore.Views.WelcomeView : Gtk.Grid {
+    public WelcomeView () {
+        Object (
+            halign: Gtk.Align.CENTER,
+            hexpand: true,
+            row_spacing: 10,
+            valign: Gtk.Align.CENTER,
+            vexpand: true
+        );
+    }
 
-    public class WelcomeView : Gtk.Grid {
-        public WelcomeView () {
-            Object (
-                halign: Gtk.Align.CENTER,
-                hexpand: true,
-                row_spacing: 10,
-                valign: Gtk.Align.CENTER,
-                vexpand: true
-            );
-        }
+    construct {
+        var image = new Gtk.Image.from_resource ("/com/github/arshubham/gitignore/images/128-com.github.arshubham.gitignore.svg");
 
-        construct {
-            var image = new Gtk.Image.from_resource ("/com/github/arshubham/gitignore/images/128-com.github.arshubham.gitignore.svg");
+        var title = new Gtk.Label (_("gitIgnore"));
+        title.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
-            var title = new Gtk.Label (_("gitIgnore"));
-            title.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
+        var subtitle = new Gtk.Label (_(".gitignore reference for various languages"));
 
-            var subtitle = new Gtk.Label (_(".gitignore reference for various languages"));
+        var usage_instructions = _("Select a Language from the dropdown and press enter."
+                    + "The selected languages will appear as tags. Press 'Generate .gitignore' "
+                    + "to fetch .gitignore file. Internet connection is required to use gitIgnore");
 
-            var usage_instructions = _("Select a Language from the dropdown and press enter."
-                       + "The selected languages will appear as tags. Press 'Generate .gitignore' "
-                       + "to fetch .gitignore file. Internet connection is required to use gitIgnore");
+        var copy = new Gtk.Label ("<b>%s</b>".printf (usage_instructions));
+        copy.margin = 24;
+        copy.max_width_chars = 70;
+        copy.use_markup = true;
+        copy.wrap = true;
+        copy.margin_bottom = 150;
 
-            var copy = new Gtk.Label ("<b>%s</b>".printf (usage_instructions));
-            copy.margin = 24;
-            copy.max_width_chars = 70;
-            copy.use_markup = true;
-            copy.wrap = true;
-            copy.margin_bottom = 150;
-
-            attach (image, 0, 0);
-            attach (title, 0, 1);
-            attach (subtitle, 0, 2);
-            attach (copy, 0, 3);
-            get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
-        }
+        attach (image, 0, 0);
+        attach (title, 0, 1);
+        attach (subtitle, 0, 2);
+        attach (copy, 0, 3);
+        get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
     }
 }
