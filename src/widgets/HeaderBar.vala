@@ -122,7 +122,6 @@ public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
         bookmarks_popver_button.set_image (new Gtk.Image.from_icon_name ("user-bookmarks", Gtk.IconSize.LARGE_TOOLBAR));
         bookmarks_popver_button.clicked.connect (show_hide_popover);
 
-        get_style_context ().add_class ("flat");
         dark_switch = new Gtk.Switch ();
         dark_switch.valign = Gtk.Align.CENTER;
         dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
@@ -137,6 +136,8 @@ public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
         pack_end (dark_switch);
         pack_end (light_icon);
         pack_end (bookmarks_popver_button);
+
+        get_style_context ().add_class ("flat");
     }
 
     private void show_hide_popover () {

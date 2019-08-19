@@ -43,11 +43,11 @@ public class Gitignore.Widgets.BookmarkDialog : Gtk.Dialog {
         );
 
         foreach (var language in languages) {
-            var tag = new Widgets.Tag (language);
+            var tag = new Gitignore.Widgets.Tag (language);
             tag.hide_close_button ();
             tags_flow_box.add (tag);
         }
-        
+
         this.db = db;
         this.languages = languages;
 
@@ -55,7 +55,7 @@ public class Gitignore.Widgets.BookmarkDialog : Gtk.Dialog {
             bookmark_name_entry_revealer.set_reveal_child (false);
             return true;
         });
-        
+
         set_default_size (400, 150);
         set_keep_above (true);
         get_content_area ().add (grid);

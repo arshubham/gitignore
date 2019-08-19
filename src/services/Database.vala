@@ -63,7 +63,7 @@ public class Gitignore.Services.Database : GLib.Object {
         return rc;
     }
 
-    public void add_bookmark (Models.Bookmark bookmark) {
+    public void add_bookmark (Gitignore.Models.Bookmark bookmark) {
         Sqlite.Statement stmt;
 
         int res = db.prepare_v2 ("INSERT INTO bookmarks (bookmarkName, languages)" +
@@ -81,10 +81,10 @@ public class Gitignore.Services.Database : GLib.Object {
 
         if (res == Sqlite.DONE) {
             debug ("Bookmark Added");
-        }  
+        }
     }
 
-    public void remove_bookmark (Models.Bookmark bookmark) {
+    public void remove_bookmark (Gitignore.Models.Bookmark bookmark) {
 
         Sqlite.Statement stmt;
 
@@ -103,17 +103,17 @@ public class Gitignore.Services.Database : GLib.Object {
 
     }
 
-    public Gee.ArrayList<Models.Bookmark?> get_all_bookmarks () {
+    public Gee.ArrayList<Gitignore.Models.Bookmark?> get_all_bookmarks () {
         Sqlite.Statement stmt;
         int res = db.prepare_v2 ("SELECT * FROM bookmarks",
         -1, out stmt);
 
         assert (res == Sqlite.OK);
 
-        var all = new Gee.ArrayList<Models.Bookmark?> ();
+        var all = new Gee.ArrayList<Gitignore.Models.Bookmark?> ();
 
         while ((res = stmt.step()) == Sqlite.ROW) {
-            var bookmark = new Models.Bookmark ();
+            var bookmark = new Gitignore.Models.Bookmark ();
 
             bookmark.bookmarkId = stmt.column_int (0);
             bookmark.bookmarkName = stmt.column_text (1);

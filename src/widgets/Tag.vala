@@ -86,7 +86,7 @@ public class Gitignore.Widgets.Tag : Gtk.Grid {
             get_style_context ().add_class ("tag");
         }
     }
-    
+
     public void hide_close_button () {
         close_button.set_opacity (0);
         close_button.set_sensitive (true);

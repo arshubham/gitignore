@@ -44,7 +44,7 @@ public class Gitignore.Widgets.BookmarksPopover : Gtk.Popover {
         stack.add_titled ( no_bookmarks_grid (), "no_bookmarks_stack", _("New User"));
 
         stack.visible_child_name = "bookmark_list_stack";
-        
+
         var content_grid = new Gtk.Grid ();
         content_grid.attach (stack, 0, 0, 1, 1);
         add (content_grid);
@@ -101,3 +101,4 @@ public class Gitignore.Widgets.BookmarksPopover : Gtk.Popover {
         }
     }
 }
+
