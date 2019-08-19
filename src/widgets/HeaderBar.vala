@@ -42,6 +42,16 @@ public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
             title: Gitignore.Constants.APP_NAME
         );
 
+        // Allows window to be dragged when search_entry is empty
+        search_entry.button_press_event.connect ((event)=>{
+            search_entry.grab_focus_without_selecting ();
+            if (search_entry.text_length > 0) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
         this.window = window;
 
         var settings = new GLib.Settings ("com.github.arshubham.gitignore");
