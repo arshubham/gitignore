@@ -83,7 +83,8 @@ Here’s how we suggest you go about proposing a change to this project:
 
 # :tada: Special Thanks 
 - [Nathan Bnm](https://github.com/NathanBnm) for his help in French translations
-- [Sahil Arora](https://github.com/sahilarora3117) for icon
+- [Nararyans R.I.](https://github.com/Fatih20) for [current icon](https://raw.githubusercontent.com/arshubham/gitignore/master/data/images/com.github.arshubham.gitignore.png)
+- [Sahil Arora](https://github.com/sahilarora3117) for [old icon](https://raw.githubusercontent.com/arshubham/gitignore/198623596d403b51eb867618da69fc874413f557/data/images/com.github.arshubham.gitignore.png)
 
 # :page_facing_up: License 
 This project is distributed under the terms of the GNU General Public License, version 3 - see the [LICENSE.md](LICENSE.md) file for details.
