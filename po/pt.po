@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/views/AppView.vala:53
 msgid "Save File"
-msgstr "Gravar Ficheiro"
+msgstr "Guardar Ficheiro"
 
 #: src/views/AppView.vala:99
 msgid "Save as file"
-msgstr "Gravar Ficheiro como"
+msgstr "Guardar Ficheiro como"
 
 #: src/views/AppView.vala:103
 msgid "Copy generated gitignore"
