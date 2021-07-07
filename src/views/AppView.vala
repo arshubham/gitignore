@@ -27,17 +27,38 @@ public class Gitignore.Views.AppView : Gtk.Grid {
     private Gitignore.Widgets.Button generate_gitignore_button;
     private Gtk.Button copy_button;
     private Gtk.Button save_button;
+    private Gtk.Button bookmark_button;
 
     private Granite.Widgets.Toast copy_toast;
     private Granite.Widgets.Toast file_created_toast;
 
+    private Gitignore.Services.Database db;
+
     public signal void tags_changed ();
 
-    public AppView (Gdk.Display display) {
+    public AppView (Gdk.Display display, Gtk.ApplicationWindow window) {
+        var icon = new Gtk.Image ();
+        icon.gicon = new ThemedIcon ("starred");
+        icon.pixel_size = 24;
+
+        db = new Gitignore.Services.Database ();
+
         generate_gitignore_button.clicked.connect (() => {
             stack.visible_child_name = "gitignore_view_stack";
             gitignore_view.load_data ();
             toggle_buttons ();
+        });
+
+        bookmark_button.clicked.connect (() => {
+            var settings = new GLib.Settings ("com.github.arshubham.gitignore");
+            string[] data = settings.get_strv ("selected-langs");
+
+            var bookmark_dialog = new Widgets.BookmarkDialog (window, data, db);
+            bookmark_dialog.show_all ();
+
+            bookmark_dialog.bookmark_added.connect (() => {
+                bookmark_button.set_image (icon);
+            });
         });
 
         copy_button.clicked.connect (() => {
@@ -56,16 +77,14 @@ public class Gitignore.Views.AppView : Gtk.Grid {
                 try {
                     var data_file = File.new_for_uri (filech.get_current_folder_uri () +"/.gitignore");
 
-                    {
-                        var file_stream = data_file.create (FileCreateFlags.NONE);
+                    var file_stream = data_file.create (FileCreateFlags.NONE);
 
-                        if (data_file.query_exists ()) {
-                            debug ("File successfully created.");
-                        }
-
-                        var data_stream = new DataOutputStream (file_stream);
-                        data_stream.put_string (gitignore_view.source_buffer.text);
+                    if (data_file.query_exists ()) {
+                        debug ("File successfully created.");
                     }
+
+                    var data_stream = new DataOutputStream (file_stream);
+                    data_stream.put_string (gitignore_view.source_buffer.text);
 
                     file_created_toast.valign = Gtk.Align.END;
                     file_created_toast.send_notification ();
@@ -77,7 +96,7 @@ public class Gitignore.Views.AppView : Gtk.Grid {
             filech.destroy ();
         });
 
-        toggle_buttons ();
+        update_tags ();
     }
 
     construct {
@@ -91,23 +110,22 @@ public class Gitignore.Views.AppView : Gtk.Grid {
 
         tag_grid = new Gtk.Grid ();
 
-        update_tags ();
-
         save_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
         save_button.set_tooltip_text (_("Save as file"));
         save_button.get_style_context ().add_class ("flat");
 
-        copy_button = new Gtk.Button.from_icon_name ("edit-copy", Gtk.IconSize.LARGE_TOOLBAR);
-        copy_button.set_tooltip_text (_("Copy generated gitignore"));
-        copy_button.get_style_context ().add_class ("flat");
+        bookmark_button = new Gtk.Button.from_icon_name ("non-starred", Gtk.IconSize.LARGE_TOOLBAR);
+        bookmark_button.set_tooltip_text (_("Bookmark selected languages"));
+        bookmark_button.get_style_context ().add_class ("flat");
 
         generate_gitignore_button = new Gitignore.Widgets.Button (_("Generate .gitignore"), "media-playback-start");
         generate_gitignore_button.set_tooltip_text (_("Generate .gitignore from selected languages"));
         generate_gitignore_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
         generate_gitignore_button.get_style_context ().add_class ("flat");
 
-        content_box.pack_start (tag_grid, false, false, 0);
+       content_box.pack_start (tag_grid, false, false, 0);
         content_box.pack_end (generate_gitignore_button, false, false, 0);
+        content_box.pack_end (bookmark_button, false, false, 0);
         content_box.pack_end (copy_button, false, false, 0);
         content_box.pack_end (save_button, false, false, 0);
 
@@ -118,8 +136,8 @@ public class Gitignore.Views.AppView : Gtk.Grid {
         stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
         stack.add_titled ( welcome_view, "welcome_view_stack", _("Welcome View"));
         stack.add_titled ( gitignore_view, "gitignore_view_stack", _("Gitignore View"));
-        stack.show_all ();
         stack.visible_child_name = "welcome_view_stack";
+        stack.show_all ();
 
         copy_toast = new Granite.Widgets.Toast (_("Copied content to clipboard"));
         file_created_toast = new Granite.Widgets.Toast (_("File successfully created."));
@@ -136,8 +154,10 @@ public class Gitignore.Views.AppView : Gtk.Grid {
 
         string[] data = settings.get_strv ("selected-langs");
 
-        for (int i = 0; i < data.length + 1; i++) {
-            tag_grid.remove_column (i);
+        if (data != null && data.length > 0) {
+            for (int i = 0; i < data.length + 1; i++) {
+                tag_grid.remove_column (i);
+            }
         }
 
         var children = tag_grid.get_children ();
@@ -145,12 +165,14 @@ public class Gitignore.Views.AppView : Gtk.Grid {
             tag_grid.remove (element);
         }
 
-        for (int i = 0; i < data.length; i++) {
-            var tag = new Gitignore.Widgets.Tag (data[i]);
-            tag_grid.attach (tag, i, 0);
-            tag.tag_deleted.connect (() => {
-                update_tags ();
-            });
+        if (data != null && data.length > 0) {
+            for (int i = 0; i < data.length; i++) {
+                var tag = new Gitignore.Widgets.Tag (data[i]);
+                tag_grid.attach (tag, i, 0);
+                tag.tag_deleted.connect (() => {
+                    update_tags ();
+                });
+            }
         }
 
         tag_grid.show_all ();
@@ -165,27 +187,27 @@ public class Gitignore.Views.AppView : Gtk.Grid {
 
         if (stack.visible_child_name == "welcome_view_stack") {
             save_button.set_sensitive (false);
-            save_button.set_opacity (0);
             copy_button.set_sensitive (false);
+            save_button.set_opacity (0);
             copy_button.set_opacity (0);
 
-            if (data.length > 0) {
-                generate_gitignore_button.set_sensitive (true);
-            } else {
-                generate_gitignore_button.set_sensitive (false);
-            }
-        } else if (stack.visible_child_name == "gitignore_view_stack") {
-            if (data.length > 0) {
+            if (data != null && data.length > 0) {
                 generate_gitignore_button.set_sensitive (true);
             } else {
                 generate_gitignore_button.set_sensitive (false);
             }
 
+        } else if (stack.visible_child_name == "gitignore_view_stack") {
             copy_button.set_sensitive (true);
             save_button.set_sensitive (true);
             save_button.set_opacity (1);
             copy_button.set_opacity (1);
-            generate_gitignore_button.set_opacity (1);
+
+            if (data != null && data.length > 0) {
+                generate_gitignore_button.set_sensitive (true);
+            } else {
+                generate_gitignore_button.set_sensitive (false);
+            }
         }
     }
 }

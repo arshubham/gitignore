@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,13 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-public class Main {
+public class Gitignore.Models.Bookmark {
+    public int bookmarkId {get; set;}
+    public string bookmarkName {get; set;}
+    public string languages {get; set;}
 
-    public static void main (string [] args) {
-        App.Utils.create_dir_with_parents ("/.local/share/com.github.arshubham.gitignore");
-
-        var app = new Gitignore.Application ();
-        app.run (args);
+    public Bookmark (string bookmarkName = "", string languages = "", int bookmarkId = 0) {
+        this.bookmarkName = bookmarkName;
+        this.languages = languages;
     }
 }

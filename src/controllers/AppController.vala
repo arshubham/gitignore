@@ -28,10 +28,12 @@ public class Gitignore.Controller {
     public Controller (Gitignore.Application application) {
         this.application = application;
         window = new Gitignore.Window (this.application);
-        headerbar = new Gitignore.Widgets.HeaderBar ();
+        headerbar = new Gitignore.Widgets.HeaderBar (window);
         display = window.get_display ();
 
-        app_view = new Gitignore.Views.AppView (display);
+        var db = new Gitignore.Services.Database ();
+        app_view = new Gitignore.Views.AppView (display, window);
+        
         headerbar.changed.connect (() => {
             app_view.update_tags ();
             int window_width, window_height;

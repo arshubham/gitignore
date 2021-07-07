@@ -2,6 +2,9 @@ sources += files(
     'configs/Constants.vala',
         
     'controllers/AppController.vala',
+
+    'services/Database.vala',
+    'models/Bookmark.vala',
     
     'views/AppView.vala',
     'views/WelcomeView.vala',
@@ -13,9 +16,13 @@ sources += files(
     'widgets/SearchEntry.vala',
     'widgets/EntryCompletion.vala',
     'widgets/SourceView.vala',
+    'widgets/BookmarkDialog.vala',
+    'widgets/BookmarksPopover.vala',
+    'widgets/BookmarkItem.vala',
 
     'utils/FileUtils.vala',
     'utils/DataUtils.vala',
+    'utils/Utils.vala',
     
     'Application.vala',
     'Main.vala',

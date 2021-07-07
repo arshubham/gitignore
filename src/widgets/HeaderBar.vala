@@ -27,15 +27,32 @@ public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
 
     private Gee.HashSet<string> selected_languages;
 
+    private Gitignore.Widgets.BookmarksPopover bookmarks_popover;
+    private Gtk.Button bookmarks_popver_button;
+
+    private Gtk.ApplicationWindow window;
+
     public signal void switch_theme ();
     public signal void changed ();
 
-    public HeaderBar () {
+    public HeaderBar (Gtk.ApplicationWindow window) {
         Object (
             has_subtitle: false,
             show_close_button: true,
             title: Gitignore.Constants.APP_NAME
         );
+
+        // Allows window to be dragged when search_entry is empty
+        search_entry.button_press_event.connect ((event)=>{
+            search_entry.grab_focus_without_selecting ();
+            if (search_entry.text_length > 0) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+        this.window = window;
 
         var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
@@ -111,7 +128,10 @@ public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
         entry_completion = new Gitignore.Widgets.EntryCompletion ();
         search_entry = new Gitignore.Widgets.SearchEntry (entry_completion);
 
-        get_style_context ().add_class ("flat");
+        bookmarks_popver_button = new Gtk.Button ();
+        bookmarks_popver_button.set_image (new Gtk.Image.from_icon_name ("user-bookmarks", Gtk.IconSize.LARGE_TOOLBAR));
+        bookmarks_popver_button.clicked.connect (show_hide_popover);
+
         dark_switch = new Gtk.Switch ();
         dark_switch.valign = Gtk.Align.CENTER;
         dark_switch.get_style_context ().add_class (Granite.STYLE_CLASS_MODE_SWITCH);
@@ -125,5 +145,13 @@ public class Gitignore.Widgets.HeaderBar : Gtk.HeaderBar {
         pack_end (dark_icon);
         pack_end (dark_switch);
         pack_end (light_icon);
+        pack_end (bookmarks_popver_button);
+
+        get_style_context ().add_class ("flat");
+    }
+
+    private void show_hide_popover () {
+        bookmarks_popover = new Gitignore.Widgets.BookmarksPopover (bookmarks_popver_button, window);
+        bookmarks_popover.show_all ();
     }
 }

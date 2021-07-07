@@ -78,12 +78,18 @@ public class Gitignore.Widgets.Tag : Gtk.Grid {
         var settings = new GLib.Settings ("com.github.arshubham.gitignore");
 
         bool prefer_dark;
-        settings.get ("prefer-dark", "b", out prefer_dark );
+        settings.get ("prefer-dark", "b", out prefer_dark);
 
         if (prefer_dark) {
             get_style_context ().add_class ("tag_dark");
         } else {
             get_style_context ().add_class ("tag");
         }
+    }
+
+    public void hide_close_button () {
+        close_button.set_opacity (0);
+        close_button.set_sensitive (true);
+        label.halign = Gtk.Align.CENTER;
     }
 }

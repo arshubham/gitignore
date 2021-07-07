@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2018-2019 Shubham Arora <shubhamarora@protonmail.com>
+* Copyright (C) 2019 Shubham Arora <shubhamarora@protonmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,14 @@
 * Authored by: Shubham Arora <shubhamarora@protonmail.com>
 */
 
-public class Main {
+namespace App.Utils {
 
-    public static void main (string [] args) {
-        App.Utils.create_dir_with_parents ("/.local/share/com.github.arshubham.gitignore");
-
-        var app = new Gitignore.Application ();
-        app.run (args);
+    public void create_dir_with_parents (string dir) {
+        string path = Environment.get_home_dir () + dir;
+        debug (path);
+        File tmp = File.new_for_path (path);
+        if (tmp.query_file_type (0) != FileType.DIRECTORY) {
+            GLib.DirUtils.create_with_parents (path, 0775);
+        }
     }
 }
