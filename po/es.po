@@ -8,66 +8,67 @@ msgstr ""
 "Project-Id-Version: com.github.arshubham.gitignore\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-09 16:03+0530\n"
-"PO-Revision-Date: 2019-02-08 21:10+0530\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-09-10 02:30-0500\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: src/views/AppView.vala:53
 msgid "Save File"
-msgstr ""
+msgstr "Guardar archivo"
 
 #: src/views/AppView.vala:99
 msgid "Save as file"
-msgstr ""
+msgstr "Guardar como archivo"
 
 #: src/views/AppView.vala:103
 msgid "Copy generated gitignore"
-msgstr ""
+msgstr "Copiar .gitignore generado"
 
 #: src/views/AppView.vala:106
 msgid "Generate .gitignore"
-msgstr ""
+msgstr "Generar .gitignore"
 
 #: src/views/AppView.vala:107
 msgid "Generate .gitignore from selected languages"
-msgstr ""
+msgstr "Generar .gitignore para los lenguajes seleccionados"
 
 #: src/views/AppView.vala:121
 msgid "Welcome View"
-msgstr ""
+msgstr "Vista de bienvenida"
 
 #: src/views/AppView.vala:122
 msgid "Gitignore View"
-msgstr ""
+msgstr "Vista de .gitignore"
 
 #: src/views/AppView.vala:126
 msgid "Copied content to clipboard"
-msgstr ""
+msgstr "Se copió el contenido en el portapapeles"
 
 #: src/views/AppView.vala:127
 msgid "File successfully created."
-msgstr ""
+msgstr "Se creó el archivo correctamente."
 
 #: src/views/GitignoreView.vala:75
 msgid "Request failed. Please check your network connection."
-msgstr ""
+msgstr "Falló la solicitud. Revise su conexión de red."
 
 #: src/views/WelcomeView.vala:36 src/configs/Constants.vala:26
 #: data/com.github.arshubham.gitignore.desktop.in:3
 #: data/com.github.arshubham.gitignore.appdata.xml.in:7
 msgid "gitIgnore"
-msgstr ""
+msgstr "gitIgnore"
 
 #: src/views/WelcomeView.vala:39
 #: data/com.github.arshubham.gitignore.desktop.in:4
 #: data/com.github.arshubham.gitignore.appdata.xml.in:8
 msgid ".gitignore reference for various languages"
-msgstr ""
+msgstr "Referencia de .gitignore para varios lenguajes"
 
 #: src/views/WelcomeView.vala:41
 msgid ""
@@ -75,57 +76,64 @@ msgid ""
 "will appear as tags. Press 'Generate .gitignore' to fetch .gitignore file. "
 "Internet connection is required to use gitIgnore"
 msgstr ""
+"Seleccione un lenguaje del cuadro desplegable y oprima Intro. Los idiomas "
+"seleccionados aparecerán como etiquetas. Pulse en «Generar .gitignore» para "
+"recuperar el archivo .gitignore. Se necesita una conexión a Internet para "
+"utilizar gitignore"
 
 #: src/widgets/SearchEntry.vala:27
 msgid "Select a Language from the dropdown and press enter."
-msgstr ""
+msgstr "Seleccione un lenguaje del cuadro desplegable y oprima Intro."
 
 #: src/widgets/HeaderBar.vala:122
 msgid "Light background"
-msgstr ""
+msgstr "Fondo claro"
 
 #: src/widgets/HeaderBar.vala:125
 msgid "Dark background"
-msgstr ""
+msgstr "Fondo oscuro"
 
 #: src/widgets/Tag.vala:47
 msgid "Remove Language"
-msgstr ""
+msgstr "Quitar lenguaje"
 
 #: src/configs/Constants.vala:29
 msgid "Gitignore reference for languages"
-msgstr ""
+msgstr "Referencia de .gitignore en función del lenguaje"
 
 #: data/com.github.arshubham.gitignore.desktop.in:5
 msgid "com.github.arshubham.gitignore"
-msgstr ""
+msgstr "com.github.arshubham.gitignore"
 
 #: data/com.github.arshubham.gitignore.desktop.in:11
 msgid "gitignore;git;development;cvs;versioning;"
-msgstr ""
+msgstr "gitignore;git;desarrollo;programación;cvs;control de versiones;"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:9
 msgid "Shubham Arora"
-msgstr ""
+msgstr "Shubham Arora"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:28
 msgid ""
 "A simple application for getting .gitignore reference from gitignore.io. You "
 "can download .gitignore for multiple languages at once."
 msgstr ""
+"Una aplicación sencilla para obtener archivos .gitignore de referencia desde "
+"gitignore.io. Puede descargar .gitignores para varios lenguajes "
+"simultáneamente."
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:33
 msgid "Redesigned UI/UX"
-msgstr ""
+msgstr "Rediseño de la interfaz y la experiencia de usuario"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:34
 msgid "Added i18n support"
-msgstr ""
+msgstr "Se permite la internacionalización"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:35
 msgid "Added French Translations"
-msgstr ""
+msgstr "Adición de una traducción al francés"
 
 #: data/com.github.arshubham.gitignore.appdata.xml.in:40
 msgid "Initial release!"
-msgstr ""
+msgstr "Publicación inicial"
